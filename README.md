@@ -1,5 +1,7 @@
 # Microsoft Edge's *Let's Surf*
-The *Let's Surf* game from ``edge://surf``
+The *Let's Surf* game from Microsoft Edge, with minor enhancement.
+
+Also check out [Chrome Dino](https://github.com/yell0wsuit/chrome-dino-enhanced) that saves your highscore.
 
 <p align="center">
   <img src="https://i.imgur.com/9ybOdy7.png"/>
