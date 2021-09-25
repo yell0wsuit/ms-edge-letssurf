@@ -10,7 +10,9 @@ Also check out [Chrome Dino](https://github.com/yell0wsuit/chrome-dino-enhanced)
 ## Play
 Play online at https://yell0wsuit.github.io/html5-games/games/edge-surf/
 
-For offline play, go to the website and install this game as a web app (easiest method).
+For offline play, go to the website and install this game as a web app (easiest method). Check the install button in the address bar of the browser.  
+On iOS, you need to use Safari and add the page to the homescreen.  
+On Chrome Android, a notification may appear at the bottom of the screen.
 
 ## Features
 - New code from Microsoft Edge v93.0.961.38.
