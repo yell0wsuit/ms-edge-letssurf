@@ -1,13 +1,13 @@
 (() => {
+    "use strict";
     var e, t = {
             14893: (e, t, s) => {
-                "use strict";
                 s.d(t, {
-                    p: () => a
+                    p: () => o
                 });
                 var i = s(89526);
 
-                function a(e) {
+                function o(e) {
                     return i.createElement("svg", {
                         width: 20,
                         height: 20,
@@ -20,10 +20,9 @@
                 }
             },
             13695: (e, t, s) => {
-                "use strict";
                 var i = s(73961),
-                    a = s(89526),
-                    o = s(87958),
+                    o = s(89526),
+                    a = s(87958),
                     n = s(82090),
                     r = s(47861),
                     l = s(6098),
@@ -157,48 +156,48 @@
                 var F = s(14893);
 
                 function B(e) {
-                    return a.createElement("svg", {
+                    return o.createElement("svg", {
                         "aria-hidden": "true",
                         width: 20,
                         height: 20,
                         viewBox: "0 0 20 20",
                         className: e
-                    }, a.createElement("path", {
+                    }, o.createElement("path", {
                         d: "M3.37 10.17a.5.5 0 00-.74.66l4 4.5c.19.22.52.23.72.02l10.5-10.5a.5.5 0 00-.7-.7L7.02 14.27l-3.65-4.1z"
                     }))
                 }
 
                 function V(e) {
-                    return a.createElement("svg", {
+                    return o.createElement("svg", {
                         width: 20,
                         height: 20,
                         viewBox: "0 0 20 20",
                         className: e
-                    }, a.createElement("path", {
+                    }, o.createElement("path", {
                         d: "M8 6a.5.5 0 01.09 1H6a3 3 0 00-.2 6H8a.5.5 0 01.09 1H6a4 4 0 01-.22-8H8zm6 0a4 4 0 01.22 8H12a.5.5 0 01-.09-1H14a3 3 0 00.2-6H12a.5.5 0 01-.09-1H14zM6 9.5h8a.5.5 0 01.09 1H6a.5.5 0 01-.09-1H14 6z",
                         fillRule: "nonzero"
                     }))
                 }
                 var Z = s(3117);
 
-                function j(e) {
-                    switch(e) {
+                function q(e) {
+                    switch (e) {
                         case "timetrial":
                         case "SPEED":
-                            return q.TimeTrial;
+                            return j.TimeTrial;
                         case "BUOY":
                         case "zigzag":
-                            return q.ZigZag;
+                            return j.ZigZag;
                         case "CLASSIC":
                         case "endless":
                         default:
-                            return q.Endless
+                            return j.Endless
                     }
                 }
-                let q;
+                let j;
                 ! function(e) {
                     e.ZigZag = "zigzag", e.Endless = "endless", e.TimeTrial = "timetrial"
-                }(q || (q = {}));
+                }(j || (j = {}));
                 const G = {
                     surf: {
                         gradient: {
@@ -222,7 +221,7 @@
                 var U = s(27670);
 
                 function W(e) {
-                    if("number" != typeof e) return "----";
+                    if ("number" != typeof e) return "----";
                     let t = 14,
                         s = 8;
                     return e < 0 && (e = 3599), e >= 3600 && (t = 12, s = 10), new Date(1e3 * e).toISOString().substr(t, s)
@@ -231,22 +230,13 @@
                 function $(e) {
                     navigator.clipboard.writeText(e)
                 }
-
-                function X(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                class Y {
+                class X {
                     constructor() {
-                        if(X(this, "localData", void 0), Y.offline) return Y.offline;
-                        Y.offline = this, this.loadData(), re.subscribe(this.loadData.bind(this))
+                        if (this.localData = void 0, X.offline) return X.offline;
+                        X.offline = this, this.loadData(), ae.subscribe(this.loadData.bind(this))
                     }
                     loadData() {
-                        const e = re.getState();
+                        const e = ae.getState();
                         this.localData = {
                             settings: {
                                 character: e.currentCharacter,
@@ -263,16 +253,16 @@
                         }
                     }
                     saveData(e) {
-                        re.dispatch(oe(e)), he.saveZigZagHighScore(e.zigzag_bestScore), he.saveEndlessHighScore(e.endless_bestScore), he.saveTimeTrialHighScore(e.timetrial_bestScore), he.saveGameMode(e.mode), he.saveHighVisibilityMode(e.highVisibilityMode), he.saveReducedSpeedMode(e.gameSpeed < se), he.saveDefaultCharacter(e.currentCharacter), he.saveDefaultTheme(e.theme)
+                        ae.dispatch(ie(e)), ne.saveZigZagHighScore(e.zigzag_bestScore), ne.saveEndlessHighScore(e.endless_bestScore), ne.saveTimeTrialHighScore(e.timetrial_bestScore), ne.saveGameMode(e.mode), ne.saveHighVisibilityMode(e.highVisibilityMode), ne.saveReducedSpeedMode(e.gameSpeed < ee), ne.saveDefaultCharacter(e.currentCharacter), ne.saveDefaultTheme(e.theme)
                     }
                     resetData() {
-                        re.dispatch(ne()), he.resetAllStats()
+                        ae.dispatch(oe()), ne.resetAllStats()
                     }
                     getCommonStats(e, t) {
-                        const s = te.sys.game;
+                        const s = Q.sys.game;
                         return {
                             gameMode: e,
-                            score: e === q.TimeTrial ? Math.floor(1e3 * t) : t,
+                            score: e === j.TimeTrial ? Math.floor(1e3 * t) : t,
                             konamiCodeUsed: s.cheat.used,
                             msftCodeUsed: s.cheat.lives,
                             edgeCodeUsed: s.cheat.boosts,
@@ -281,64 +271,55 @@
                         }
                     }
                     storeEndlessStats() {
-                        const e = te.sys.getCurrentScore(),
-                            t = te.sys.session.bestScore.endless,
-                            s = te.sys.game;
-                        he.recordGameEnd({
-                            ...this.getCommonStats(q.Endless, e),
+                        const e = Q.sys.getCurrentScore(),
+                            t = Q.sys.session.bestScore.endless,
+                            s = Q.sys.game;
+                        ne.recordGameEnd({
+                            ...this.getCommonStats(j.Endless, e),
                             loseCondition: s.caught ? "kraken" : "lives",
                             dogCollected: s.friend
-                        }), !s.cheat.used && e > t && (te.sys.session.bestScore.endless = e, s.highScore = !0, this.saveData({
-                            ...re.getState(),
+                        }), !s.cheat.used && e > t && (Q.sys.session.bestScore.endless = e, s.highScore = !0, this.saveData({
+                            ...ae.getState(),
                             endless_bestScore: e
                         }))
                     }
                     storeTimeTrialStats() {
-                        const e = te.sys.getCurrentScore(),
-                            t = te.sys.session.bestScore.timetrial,
-                            s = te.sys.game;
-                        he.recordGameEnd({
-                            ...this.getCommonStats(q.TimeTrial, e),
+                        const e = Q.sys.getCurrentScore(),
+                            t = Q.sys.session.bestScore.timetrial,
+                            s = Q.sys.game;
+                        ne.recordGameEnd({
+                            ...this.getCommonStats(j.TimeTrial, e),
                             livesCollected: s.lives.numCollected
-                        }), !s.cheat.used && (e < t || t < 0) && s.finish && (te.sys.session.bestScore.timetrial = e, s.highScore = !0, this.saveData({
-                            ...re.getState(),
+                        }), !s.cheat.used && (e < t || t < 0) && s.finish && (Q.sys.session.bestScore.timetrial = e, s.highScore = !0, this.saveData({
+                            ...ae.getState(),
                             timetrial_bestScore: e
                         }))
                     }
                     storeZigZagStreak() {
-                        const e = te.sys.getCurrentScore(),
-                            t = te.sys.session.bestScore.zigzag,
-                            s = te.sys.game;
-                        he.recordGameEnd(this.getCommonStats(q.ZigZag, e)), !s.cheat.used && e > t && (te.sys.session.bestScore.zigzag = e, s.highScore = !0, this.saveData({
-                            ...re.getState(),
+                        const e = Q.sys.getCurrentScore(),
+                            t = Q.sys.session.bestScore.zigzag,
+                            s = Q.sys.game;
+                        ne.recordGameEnd(this.getCommonStats(j.ZigZag, e)), !s.cheat.used && e > t && (Q.sys.session.bestScore.zigzag = e, s.highScore = !0, this.saveData({
+                            ...ae.getState(),
                             zigzag_bestScore: e
                         }))
                     }
                 }
-
-                function J(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                let Q, ee;
-                X(Y, "offline", void 0),
+                let Y, J;
+                X.offline = void 0,
                     function(e) {
                         e.Menu = "menu", e.Play = "play", e.Pause = "pause", e.Over = "over"
-                    }(Q || (Q = {})),
+                    }(Y || (Y = {})),
                     function(e) {
                         e.Keyboard = "keyboard", e.Mouse = "mouse", e.Touch = "touch", e.Xbox = "xbox", e.Ps = "ps"
-                    }(ee || (ee = {}));
-                class te {
+                    }(J || (J = {}));
+                class Q {
                     constructor() {
-                        if(J(this, "session", void 0), J(this, "game", void 0), te.sys) return te.sys;
-                        te.sys = this, this.defineSessionSettings(), this.resetGameData(), re.subscribe(this.loadSessionSettings.bind(this))
+                        if (this.session = void 0, this.game = void 0, Q.sys) return Q.sys;
+                        Q.sys = this, this.defineSessionSettings(), this.resetGameData(), ae.subscribe(this.loadSessionSettings.bind(this))
                     }
                     defineSessionSettings() {
-                        const e = re.getState();
+                        const e = ae.getState();
                         this.session = {
                             settings: {
                                 mode: e.mode,
@@ -352,10 +333,10 @@
                                 timetrial: e.timetrial_bestScore,
                                 zigzag: e.zigzag_bestScore
                             },
-                            state: Q.Menu,
+                            state: Y.Menu,
                             flyoutActive: !1,
                             forcedColors: !1,
-                            inputType: ee.Keyboard,
+                            inputType: isTouch() ? J.Touch : J.Keyboard,
                             w: 0,
                             h: 0,
                             x: 0,
@@ -363,7 +344,7 @@
                         }
                     }
                     saveSessionSettings() {
-                        Y.offline.saveData({
+                        X.offline.saveData({
                             mode: this.session.settings.mode,
                             theme: this.session.settings.theme,
                             currentCharacter: this.session.settings.character,
@@ -376,48 +357,48 @@
                         })
                     }
                     loadSessionSettings() {
-                        const e = re.getState();
+                        const e = ae.getState();
                         this.session.settings.mode = e.mode, this.session.settings.theme = e.theme, this.session.settings.character = e.currentCharacter, this.session.settings.hitbox = e.highVisibilityMode, this.session.settings.gameSpeed = e.gameSpeed, this.session.bestScore.endless = e.endless_bestScore, this.session.bestScore.timetrial = e.timetrial_bestScore, this.session.bestScore.zigzag = e.zigzag_bestScore
                     }
                     saveGameStats() {
-                        switch(this.session.settings.mode) {
-                            case q.Endless:
-                                Y.offline.storeEndlessStats();
+                        switch (this.session.settings.mode) {
+                            case j.Endless:
+                                X.offline.storeEndlessStats();
                                 break;
-                            case q.TimeTrial:
-                                Y.offline.storeTimeTrialStats();
+                            case j.TimeTrial:
+                                X.offline.storeTimeTrialStats();
                                 break;
-                            case q.ZigZag:
-                                Y.offline.storeZigZagStreak()
+                            case j.ZigZag:
+                                X.offline.storeZigZagStreak()
                         }
                     }
                     getCurrentScore() {
-                        switch(this.session.settings.mode) {
-                            case q.Endless:
+                        switch (this.session.settings.mode) {
+                            case j.Endless:
                                 return Math.floor(this.game.dist.unit);
-                            case q.TimeTrial:
+                            case j.TimeTrial:
                                 return this.game.time.elapsed - 2 * this.game.coins;
-                            case q.ZigZag:
+                            case j.ZigZag:
                                 return this.game.gates
                         }
                     }
                     getCurrentScoreFormatted() {
                         const e = this.getCurrentScore();
-                        switch(this.session.settings.mode) {
-                            case q.Endless:
-                            case q.ZigZag:
+                        switch (this.session.settings.mode) {
+                            case j.Endless:
+                            case j.ZigZag:
                                 return e.toString();
-                            case q.TimeTrial:
+                            case j.TimeTrial:
                                 return W(e)
                         }
                     }
                     getHighScore(e) {
-                        switch(e) {
-                            case q.Endless:
+                        switch (e) {
+                            case j.Endless:
                                 return Math.max(this.session.bestScore.endless, 0).toString();
-                            case q.TimeTrial:
+                            case j.TimeTrial:
                                 return W(this.session.bestScore.timetrial);
-                            case q.ZigZag:
+                            case j.ZigZag:
                                 return Math.max(this.session.bestScore.zigzag, 0).toString()
                         }
                     }
@@ -472,35 +453,35 @@
                         return Math.floor(e + (t + 1 - e) * Math.random())
                     }
                     randIndex(e) {
-                        if(!Array.isArray(e)) return e;
+                        if (!Array.isArray(e)) return e;
                         return e[Math.floor(Math.random() * e.length)]
                     }
                 }
-                J(te, "sys", void 0);
-                const se = 1,
-                    ie = {
+                Q.sys = void 0;
+                const ee = 1,
+                    te = {
                         currentCharacter: Z.pz.getInteger("lastSelectedPlayer"),
                         highVisibilityMode: Z.pz.getBoolean("highVisibilityActive"),
-                        gameSpeed: Z.pz.getBoolean("reducedSpeedActive") ? .5 : se,
-                        mode: j(Z.pz.getString("lastSelectedMode")),
+                        gameSpeed: Z.pz.getBoolean("reducedSpeedActive") ? .5 : ee,
+                        mode: q(Z.pz.getString("lastSelectedMode")),
                         theme: K(Z.pz.getString("lastSelectedTheme")),
-                        gameState: Q.Menu,
+                        gameState: Y.Menu,
                         endless_bestScore: Z.pz.getInteger("endlessBestScore"),
                         timetrial_bestScore: Z.pz.getInteger("timetrialBestScore") < 0 ? -1 : Z.pz.getInteger("timetrialBestScore") / 1e3,
                         zigzag_bestScore: Z.pz.getInteger("zigzagBestScore")
                     };
-                var ae;
+                var se;
 
-                function oe(e) {
+                function ie(e) {
                     return {
-                        type: ae.UPDATE_STATS,
+                        type: se.UPDATE_STATS,
                         ...e
                     }
                 }
 
-                function ne() {
+                function oe() {
                     return {
-                        type: ae.RESET_STATS,
+                        type: se.RESET_STATS,
                         endless_bestScore: -1,
                         zigzag_bestScore: -1,
                         timetrial_bestScore: -1,
@@ -509,10 +490,10 @@
                     }
                 }! function(e) {
                     e.RESET_STATS = "RESET_STATS", e.UPDATE_GAME_STATE = "UPDATE_GAME_STATE", e.UPDATE_STATS = "UPDATE_STATS"
-                }(ae || (ae = {}));
-                const re = (0, U.MT)((function(e = ie, t) {
-                    switch(t.type) {
-                        case ae.UPDATE_STATS: {
+                }(se || (se = {}));
+                const ae = (0, U.MT)((function(e = te, t) {
+                    switch (t.type) {
+                        case se.UPDATE_STATS: {
                             const s = t;
                             return {
                                 ...e,
@@ -526,155 +507,103 @@
                                 timetrial_bestScore: e.timetrial_bestScore < 0 ? s.timetrial_bestScore : Math.min(e.timetrial_bestScore, s.timetrial_bestScore)
                             }
                         }
-                        case ae.UPDATE_GAME_STATE:
+                        case se.UPDATE_GAME_STATE:
                             return {
                                 ...e, gameState: t.gameState
                             };
-                        case ae.RESET_STATS:
+                        case se.RESET_STATS:
                             return {
                                 ...e, endless_bestScore: t.endless_bestScore, zigzag_bestScore: t.zigzag_bestScore, timetrial_bestScore: t.timetrial_bestScore, currentCharacter: t.currentCharacter, theme: t.theme
                             };
                         default:
                             return e
                     }
-                }), ie);
-
-                function le(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                class he {
+                }), te);
+                class ne {
                     static recordNewGame(e) {
-                        switch(e) {
-                            case q.ZigZag:
-                                he.numZigZagGames += 1;
+                        switch (e) {
+                            case j.ZigZag:
+                                ne.numZigZagGames += 1;
                                 break;
-                            case q.Endless:
-                                he.numEndlessGames += 1;
+                            case j.Endless:
+                                ne.numEndlessGames += 1;
                                 break;
-                            case q.TimeTrial:
-                                he.numTimeTrialGames += 1
+                            case j.TimeTrial:
+                                ne.numTimeTrialGames += 1
                         }
                     }
                     static defaultStats() {
                         return {
-                            timetrial_bestScore: -1,
                             endless_bestScore: -1,
-                            currentCharacter: 4,
-                            highVisibilityMode: false,
+                            zigzag_bestScore: -1,
+                            timetrial_bestScore: -1,
+                            currentCharacter: 1,
+                            theme: "surf",
                             mode: "endless",
-                            reducedSpeedMode: false,
-                            timetrial_bestScore: -0.001
+                            highVisibilityMode: false,
+                            reducedSpeedMode: false
                         }
                     }
                     static async getAllStats() {
-                        // const e = await Z.cr.sendWithPromise("get-stats");
-                        return ("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send && "undefined" != typeof Z.cr && "function" == typeof Z.cr.sendWithPromise) ?
-                            Z.cr.sendWithPromise("get-stats") :
-                            Promise.resolve(
-                                JSON.parse(localStorage.getItem("surfstats")) || he.defaultStats());
+                        return (
+                            JSON.parse(localStorage.getItem("surfstats")) || ne.defaultStats()
+                        );
                     }
                     static resetAllStats() {
-                        // Z.e9.send("reset-stats")
-                        ("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) ?
-                        Z.e9.send("reset-stats"): localStorage.removeItem("surfstats");
+                        localStorage.removeItem("surfstats");
                     }
                     static saveEndlessHighScore(e) {
-                        // Z.e9.send("set-high-score", [q.Endless, Math.floor(e)])
-                        if("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
-                            Z.e9.send("set-high-score", [q.Endless, Math.floor(e)])
-                        } else {
-                            localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
-                                endless_bestScore: e
-                            })));
-                        }
+                        localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
+                            endless_bestScore: Math.floor(e)
+                        })));
                     }
                     static saveZigZagHighScore(e) {
-                        // Z.e9.send("set-high-score", [q.ZigZag, Math.floor(e)])
-                        if("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
-                            Z.e9.send("set-high-score", [q.ZigZag, Math.floor(e)])
-                        } else {
-                            localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
-                                zigzag_bestScore: e
-                            })));
-                        }
+                        localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
+                            zigzag_bestScore: Math.floor(e)
+                        })));
                     }
                     static saveTimeTrialHighScore(e) {
                         let t = e;
-                        // e > 0 && (t *= 1e3), Z.e9.send("set-high-score", [q.TimeTrial, Math.floor(t)])
-                        if("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
-                            e > 0 && (t *= 1e3), Z.e9.send("set-high-score", [q.TimeTrial, Math.floor(t)])
-                        } else {
-                            e > 0 && (t *= 1e3);
-                            localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
-                                timetrial_bestScore: t
-                            })));
-                        }
+                        e > 0 && (t *= 1e3);
+                        localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
+                            timetrial_bestScore: Math.floor(t)
+                        })));
                     }
                     static saveGameMode(e) {
-                        // Z.e9.send("save-game-mode", [e])
-                        if("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
-                            Z.e9.send("save-game-mode", [e])
-                        } else {
-                            localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
-                                mode: e
-                            })));
-                        }
+                        localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
+                            mode: e
+                        })));
                     }
                     static saveHighVisibilityMode(e) {
-                        // Z.e9.send("save-high-visibility-mode", [e])
-                        if("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
-                            Z.e9.send("save-high-visibility-mode", [e])
-                        } else {
-                            localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
-                                highVisibilityMode: e
-                            })));
-                        }
+                        localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
+                            highVisibilityMode: e
+                        })));
                     }
                     static saveReducedSpeedMode(e) {
-                        // Z.e9.send("save-reduced-speed-mode", [e])
-                        if("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
-                            Z.e9.send("save-reduced-speed-mode", [e])
-                        } else {
-                            localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
-                                reducedSpeedMode: e
-                            })));
-                        }
+                        localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
+                            reducedSpeedMode: e
+                        })));
                     }
                     static saveDefaultCharacter(e) {
-                        // Z.e9.send("save-selected-character", [e])
-                        if("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
-                            Z.e9.send("save-selected-character", [e])
-                        } else {
-                            localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
-                                currentCharacter: e
-                            })));
-                        }
+                        localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
+                            currentCharacter: e
+                        })));
                     }
                     static saveDefaultTheme(e) {
-                        // Z.e9.send("save-selected-theme", [e])
-                        if("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
-                            Z.e9.send("save-selected-theme", [e])
-                        } else {
-                            localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
-                                theme: e
-                            })));
-                        }
+                        localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
+                            theme: e
+                        })));
                     }
                     static recordUnload() {
-                        const e = Math.floor(Date.now() - he.sessionStartTime) || 0,
+                        const e = Math.floor(Date.now() - ne.sessionStartTime) || 0,
                             t = {
-                                zigzagGamesPlayed: he.numZigZagGames,
-                                endlessGamesPlayed: he.numEndlessGames,
-                                timetrialGamesPlayed: he.numTimeTrialGames
+                                zigzagGamesPlayed: ne.numZigZagGames,
+                                endlessGamesPlayed: ne.numEndlessGames,
+                                timetrialGamesPlayed: ne.numTimeTrialGames
                             };
-                        // Z.e9.send("record-unload", [t, e]), he.numZigZagGames = 0, he.numEndlessGames = 0, he.numTimeTrialGames = 0, he.sessionStartTime = Date.now()
-                        if("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
-                            Z.e9.send("record-unload", [t, e]), he.numZigZagGames = 0, he.numEndlessGames = 0, he.numTimeTrialGames = 0, he.sessionStartTime = Date.now()
+                        // Z.e9.send("record-unload", [t, e]), ne.numZigZagGames = 0, ne.numEndlessGames = 0, ne.numTimeTrialGames = 0, ne.sessionStartTime = Date.now()
+                        if ("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
+                            Z.e9.send("record-unload", [t, e]), ne.numZigZagGames = 0, ne.numEndlessGames = 0, ne.numTimeTrialGames = 0, ne.sessionStartTime = Date.now()
                         }
                     }
                     static recordGameEnd(e) {
@@ -683,28 +612,19 @@
                             score: Math.floor(e.score)
                         };
                         // Z.e9.send("record-game-end", [t])
-                        if("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
+                        if ("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
                             Z.e9.send("record-game-end", [t])
                         }
                     }
                 }
-
-                function ce(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                le(he, "numTimeTrialGames", 0), le(he, "numEndlessGames", 0), le(he, "numZigZagGames", 0), le(he, "sessionStartTime", Date.now());
-                class de {
+                ne.numTimeTrialGames = 0, ne.numEndlessGames = 0, ne.numZigZagGames = 0, ne.sessionStartTime = Date.now();
+                class re {
                     constructor() {
-                        if(ce(this, "canvas", void 0), ce(this, "ctx", void 0), ce(this, "gradient", void 0), ce(this, "bg", void 0), ce(this, "offset", void 0), de.sys) return de.sys;
-                        de.sys = this
+                        if (this.canvas = void 0, this.ctx = void 0, this.gradient = void 0, this.bg = void 0, this.offset = void 0, re.sys) return re.sys;
+                        re.sys = this
                     }
                     createBackground() {
-                        this.canvas = ue.sys.createNewCanvas(), this.ctx = this.canvas.getContext("2d"), this.gradient = ue.sys.createNew("div", document.body, "game-gradient"), this.bg = ue.sys.createNew("div", document.body, "game-bg"), this.offset = {
+                        this.canvas = ce.sys.createNewCanvas(), this.ctx = this.canvas.getContext("2d"), this.gradient = ce.sys.createNew("div", document.body, "game-gradient"), this.bg = ce.sys.createNew("div", document.body, "game-bg"), this.offset = {
                             x: 0,
                             y: 0
                         }
@@ -714,52 +634,52 @@
                     }
                     defineCanvas() {
                         const e = window.getComputedStyle(this.canvas.parentNode);
-                        te.sys.session.w = parseInt(e.getPropertyValue("width"), 10), te.sys.session.h = parseInt(e.getPropertyValue("height"), 10), this.canvas.style.width = te.sys.session.w + "px", this.canvas.style.height = te.sys.session.h + "px", this.canvas.width = te.sys.session.w, this.canvas.height = te.sys.session.h, te.sys.session.x = Math.floor(.5 * te.sys.session.w), te.sys.session.y = Math.floor(.4 * te.sys.session.h), this.ctx.imageSmoothingEnabled = !1
+                        Q.sys.session.w = parseInt(e.getPropertyValue("width"), 10), Q.sys.session.h = parseInt(e.getPropertyValue("height"), 10), this.canvas.style.width = Q.sys.session.w + "px", this.canvas.style.height = Q.sys.session.h + "px", this.canvas.width = Q.sys.session.w, this.canvas.height = Q.sys.session.h, Q.sys.session.x = Math.floor(.5 * Q.sys.session.w), Q.sys.session.y = Math.floor(.4 * Q.sys.session.h), this.ctx.imageSmoothingEnabled = !1
                     }
                     clearCanvas() {
-                        this.ctx.clearRect(0, 0, te.sys.session.w, te.sys.session.h)
+                        this.ctx.clearRect(0, 0, Q.sys.session.w, Q.sys.session.h)
                     }
                     drawFx(e = 0, t = 0, s = 0) {
-                        const i = be.sys.sheet.fx,
-                            a = i.poseData.effect,
-                            o = Math.floor(e * i.fps) % a.length;
-                        this.draw(pe.sys.objectsImg, i, t, s, a[o])
+                        const i = he.sys.sheet.fx,
+                            o = i.poseData.effect,
+                            a = Math.floor(e * i.fps) % o.length;
+                        this.draw(le.sys.objectsImg, i, t, s, o[a])
                     }
-                    drawPlayerSprite(e, t = 0, s = 0, i = 0, a = 1) {
-                        const o = be.sys.sheet.player,
-                            n = te.sys.game.caught ? o.poseData.end : o.poseData[e],
-                            r = Math.floor(t * o.fps) % 3;
-                        this.drawScaled(be.sys.playerSprite, o, s, i, {
+                    drawPlayerSprite(e, t = 0, s = 0, i = 0, o = 1) {
+                        const a = he.sys.sheet.player,
+                            n = Q.sys.game.caught ? a.poseData.end : a.poseData[e],
+                            r = Math.floor(t * a.fps) % 3;
+                        this.drawScaled(he.sys.playerSprite, a, s, i, {
                             x: n,
-                            y: o.mount[r]
-                        }, a)
+                            y: a.mount[r]
+                        }, o)
                     }
-                    drawPlayerMenu(e, t, s = 0, i = 0, a = 1) {
-                        const o = be.sys.sheet.player,
-                            n = o.character[e],
-                            r = o.poseData[t];
-                        this.drawScaled(pe.sys.playerImg, o, s, i, {
+                    drawPlayerMenu(e, t, s = 0, i = 0, o = 1) {
+                        const a = he.sys.sheet.player,
+                            n = a.character[e],
+                            r = a.poseData[t];
+                        this.drawScaled(le.sys.playerImg, a, s, i, {
                             x: r,
                             y: 0
-                        }, a), this.drawScaled(pe.sys.playerImg, o, s, i, {
+                        }, o), this.drawScaled(le.sys.playerImg, a, s, i, {
                             x: r,
                             y: n
-                        }, a)
+                        }, o)
                     }
                     drawNpc(e, t, s, i) {
-                        const a = be.sys.sheet.npc,
-                            o = {
-                                x: a.poseData[e],
+                        const o = he.sys.sheet.npc,
+                            a = {
+                                x: o.poseData[e],
                                 y: 64 * t
                             };
-                        this.draw(pe.sys.objectsImg, a, s, i, o)
+                        this.draw(le.sys.objectsImg, o, s, i, a)
                     }
-                    drawLayer(e, t, s = 0, i = 0, a = 0, o = "looping", n) {
-                        if("hidden" === o) return;
-                        const r = be.sys.sheet[e],
+                    drawLayer(e, t, s = 0, i = 0, o = 0, a = "looping", n) {
+                        if ("hidden" === a) return;
+                        const r = he.sys.sheet[e],
                             l = r.poseData[t] || [],
-                            h = Math.floor(a * r.fps) % l.length;
-                        if(this.draw(pe.sys.objectsImg, r, s, i, l[h]), ("oneshot" === o || "ending" === o) && Math.ceil(a * r.fps) > l.length - 1) switch(o) {
+                            h = Math.floor(o * r.fps) % l.length;
+                        if (this.draw(le.sys.objectsImg, r, s, i, l[h]), ("oneshot" === a || "ending" === a) && Math.ceil(o * r.fps) > l.length - 1) switch (a) {
                             case "oneshot":
                                 n.anim = "paused";
                                 break;
@@ -768,91 +688,91 @@
                         }
                     }
                     drawShadow(e, t, s) {
-                        const i = de.sys.ctx;
+                        const i = re.sys.ctx;
                         i.beginPath(), i.arc(e, t + s, 20 - s / 12, 0, 2 * Math.PI), i.fillStyle = "rgba(0,0,0," + (.6 - s / 200) + ")", i.fill()
                     }
                     drawBoost(e) {
-                        const t = de.sys.ctx;
-                        t.strokeStyle = "rgba(" + pe.sys.accent + ",0.5)", t.lineCap = "round", t.setLineDash([]), e.forEach((e => {
+                        const t = re.sys.ctx;
+                        t.strokeStyle = "rgba(" + le.sys.accent + ",0.5)", t.lineCap = "round", t.setLineDash([]), e.forEach((e => {
                             const s = .5 - e.time;
                             t.lineWidth = 6 * s, t.beginPath(), t.moveTo(e.start.x, e.start.y), t.lineTo(e.end.x, e.end.y), t.stroke()
                         }))
                     }
                     drawShield(e, t) {
-                        const s = te.sys.game.shields.current / te.sys.game.shields.max / 2 + .5,
-                            i = Math.cos(4 * te.sys.game.time.elapsed) + 3,
-                            a = Math.cos(4 * (te.sys.game.time.elapsed + 2)) + 3,
-                            o = (32 + 4 * i) * s,
-                            n = (50 + 5 * a) * s,
-                            r = de.sys.ctx;
-                        r.beginPath(), r.ellipse(e, t, o, .7 * o, 0, 0, 2 * Math.PI), r.strokeStyle = "rgba(" + pe.sys.accent + "," + (6 - i) / 4 + ")", r.lineWidth = 6 - i, r.stroke(), r.beginPath(), r.ellipse(e, t, n / 2, n / 2 * .7, 0, 0, 2 * Math.PI), r.fillStyle = "rgba(" + pe.sys.accent + "," + a / 8 + ")", r.fill()
+                        const s = Q.sys.game.shields.current / Q.sys.game.shields.max / 2 + .5,
+                            i = Math.cos(4 * Q.sys.game.time.elapsed) + 3,
+                            o = Math.cos(4 * (Q.sys.game.time.elapsed + 2)) + 3,
+                            a = (32 + 4 * i) * s,
+                            n = (50 + 5 * o) * s,
+                            r = re.sys.ctx;
+                        r.beginPath(), r.ellipse(e, t, a, .7 * a, 0, 0, 2 * Math.PI), r.strokeStyle = "rgba(" + le.sys.accent + "," + (6 - i) / 4 + ")", r.lineWidth = 6 - i, r.stroke(), r.beginPath(), r.ellipse(e, t, n / 2, n / 2 * .7, 0, 0, 2 * Math.PI), r.fillStyle = "rgba(" + le.sys.accent + "," + o / 8 + ")", r.fill()
                     }
                     drawPickup(e) {
-                        if(e.time >= 1) return e.pickup = !1, void(e.sleep = !0);
+                        if (e.time >= 1) return e.pickup = !1, void(e.sleep = !0);
                         const t = e.time % 1,
                             s = e.h / 2 * (t / 1.5 + .5),
                             i = e.h * Math.min(t, .5),
-                            a = de.sys.ctx;
-                        a.beginPath(), a.arc(e.x, e.y, s, 0, 2 * Math.PI), a.strokeStyle = "rgba(" + pe.sys.accent + "," + (1 - t) + ")", a.lineWidth = 6 * (1 - t), a.stroke(), a.beginPath(), a.arc(e.x, e.y, i, 0, 2 * Math.PI), a.strokeStyle = "rgba(" + pe.sys.accent + "," + (1 - 2 * t) + ")", a.lineWidth = 6 * (1 - 2 * t), a.stroke()
+                            o = re.sys.ctx;
+                        o.beginPath(), o.arc(e.x, e.y, s, 0, 2 * Math.PI), o.strokeStyle = "rgba(" + le.sys.accent + "," + (1 - t) + ")", o.lineWidth = 6 * (1 - t), o.stroke(), o.beginPath(), o.arc(e.x, e.y, i, 0, 2 * Math.PI), o.strokeStyle = "rgba(" + le.sys.accent + "," + (1 - 2 * t) + ")", o.lineWidth = 6 * (1 - 2 * t), o.stroke()
                     }
                     drawHitbox(e, t) {
-                        const s = be.sys.sheet[e].str;
-                        if(void 0 === s) return;
+                        const s = he.sys.sheet[e].str;
+                        if (void 0 === s) return;
                         const i = "crash" !== s;
-                        let a = pe.sys.hitbox[s];
-                        if(te.sys.session.forcedColors) switch(s) {
+                        let o = le.sys.hitbox[s];
+                        if (Q.sys.session.forcedColors) switch (s) {
                             case "crash":
-                                a = "CanvasText";
+                                o = "CanvasText";
                                 break;
                             case "boost":
-                                a = "GrayText";
+                                o = "GrayText";
                                 break;
                             case "avoid":
-                                a = "LinkText"
+                                o = "LinkText"
                         }
-                        const o = de.sys.ctx;
-                        o.beginPath(), o.lineWidth = 4, o.strokeStyle = a + "", i ? o.setLineDash([8]) : o.setLineDash([]), o.strokeRect(Math.floor(t.x) + 1, Math.floor(t.y) + 1, t.w - 2, t.h - 2)
+                        const a = re.sys.ctx;
+                        a.beginPath(), a.lineWidth = 4, a.strokeStyle = o + "", i ? a.setLineDash([8]) : a.setLineDash([]), a.strokeRect(Math.floor(t.x) + 1, Math.floor(t.y) + 1, t.w - 2, t.h - 2)
                     }
                     drawBoundaries() {
-                        const e = te.sys.session.x - te.sys.game.dist.x,
-                            t = be.sys.boundary[te.sys.session.settings.mode],
-                            s = de.sys.ctx;
-                        s.beginPath(), s.rect(0, 0, e - t, te.sys.session.h), s.rect(e + t, 0, te.sys.session.w, te.sys.session.h), s.fillStyle = "rgba(" + pe.sys.boundary + ")", s.fill()
+                        const e = Q.sys.session.x - Q.sys.game.dist.x,
+                            t = he.sys.boundary[Q.sys.session.settings.mode],
+                            s = re.sys.ctx;
+                        s.beginPath(), s.rect(0, 0, e - t, Q.sys.session.h), s.rect(e + t, 0, Q.sys.session.w, Q.sys.session.h), s.fillStyle = "rgba(" + le.sys.boundary + ")", s.fill()
                     }
-                    drawScaled(e, t, s, i, a, o = 1) {
-                        de.sys.ctx.drawImage(e, a.x, a.y, t.w, t.h, Math.floor(s - t.w / (2 / o)), Math.floor(i - t.h / (2 / o)), t.w * o, t.h * o)
+                    drawScaled(e, t, s, i, o, a = 1) {
+                        re.sys.ctx.drawImage(e, o.x, o.y, t.w, t.h, Math.floor(s - t.w / (2 / a)), Math.floor(i - t.h / (2 / a)), t.w * a, t.h * a)
                     }
-                    draw(e, t, s, i, a) {
-                        de.sys.ctx.drawImage(e, a.x, a.y, t.w, t.h, Math.floor(s - t.w / 2), Math.floor(i - t.h / 2), t.w, t.h)
+                    draw(e, t, s, i, o) {
+                        re.sys.ctx.drawImage(e, o.x, o.y, t.w, t.h, Math.floor(s - t.w / 2), Math.floor(i - t.h / 2), t.w, t.h)
                     }
                 }
-                ce(de, "sys", null);
-                class pe {
+                re.sys = null;
+                class le {
                     constructor() {
-                        if(ce(this, "objectsImg", null), ce(this, "playerImg", null), ce(this, "bgImg", null), ce(this, "bgSize", void 0), ce(this, "objectsTemp", null), ce(this, "playerTemp", null), ce(this, "bgTemp", null), ce(this, "gradient", void 0), ce(this, "hitbox", void 0), ce(this, "boundary", void 0), ce(this, "accent", void 0), pe.sys) return pe.sys;
-                        pe.sys = this, this.setupImages()
+                        if (this.objectsImg = null, this.playerImg = null, this.bgImg = null, this.bgSize = void 0, this.objectsTemp = null, this.playerTemp = null, this.bgTemp = null, this.gradient = void 0, this.hitbox = void 0, this.boundary = void 0, this.accent = void 0, le.sys) return le.sys;
+                        le.sys = this, this.setupImages()
                     }
                     setupImages() {
                         this.objectsImg = new Image, this.playerImg = new Image, this.bgImg = new Image, this.bgSize = 256
                     }
                     loadNewTheme(e) {
-                        const t = pe.allThemes[e];
+                        const t = le.allThemes[e];
                         this.objectsTemp = new Image, this.objectsTemp.src = t.folder + "/objects.png", this.playerTemp = new Image, this.playerTemp.src = t.folder + "/player.png", this.bgTemp = new Image, this.bgTemp.src = t.folder + "/bg.png"
                     }
                     setNewTheme(e) {
-                        const t = pe.allThemes[e];
-                        this.objectsImg.src = this.objectsTemp.src, this.playerImg.src = this.playerTemp.src, this.bgImg.src = this.bgTemp.src, this.gradient = t.gradient, this.hitbox = t.hitbox, this.boundary = t.boundary, this.accent = t.accent, de.sys.bg.style.backgroundImage = "url(" + this.bgImg.src + ")", de.sys.bg.style.backgroundSize = this.bgSize + "px " + this.bgSize + "px";
+                        const t = le.allThemes[e];
+                        this.objectsImg.src = this.objectsTemp.src, this.playerImg.src = this.playerTemp.src, this.bgImg.src = this.bgTemp.src, this.gradient = t.gradient, this.hitbox = t.hitbox, this.boundary = t.boundary, this.accent = t.accent, re.sys.bg.style.backgroundImage = "url(" + this.bgImg.src + ")", re.sys.bg.style.backgroundSize = this.bgSize + "px " + this.bgSize + "px";
                         const s = this.gradient.start.join(", "),
                             i = this.gradient.end.join(", ");
-                        de.sys.gradient.style.background = "linear-gradient(180deg, rgb(" + s + ") 0%, rgb(" + i + ") 100%)", te.sys.session.settings.theme = e, be.sys.createPlayerSprite(), te.sys.saveSessionSettings(), delete this.objectsTemp, delete this.playerTemp, delete this.bgTemp
+                        re.sys.gradient.style.background = "linear-gradient(180deg, rgb(" + s + ") 0%, rgb(" + i + ") 100%)", Q.sys.session.settings.theme = e, he.sys.createPlayerSprite(), Q.sys.saveSessionSettings(), delete this.objectsTemp, delete this.playerTemp, delete this.bgTemp
                     }
                 }
-                ce(pe, "sys", null), ce(pe, "allThemes", {
+                le.sys = null, le.allThemes = {
                     ...G
-                });
-                class be {
+                };
+                class he {
                     constructor() {
-                        if(ce(this, "playerSprite", new Image), ce(this, "sheet", {
+                        if (this.playerSprite = new Image, this.sheet = {
                                 player: {
                                     w: 64,
                                     h: 64,
@@ -1872,51 +1792,42 @@
                                         }]
                                     }
                                 }
-                            }), ce(this, "boundary", {
-                                [q.ZigZag]: 960,
-                                [q.TimeTrial]: 576,
-                                [q.Endless]: void 0
-                            }), ce(this, "characterList", void 0), ce(this, "selectionList", void 0), be.sys) return be.sys;
-                        be.sys = this, this.characterList = Object.keys(this.sheet.player.character), this.selectionList = ["player1", "player2", "player3", "player4", "player5", "player6", "player7"]
+                            }, this.boundary = {
+                                [j.ZigZag]: 960,
+                                [j.TimeTrial]: 576,
+                                [j.Endless]: void 0
+                            }, this.characterList = void 0, this.selectionList = void 0, he.sys) return he.sys;
+                        he.sys = this, this.characterList = Object.keys(this.sheet.player.character), this.selectionList = ["player1", "player2", "player3", "player4", "player5", "player6", "player7"]
                     }
                     createPlayerSprite() {
                         const e = 640,
                             t = document.createElement("canvas");
                         t.width = e, t.height = 192;
                         const s = t.getContext("2d");
-                        s.imageSmoothingEnabled = !1, s.drawImage(pe.sys.playerImg, 0, 0, e, 192, 0, 0, e, 192);
+                        s.imageSmoothingEnabled = !1, s.drawImage(le.sys.playerImg, 0, 0, e, 192, 0, 0, e, 192);
                         const i = document.createElement("canvas");
                         i.width = e, i.height = 64;
                         i.getContext("2d").imageSmoothingEnabled = !1;
-                        const a = be.sys.characterList[te.sys.session.settings.character],
-                            o = this.sheet.player.character[a];
-                        if(this.applyLayers(s, pe.sys.playerImg, o, e, 64), te.sys.game.friend) {
+                        const o = he.sys.characterList[Q.sys.session.settings.character],
+                            a = this.sheet.player.character[o];
+                        if (this.applyLayers(s, le.sys.playerImg, a, e, 64), Q.sys.game.friend) {
                             const t = this.sheet.player.friend;
-                            this.applyLayers(s, pe.sys.playerImg, t, e, 64)
+                            this.applyLayers(s, le.sys.playerImg, t, e, 64)
                         }
                         const n = new Image;
                         n.src = t.toDataURL("image/png"), (async () => {
                             await n.decode(), this.playerSprite.src = n.src
                         })()
                     }
-                    applyLayers(e, t, s, i, a) {
-                        e.drawImage(t, 0, s, i, a, 0, 0, i, a), e.drawImage(t, 0, s, i, a, 0, a, i, a), e.drawImage(t, 0, s, i, a, 0, 2 * a, i, a)
+                    applyLayers(e, t, s, i, o) {
+                        e.drawImage(t, 0, s, i, o, 0, 0, i, o), e.drawImage(t, 0, s, i, o, 0, o, i, o), e.drawImage(t, 0, s, i, o, 0, 2 * o, i, o)
                     }
                 }
-
-                function ge(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                ce(be, "sys", null);
-                class ue {
+                he.sys = null;
+                class ce {
                     constructor() {
-                        if(ge(this, "ui", void 0), ge(this, "tint", void 0), ge(this, "topui", void 0), ge(this, "livesDisplay", void 0), ge(this, "score", void 0), ge(this, "scoreIcon", void 0), ge(this, "scoreText", void 0), ge(this, "boostDisplay", void 0), ge(this, "title", void 0), ge(this, "subtitle", void 0), ge(this, "instruct", void 0), ge(this, "instructAction", void 0), ge(this, "instructContent", void 0), ge(this, "instructText", void 0), ge(this, "notify", void 0), ge(this, "notifyContent", void 0), ge(this, "notifyTimer", void 0), ge(this, "icons", void 0), ge(this, "selector", void 0), ue.sys) return ue.sys;
-                        ue.sys = this, this.defineIcons(), this.buildInterface(), this.notifyTimer = void 0, re.subscribe(this.updateScore.bind(this))
+                        if (this.ui = void 0, this.tint = void 0, this.topui = void 0, this.livesDisplay = void 0, this.score = void 0, this.scoreIcon = void 0, this.scoreText = void 0, this.boostDisplay = void 0, this.title = void 0, this.subtitle = void 0, this.instruct = void 0, this.instructAction = void 0, this.instructContent = void 0, this.instructText = void 0, this.notify = void 0, this.notifyContent = void 0, this.notifyTimer = void 0, this.icons = void 0, this.selector = void 0, ce.sys) return ce.sys;
+                        ce.sys = this, this.defineIcons(), this.buildInterface(), this.notifyTimer = void 0, ae.subscribe(this.updateScore.bind(this))
                     }
                     buildInterface() {
                         this.ui = this.createNew("div", document.body, "game-ui"), this.tint = this.createNew("div", document.body, "game-tint"), this.topui = this.createNew("div", this.ui);
@@ -1928,9 +1839,9 @@
                         this.createIconSVG(s, "leftArrow", 44);
                         const i = this.createNew("span", this.selector, "selector-right");
                         this.createIconSVG(i, "rightArrow", 44), s.addEventListener("click", (function() {
-                            ze.sys.changeCharacter(-1)
+                            we.sys.changeCharacter(-1)
                         }), !1), i.addEventListener("click", (function() {
-                            ze.sys.changeCharacter(1)
+                            we.sys.changeCharacter(1)
                         }), !1), this.instruct = this.createNew("div", this.ui, "ui-instruct"), this.instructContent = this.createNew("div", this.instruct, "instruct-content"), this.instructAction = this.createNew("div", this.instructContent, "instruct-action"), this.instructText = this.createNew("p", this.instructContent, "instruct-text"), this.notify = this.createNew("div", this.ui, "ui-notify"), this.notifyContent = this.createNew("div", this.notify, "notify-content"), this.hideNotification()
                     }
                     refreshDisplay() {
@@ -1940,34 +1851,34 @@
                         this.tintScreen(), this.title.style.visibility = "hidden", this.subtitle.style.visibility = "hidden", this.selector.style.visibility = "hidden", this.instructContent.style.visibility = "hidden"
                     }
                     updateGameTitleUI() {
-                        const e = te.sys.session.settings.theme;
+                        const e = Q.sys.session.settings.theme;
                         this.title.style.removeProperty("visibility"), this.title.textContent = Z.pz.getString(e + "Theme")
                     }
                     updateGameModeUI() {
-                        const e = te.sys.session.settings.mode;
+                        const e = Q.sys.session.settings.mode;
                         this.subtitle.style.removeProperty("visibility"), this.subtitle.textContent = Z.pz.getString(e + "Title"), this.updateScore()
                     }
                     updateInputTypeUI() {
-                        const e = te.sys.session.state;
-                        if(e === Q.Play) return;
-                        const t = te.sys.session.inputType.valueOf();
-                        switch(t) {
-                            case ee.Mouse:
-                            case ee.Touch:
-                            case ee.Keyboard:
+                        const e = Q.sys.session.state;
+                        if (e === Y.Play) return;
+                        const t = Q.sys.session.inputType.valueOf();
+                        switch (t) {
+                            case J.Mouse:
+                            case J.Touch:
+                            case J.Keyboard:
                                 this.instructAction.classList.add("outline"), this.instructAction.textContent = Z.pz.getString(t + "Action");
                                 break;
-                            case ee.Ps:
-                            case ee.Xbox: {
+                            case J.Ps:
+                            case J.Xbox: {
                                 const e = t + "Action";
                                 this.instructAction.classList.remove("outline"), this.instructAction.textContent = "", this.createIconSVG(this.instructAction, e, 32);
                                 break
                             }
                         }
-                        this.instructText.textContent = Z.pz.getString(e + "Info"), this.instructContent.style.removeProperty("visibility"), e !== Q.Menu ? this.instructContent.classList.add("tinted") : this.instructContent.classList.remove("tinted")
+                        this.instructText.textContent = Z.pz.getString(e + "Info"), this.instructContent.style.removeProperty("visibility"), e !== Y.Menu ? this.instructContent.classList.add("tinted") : this.instructContent.classList.remove("tinted")
                     }
                     tintScreen() {
-                        te.sys.session.state === Q.Pause ? this.tint.classList.add("visible") : this.tint.classList.remove("visible")
+                        Q.sys.session.state === Y.Pause ? this.tint.classList.add("visible") : this.tint.classList.remove("visible")
                     }
                     showPauseScreen() {
                         this.tintScreen(), this.updateGameTitleUI(), this.updateGameModeUI(), this.updateInputTypeUI(), this.refreshDisplay()
@@ -1979,9 +1890,9 @@
                         this.showPauseScreen(), this.selector.style.removeProperty("visibility")
                     }
                     sendNotification(e, t = 5e3) {
-                        const s = te.sys.session.settings.mode,
-                            i = te.sys.session.settings.theme;
-                        switch(this.notifyContent.textContent = "", e) {
+                        const s = Q.sys.session.settings.mode,
+                            i = Q.sys.session.settings.theme;
+                        switch (this.notifyContent.textContent = "", e) {
                             case "mode":
                                 this.notifyContent.textContent = Z.pz.getStringF("gameMode", Z.pz.getString(s + "Title"));
                                 break;
@@ -1989,7 +1900,7 @@
                                 this.notifyContent.textContent = Z.pz.getStringF("theme", Z.pz.getString(i + "Theme"));
                                 break;
                             case "score": {
-                                const e = te.sys.getHighScore(s);
+                                const e = Q.sys.getHighScore(s);
                                 this.notifyContent.textContent = Z.pz.getStringF("newBestScore", Z.pz.getString(s + "Descriptor"), e, Z.pz.getString(s + "Unit")), this.createIconSVG(this.notifyContent, "star", 20, "0 4px 0 0");
                                 break
                             }
@@ -2006,7 +1917,7 @@
                                 this.notifyContent.textContent = Z.pz.getString("share")
                         }
                         clearTimeout(this.notifyTimer), this.notifyTimer = window.setTimeout((function() {
-                            ue.sys.hideNotification()
+                            ce.sys.hideNotification()
                         }), t), "share" === e && this.createShareLink(), this.showNotification()
                     }
                     createShareLink() {
@@ -2015,7 +1926,7 @@
                         this.createNew("p", e, "notify-shareText").textContent = Z.pz.getString("shareCopy"), this.createIconSVG(e, "link", 20, "0 4px 0 0")
                     }
                     copyShareLink() {
-                        $(Z.pz.getString("shareLink")), this.notifyContent.textContent = Z.pz.getString("shareLinkCopied")
+                        $(Z.pz.getString("shareLinkGameOver")), this.notifyContent.textContent = Z.pz.getString("shareLinkCopied")
                     }
                     showNotification() {
                         this.notify.classList.add("visible")
@@ -2024,37 +1935,37 @@
                         this.notify.classList.remove("visible")
                     }
                     checkHighScoreIcon() {
-                        const e = te.sys.session.state;
-                        this.scoreIcon.textContent = "", (e === Q.Menu || te.sys.game.highScore) && this.createIconSVG(this.scoreIcon, "star", 20)
+                        const e = Q.sys.session.state;
+                        this.scoreIcon.textContent = "", (e === Y.Menu || Q.sys.game.highScore) && this.createIconSVG(this.scoreIcon, "star", 20)
                     }
                     updateScore() {
-                        const e = te.sys.session.settings.mode;
-                        if(te.sys.session.state === Q.Menu) {
-                            const t = te.sys.getHighScore(e);
+                        const e = Q.sys.session.settings.mode;
+                        if (Q.sys.session.state === Y.Menu) {
+                            const t = Q.sys.getHighScore(e);
                             this.scoreText.textContent = Z.pz.getStringF("bestScoreMenuDisplay", t, Z.pz.getString(e + "Unit"))
                         } else {
-                            const t = te.sys.getCurrentScoreFormatted();
+                            const t = Q.sys.getCurrentScoreFormatted();
                             this.scoreText.textContent = t + " " + Z.pz.getString(e + "Unit")
                         }
                     }
                     updateIcons() {
                         const e = [],
                             t = [],
-                            s = te.sys.game.cheat;
-                        if(s.lives || s.safety) s.safety && e.push("shield"), e.push("life-full"), e.push("infinite");
+                            s = Q.sys.game.cheat;
+                        if (s.lives || s.safety) s.safety && e.push("shield"), e.push("life-full"), e.push("infinite");
                         else
-                            for(let t = 1; t <= te.sys.game.lives.max; t++) {
+                            for (let t = 1; t <= Q.sys.game.lives.max; t++) {
                                 let s = "life-empty";
-                                t <= te.sys.game.shields.current ? s = "shield" : t <= te.sys.game.lives.current && (s = "life-full"), e.push(s)
+                                t <= Q.sys.game.shields.current ? s = "shield" : t <= Q.sys.game.lives.current && (s = "life-full"), e.push(s)
                             }
-                        if(s.boosts) t.push("boost-full"), t.push("infinite");
+                        if (s.boosts) t.push("boost-full"), t.push("infinite");
                         else
-                            for(let e = 1; e <= te.sys.game.boosts.max; e++) {
-                                const s = e <= te.sys.game.boosts.current ? "boost-full" : "boost-empty";
+                            for (let e = 1; e <= Q.sys.game.boosts.max; e++) {
+                                const s = e <= Q.sys.game.boosts.current ? "boost-full" : "boost-empty";
                                 t.push(s)
                             }
                         this.livesDisplay.textContent = "", this.boostDisplay.textContent = "";
-                        const i = "url(" + pe.sys.objectsImg.src + ")";
+                        const i = "url(" + le.sys.objectsImg.src + ")";
                         e.forEach((e => {
                             this.createNew("div", this.livesDisplay, void 0, e).style.backgroundImage = i
                         })), t.forEach((e => {
@@ -2062,10 +1973,10 @@
                         }))
                     }
                     createIconSVG(e, t, s, i = "0 0 0 0") {
-                        const a = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-                        a.classList.add("icon-" + t), a.style.margin = i, a.style.display = "inline-block", a.setAttribute("width", s + "px"), a.setAttribute("height", s + "px"), a.setAttribute("viewBox", this.icons[t].viewbox);
-                        const o = document.createElementNS("http://www.w3.org/2000/svg", "path");
-                        a.insertAdjacentElement("beforeend", o), o.classList.add("icon-fill"), o.setAttribute("d", this.icons[t].path), e.insertAdjacentElement("afterbegin", a), a.insertAdjacentElement("afterbegin", o)
+                        const o = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                        o.classList.add("icon-" + t), o.style.margin = i, o.style.display = "inline-block", o.setAttribute("width", s + "px"), o.setAttribute("height", s + "px"), o.setAttribute("viewBox", this.icons[t].viewbox);
+                        const a = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                        o.insertAdjacentElement("beforeend", a), a.classList.add("icon-fill"), a.setAttribute("d", this.icons[t].path), e.insertAdjacentElement("afterbegin", o), o.insertAdjacentElement("afterbegin", a)
                     }
                     defineIcons() {
                         this.icons = {
@@ -2096,28 +2007,19 @@
                         }
                     }
                     createNew(e, t, s, i) {
-                        const a = document.createElement(e);
-                        return void 0 !== t && t.insertAdjacentElement("beforeend", a), void 0 !== s && (a.id = s), void 0 !== i && a.classList.add(i), a
+                        const o = document.createElement(e);
+                        return void 0 !== t && t.insertAdjacentElement("beforeend", o), void 0 !== s && (o.id = s), void 0 !== i && o.classList.add(i), o
                     }
                     createNewCanvas() {
                         const e = document.createElement("canvas");
                         return document.body.insertAdjacentElement("beforeend", e), e.id = "game-canvas", e
                     }
                 }
-
-                function me(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                ge(ue, "sys", null);
-                class ye {
+                ce.sys = null;
+                class de {
                     constructor() {
-                        if(me(this, "legend", void 0), me(this, "spawnSingle", void 0), me(this, "library", void 0), ye.sys) return ye.sys;
-                        ye.sys = this, this.defineLegend(), this.defineClusters()
+                        if (this.legend = void 0, this.spawnSingle = void 0, this.library = void 0, de.sys) return de.sys;
+                        de.sys = this, this.defineLegend(), this.defineClusters()
                     }
                     defineLegend() {
                         this.legend = {
@@ -6683,22 +6585,13 @@
                         }
                     }
                 }
-
-                function fe(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                me(ye, "sys", null);
-                class we {
+                de.sys = null;
+                class pe {
                     constructor(e, t, s) {
-                        fe(this, "type", void 0), fe(this, "x", void 0), fe(this, "y", void 0), fe(this, "w", void 0), fe(this, "h", void 0), fe(this, "hit", void 0), fe(this, "fx", void 0), fe(this, "hitbox", void 0), this.type = e, this.x = t, this.y = s, this.reset()
+                        this.type = void 0, this.x = void 0, this.y = void 0, this.w = void 0, this.h = void 0, this.hit = void 0, this.fx = void 0, this.hitbox = void 0, this.type = e, this.x = t, this.y = s, this.reset()
                     }
                     reset() {
-                        const e = be.sys.sheet[this.type];
+                        const e = he.sys.sheet[this.type];
                         this.w = e.w, this.h = e.h, this.fx = e.fx, this.hit = !1, this.hitbox = {
                             x: this.x - this.w / 2 + e.hitbox.x,
                             y: this.y - this.h / 2 + e.hitbox.y,
@@ -6715,23 +6608,23 @@
                     update() {}
                     draw() {}
                 }
-                class ve extends we {
+                class be extends pe {
                     constructor(e, t, s, i) {
-                        super(e, t, s), fe(this, "pose", void 0), fe(this, "time", void 0), fe(this, "sleep", void 0), fe(this, "anim", void 0), fe(this, "pickup", void 0), fe(this, "decor", void 0), fe(this, "gateId", void 0), this.pose = i, this.reset()
+                        super(e, t, s), this.pose = void 0, this.time = void 0, this.sleep = void 0, this.anim = void 0, this.pickup = void 0, this.decor = void 0, this.gateId = void 0, this.pose = i, this.reset()
                     }
                     reset() {
                         super.reset(), this.time = 0, this.sleep = !1, this.anim = "looping", this.pickup = !1, this.decor = void 0, this.gateId = void 0
                     }
                     update() {
-                        "paused" !== this.anim && (this.time += te.sys.game.time.loop)
+                        "paused" !== this.anim && (this.time += Q.sys.game.time.loop)
                     }
                     draw() {
-                        this.pickup ? de.sys.drawPickup(this) : (void 0 !== this.fx && "hidden" !== this.anim && de.sys.drawFx(this.time, this.x, this.y + this.fx), de.sys.drawLayer(this.type, this.pose, this.x, this.y, this.time, this.anim, this), void 0 !== this.decor && de.sys.drawLayer("wallDecor", this.decor, this.x, this.y - 24))
+                        this.pickup ? re.sys.drawPickup(this) : (void 0 !== this.fx && "hidden" !== this.anim && re.sys.drawFx(this.time, this.x, this.y + this.fx), re.sys.drawLayer(this.type, this.pose, this.x, this.y, this.time, this.anim, this), void 0 !== this.decor && re.sys.drawLayer("wallDecor", this.decor, this.x, this.y - 24))
                     }
                 }
-                class xe extends ve {
+                class ge extends be {
                     constructor(e, t, s, i) {
-                        super(e, t, s, i), fe(this, "angle", void 0), fe(this, "pose", void 0), fe(this, "speed", null), fe(this, "objectsHit", void 0), fe(this, "timer", null), fe(this, "style", void 0), fe(this, "state", void 0), this.reset()
+                        super(e, t, s, i), this.angle = void 0, this.speed = null, this.objectsHit = void 0, this.timer = null, this.style = void 0, this.state = void 0, this.reset()
                     }
                     reset() {
                         super.reset(), this.objectsHit = [], this.angle = 0, this.speed = {
@@ -6742,7 +6635,7 @@
                         }, this.timer = {
                             crash: 0,
                             dir: 0
-                        }, this.style = te.sys.rand(0, 3), this.changeState("crash"), this.resume()
+                        }, this.style = Q.sys.rand(0, 3), this.changeState("crash"), this.resume()
                     }
                     update() {
                         super.update(), this.isCrashed() || (this.updateDirection(), this.updateSpeed(), this.updatePosition())
@@ -6758,12 +6651,12 @@
                         this.speed.raw *= .5
                     }
                     isCrashed() {
-                        return !(this.timer.crash <= 0) && (this.timer.crash -= te.sys.game.time.loop * te.sys.game.time.scale, !(this.timer.crash <= 0) || (this.resume(), !1))
+                        return !(this.timer.crash <= 0) && (this.timer.crash -= Q.sys.game.time.loop * Q.sys.game.time.scale, !(this.timer.crash <= 0) || (this.resume(), !1))
                     }
                     changeState(e) {
-                        if(this.state === e) return;
+                        if (this.state === e) return;
                         let t;
-                        switch(this.state = e, e) {
+                        switch (this.state = e, e) {
                             case "left":
                                 t = -65;
                                 break;
@@ -6776,16 +6669,16 @@
                         this.pose = e, this.angle = t * Math.PI / 180, "crash" === e && (this.timer.crash += 1.5, this.speed.raw = 0)
                     }
                     updateDirection() {
-                        if(this.timer.dir -= te.sys.game.time.loop * te.sys.game.time.scale, this.timer.dir <= 0) {
-                            this.timer.dir = te.sys.rand(50, 200) / 100;
+                        if (this.timer.dir -= Q.sys.game.time.loop * Q.sys.game.time.scale, this.timer.dir <= 0) {
+                            this.timer.dir = Q.sys.rand(50, 200) / 100;
                             const e = "left" === this.state ? "right" : "left";
                             this.changeState(e)
                         }
                     }
                     updateSpeed() {
                         const e = this.speed,
-                            t = e.accel * te.sys.game.time.scale;
-                        this.speed.raw = e.raw <= e.max ? e.raw += t : e.raw -= t, this.speed.current = e.raw * te.sys.game.time.scale
+                            t = e.accel * Q.sys.game.time.scale;
+                        this.speed.raw = e.raw <= e.max ? e.raw += t : e.raw -= t, this.speed.current = e.raw * Q.sys.game.time.scale
                     }
                     updatePosition() {
                         const e = this.speed.current * -Math.cos(this.angle),
@@ -6793,12 +6686,12 @@
                         this.shift(e, t)
                     }
                     draw() {
-                        de.sys.drawNpc(this.pose, this.style, this.x, this.y)
+                        re.sys.drawNpc(this.pose, this.style, this.x, this.y)
                     }
                 }
-                class Se extends ve {
+                class ue extends be {
                     constructor(e, t, s, i) {
-                        super(e, t, s, i), fe(this, "angle", void 0), fe(this, "dist", void 0), fe(this, "speed", null), fe(this, "objectsHit", void 0), fe(this, "timer", null), fe(this, "state", void 0), this.reset()
+                        super(e, t, s, i), this.angle = void 0, this.dist = void 0, this.speed = null, this.objectsHit = void 0, this.timer = null, this.state = void 0, this.reset()
                     }
                     reset() {
                         super.reset(), this.objectsHit = [], this.angle = 0, this.dist = 0, this.speed = {
@@ -6813,10 +6706,10 @@
                     }
                     updateEnding() {
                         const e = {
-                            x: te.sys.session.x - this.x,
-                            y: te.sys.session.y - 64 - this.y
+                            x: Q.sys.session.x - this.x,
+                            y: Q.sys.session.y - 64 - this.y
                         };
-                        if(Math.hypot(e.x, e.y) < 8) this.shift(e.x, e.y), this.changeState("end"), te.sys.game.caught = !0;
+                        if (Math.hypot(e.x, e.y) < 8) this.shift(e.x, e.y), this.changeState("end"), Q.sys.game.caught = !0;
                         else {
                             const t = Math.atan2(e.y, e.x),
                                 s = Math.cos(t),
@@ -6837,11 +6730,11 @@
                         this.hit = !0
                     }
                     isCrashed() {
-                        return !(this.timer.crash <= 0) && (this.timer.crash -= te.sys.game.time.loop * te.sys.game.time.scale, !(this.timer.crash <= 0) || (this.resume(), !1))
+                        return !(this.timer.crash <= 0) && (this.timer.crash -= Q.sys.game.time.loop * Q.sys.game.time.scale, !(this.timer.crash <= 0) || (this.resume(), !1))
                     }
                     changeState(e) {
-                        if(this.state !== e) {
-                            switch(this.state = e, this.timer = {
+                        if (this.state !== e) {
+                            switch (this.state = e, this.timer = {
                                     crash: 0,
                                     dir: 0
                                 }, e) {
@@ -6857,44 +6750,35 @@
                         }
                     }
                     updateDirection() {
-                        if(this.dist = Math.hypot(te.sys.session.x - this.x, te.sys.session.y - this.y), this.timer.dir -= te.sys.game.time.loop * te.sys.game.time.scale, this.timer.dir <= 0) {
-                            this.timer.dir += te.sys.rand(25, 100) / 100 * (this.dist / te.sys.session.y);
-                            const e = te.sys.session.x - this.x,
-                                t = te.sys.session.y - this.y,
+                        if (this.dist = Math.hypot(Q.sys.session.x - this.x, Q.sys.session.y - this.y), this.timer.dir -= Q.sys.game.time.loop * Q.sys.game.time.scale, this.timer.dir <= 0) {
+                            this.timer.dir += Q.sys.rand(25, 100) / 100 * (this.dist / Q.sys.session.y);
+                            const e = Q.sys.session.x - this.x,
+                                t = Q.sys.session.y - this.y,
                                 s = 180 * Math.atan2(t, e) / Math.PI;
                             this.angle = s * Math.PI / 180
                         }
                     }
                     updateSpeed() {
                         const e = this.speed,
-                            t = e.accel * te.sys.game.time.scale,
-                            s = this.y >= te.sys.session.y;
-                        e.raw < e.max && !s ? this.speed.raw += t : s ? this.speed.raw -= t : this.speed.raw = e.max, this.speed.current = e.raw * te.sys.game.time.scale
+                            t = e.accel * Q.sys.game.time.scale,
+                            s = this.y >= Q.sys.session.y;
+                        e.raw < e.max && !s ? this.speed.raw += t : s ? this.speed.raw -= t : this.speed.raw = e.max, this.speed.current = e.raw * Q.sys.game.time.scale
                     }
                     updatePosition() {
-                        const e = this.dist / te.sys.session.y * 15,
+                        const e = this.dist / Q.sys.session.y * 15,
                             t = Math.cos(16 * this.time) * e * Math.PI / 180,
                             s = this.speed.current * Math.cos(this.angle + t),
                             i = this.speed.current * Math.sin(this.angle + t);
                         this.shift(s, i)
                     }
                     draw() {
-                        de.sys.drawLayer(this.type, this.pose, this.x, this.y, this.time, this.anim, this)
+                        re.sys.drawLayer(this.type, this.pose, this.x, this.y, this.time, this.anim, this)
                     }
                 }
-
-                function Ce(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                class ke {
+                class me {
                     constructor() {
-                        if(Ce(this, "all", void 0), Ce(this, "top", void 0), Ce(this, "btm", void 0), Ce(this, "npc", void 0), Ce(this, "foe", void 0), Ce(this, "endingFoe", void 0), Ce(this, "swapBuilt", void 0), Ce(this, "sleeping", void 0), Ce(this, "prevClusters", void 0), Ce(this, "startingObjects", void 0), Ce(this, "endless", void 0), Ce(this, "timetrial", void 0), Ce(this, "zigzag", void 0), Ce(this, "grid", void 0), ke.sys) return ke.sys;
-                        ke.sys = this, new ye, new ze("player", te.sys.session.x, te.sys.session.y, "down"), this.reset(), this.createSleepingObjects()
+                        if (this.all = void 0, this.top = void 0, this.btm = void 0, this.npc = void 0, this.foe = void 0, this.endingFoe = void 0, this.swapBuilt = void 0, this.sleeping = void 0, this.prevClusters = void 0, this.startingObjects = void 0, this.endless = void 0, this.timetrial = void 0, this.zigzag = void 0, this.grid = void 0, me.sys) return me.sys;
+                        me.sys = this, new de, new we("player", Q.sys.session.x, Q.sys.session.y, "down"), this.reset(), this.createSleepingObjects()
                     }
                     reset() {
                         void 0 === this.sleeping ? this.sleeping = [] : this.sleeping = this.sleeping.concat(this.top).concat(this.btm).concat(this.npc).concat(this.foe), this.grid = {
@@ -6960,10 +6844,10 @@
                             },
                             counter: 0,
                             clusterList: ["small1", "small2", "small3", "small4", "small5", "small6", "small7", "small8", "small9", "small10", "small11", "small12", "small13", "small14", "small15", "small16"]
-                        }, this.all = [], this.top = [], this.btm = [], this.npc = [], this.foe = [], this.prevClusters = [], this.swapBuilt = !1, this.endingFoe = void 0, this.calcClusterSlots(), ze.sys.reset(), this.all.push(ze.sys)
+                        }, this.all = [], this.top = [], this.btm = [], this.npc = [], this.foe = [], this.prevClusters = [], this.swapBuilt = !1, this.endingFoe = void 0, this.calcClusterSlots(), we.sys.reset(), this.all.push(we.sys)
                     }
                     calcClusterSlots() {
-                        this.grid.slots = 2 * Math.ceil((te.sys.session.h - te.sys.session.y) / this.grid.gap) + 3
+                        this.grid.slots = 2 * Math.ceil((Q.sys.session.h - Q.sys.session.y) / this.grid.gap) + 3
                     }
                     createSleepingObjects() {
                         this.startingObjects = {
@@ -6989,56 +6873,56 @@
                             foe: 2,
                             npc: 10
                         };
-                        for(const e in this.startingObjects)
-                            if(this.startingObjects.hasOwnProperty(e)) {
+                        for (const e in this.startingObjects)
+                            if (this.startingObjects.hasOwnProperty(e)) {
                                 const t = this.startingObjects[e];
-                                for(let s = 0; s < t; s++) {
+                                for (let s = 0; s < t; s++) {
                                     const t = this.createObject(e, 0, 0, void 0);
                                     this.sleeping.push(t)
                                 }
                             }
                     }
                     createNpc() {
-                        const e = te.sys.rand(1, 13),
-                            t = (Math.random() / 2 + .25) * te.sys.session.w,
-                            s = e < ze.sys.speed.raw ? te.sys.session.h + 24 : -24;
+                        const e = Q.sys.rand(1, 13),
+                            t = (Math.random() / 2 + .25) * Q.sys.session.w,
+                            s = e < we.sys.speed.raw ? Q.sys.session.h + 24 : -24;
                         this.buildObject("npc", t, s, "left").speed.max = e
                     }
                     createFoe() {
-                        const e = (Math.random() / 2 + .25) * te.sys.session.w;
-                        this.buildObject("foe", e, -32, "chase").speed.raw = ze.sys.speed.raw + 1
+                        const e = (Math.random() / 2 + .25) * Q.sys.session.w;
+                        this.buildObject("foe", e, -32, "chase").speed.raw = we.sys.speed.raw + 1
                     }
                     buildStartScene() {
-                        switch(te.sys.session.settings.mode) {
-                            case q.Endless:
+                        switch (Q.sys.session.settings.mode) {
+                            case j.Endless:
                                 this.createEndlessStart();
                                 break;
-                            case q.TimeTrial:
+                            case j.TimeTrial:
                                 this.createTimeTrialAct();
                                 break;
-                            case q.ZigZag:
+                            case j.ZigZag:
                                 this.createZigZagStart()
                         }
                     }
                     update() {
-                        switch(this.putToSleep(), te.sys.session.settings.mode) {
-                            case q.Endless:
+                        switch (this.putToSleep(), Q.sys.session.settings.mode) {
+                            case j.Endless:
                                 this.updateEndlessMode();
                                 break;
-                            case q.TimeTrial:
+                            case j.TimeTrial:
                                 this.updateTimeTrialMode();
                                 break;
-                            case q.ZigZag:
+                            case j.ZigZag:
                                 this.updateZigZagMode()
                         }
                         this.mergeAll()
                     }
                     nextReady(e, t = !0) {
                         let s;
-                        return s = t ? te.sys.game.dist.unit : te.sys.game.dist.y + (te.sys.session.h - te.sys.session.y), e.next < s && (e.next += e.inc, !0)
+                        return s = t ? Q.sys.game.dist.unit : Q.sys.game.dist.y + (Q.sys.session.h - Q.sys.session.y), e.next < s && (e.next += e.inc, !0)
                     }
                     calcSpawnHeight(e) {
-                        return e - te.sys.game.dist.y + te.sys.session.y
+                        return e - Q.sys.game.dist.y + Q.sys.session.y
                     }
                     updateEndlessMode() {
                         this.nextReady(this.endless.row, !1) && this.createEndlessRow(), this.nextReady(this.endless.foe) && this.createFoe(), this.nextReady(this.endless.npc) && this.createNpc()
@@ -7050,78 +6934,78 @@
                         this.nextReady(this.zigzag.row, !1) && this.createZigZagGate()
                     }
                     createEndlessStart() {
-                        this.buildCluster("endlessStarts", te.sys.session.x, te.sys.session.y + 128)
+                        this.buildCluster("endlessStarts", Q.sys.session.x, Q.sys.session.y + 128)
                     }
                     createEndlessRow() {
-                        const e = ze.sys,
+                        const e = we.sys,
                             t = this.endless,
                             s = this.calcSpawnHeight(t.row.next),
                             i = Math.floor(this.grid.slots / 2);
-                        let a = -i;
-                        for(; a <= i; a++) {
-                            let i, o, n = "allNormal";
-                            if(0 === a)
-                                if(i = 0, o = 0, "air" in e.dist) n = "allPassive";
+                        let o = -i;
+                        for (; o <= i; o++) {
+                            let i, a, n = "allNormal";
+                            if (0 === o)
+                                if (i = 0, a = 0, "air" in e.dist) n = "allPassive";
                                 else {
-                                    if(this.nextReady(t.checkpoint)) return void this.buildCheckpoint(te.sys.session.x, s);
+                                    if (this.nextReady(t.checkpoint)) return void this.buildCheckpoint(Q.sys.session.x, s);
                                     this.nextReady(t.life) ? n = "endlessLives" : this.nextReady(t.friend) ? n = "endlessFriends" : this.nextReady(t.boost) ? n = "endlessBoosts" : this.nextReady(t.ramp) ? n = "endlessRamps" : this.nextReady(t.lure) && (n = "endlessLures")
                                 }
-                            else i = te.sys.rand(-20, 20) * this.grid.size, o = te.sys.rand(0, 32) * this.grid.size;
+                            else i = Q.sys.rand(-20, 20) * this.grid.size, a = Q.sys.rand(0, 32) * this.grid.size;
                             let r = 0;
                             "left" === e.dir || "downleft" === e.dir ? r = -this.grid.gap / 4 : "right" !== e.dir && "downright" !== e.dir || (r = this.grid.gap / 4);
-                            const l = te.sys.session.x + a * this.grid.gap + i + r,
-                                h = s + o;
+                            const l = Q.sys.session.x + o * this.grid.gap + i + r,
+                                h = s + a;
                             this.buildCluster(n, l, h), this.buildEndlessRandomSnags(l, h)
                         }
                     }
                     buildEndlessRandomSnags(e, t) {
                         const s = this.grid.gap,
                             i = this.endless.row.inc / 2,
-                            a = [
+                            o = [
                                 [-s / 2, 0],
                                 [-s / 4, i],
                                 [s / 4, i]
                             ],
-                            o = a.length;
-                        for(let s = 0; s < o; s++) {
-                            if(Math.random() < .33) continue;
-                            const i = a[s][0] + te.sys.rand(-8, 8) * this.grid.size,
-                                o = a[s][1] + te.sys.rand(-8, 8) * this.grid.size;
+                            a = o.length;
+                        for (let s = 0; s < a; s++) {
+                            if (Math.random() < .33) continue;
+                            const i = o[s][0] + Q.sys.rand(-8, 8) * this.grid.size,
+                                a = o[s][1] + Q.sys.rand(-8, 8) * this.grid.size;
                             let n = "snag";
-                            Math.random() < .5 && (n = te.sys.randIndex(Object.keys(ye.sys.spawnSingle)));
-                            const r = ye.sys.spawnSingle[n],
-                                l = te.sys.randIndex(r);
-                            this.buildObject(n, e + i, t + o, l)
+                            Math.random() < .5 && (n = Q.sys.randIndex(Object.keys(de.sys.spawnSingle)));
+                            const r = de.sys.spawnSingle[n],
+                                l = Q.sys.randIndex(r);
+                            this.buildObject(n, e + i, t + a, l)
                         }
                     }
                     createTimeTrialAct() {
                         const e = this.timetrial.clusterList[this.timetrial.counter],
-                            t = te.sys.session.x - te.sys.game.dist.x,
+                            t = Q.sys.session.x - Q.sys.game.dist.x,
                             s = this.calcSpawnHeight(this.timetrial.row.next);
                         this.buildCluster("timetrialScenes", t, s, e), this.timetrial.counter += 1
                     }
                     createZigZagStart() {
-                        this.buildCluster("zigzagGates", te.sys.session.x, te.sys.session.y + 512, "gateFirst"), this.zigzag.counter += 1
+                        this.buildCluster("zigzagGates", Q.sys.session.x, Q.sys.session.y + 512, "gateFirst"), this.zigzag.counter += 1
                     }
                     createZigZagGate() {
-                        const e = te.sys.session.x - te.sys.game.dist.x,
+                        const e = Q.sys.session.x - Q.sys.game.dist.x,
                             t = this.calcSpawnHeight(this.zigzag.row.next),
                             s = this.zigzag.counter % 2 != 0;
                         s ? this.buildCluster("zigzagGates", e - 320, t, "gateLeft") : this.buildCluster("zigzagGates", e + 320, t, "gateRight"), this.zigzag.counter += 1, this.createGateClusters(e, t, s)
                     }
                     createGateClusters(e, t, s) {
                         const i = s ? e + 64 : e - 64;
-                        this.buildCluster("allNormal", i, t - 128, te.sys.randIndex(this.zigzag.clusterList));
-                        const a = t + .5 * this.zigzag.row.inc;
-                        if(this.buildCluster("zigzagGateScenes", e, a), this.nextReady(this.zigzag.life)) this.buildObject("life", e, a, "life");
-                        else if(this.nextReady(this.zigzag.boost)) this.buildObject("boost", e, a, "boost");
-                        else if(Math.random() < .1) this.buildObject("spiral", e, a, "spiral1");
-                        else if(Math.random() < .4) {
+                        this.buildCluster("allNormal", i, t - 128, Q.sys.randIndex(this.zigzag.clusterList));
+                        const o = t + .5 * this.zigzag.row.inc;
+                        if (this.buildCluster("zigzagGateScenes", e, o), this.nextReady(this.zigzag.life)) this.buildObject("life", e, o, "life");
+                        else if (this.nextReady(this.zigzag.boost)) this.buildObject("boost", e, o, "boost");
+                        else if (Math.random() < .1) this.buildObject("spiral", e, o, "spiral1");
+                        else if (Math.random() < .4) {
                             const t = Math.random() > .5 ? "slowbig" : "bumpbig";
-                            this.buildObject(t, e, a, t + "1")
+                            this.buildObject(t, e, o, t + "1")
                         }
-                        const o = t + .25 * this.zigzag.row.inc;
-                        this.buildCluster("allNormal", e - 560, o + te.sys.rand(0, 32) * this.grid.size, te.sys.randIndex(this.zigzag.clusterList)), this.buildCluster("allNormal", e + 560, o + te.sys.rand(0, 32) * this.grid.size, te.sys.randIndex(this.zigzag.clusterList))
+                        const a = t + .25 * this.zigzag.row.inc;
+                        this.buildCluster("allNormal", e - 560, a + Q.sys.rand(0, 32) * this.grid.size, Q.sys.randIndex(this.zigzag.clusterList)), this.buildCluster("allNormal", e + 560, a + Q.sys.rand(0, 32) * this.grid.size, Q.sys.randIndex(this.zigzag.clusterList))
                     }
                     confirmGate(e) {
                         this.all.filter((t => t.gateId === e)).forEach((e => {
@@ -7134,28 +7018,28 @@
                         }))
                     }
                     buildCluster(e, t, s, i) {
-                        if(!i) {
-                            const t = Object.keys(ye.sys.library[e]).filter((e => !this.prevClusters.includes(e)));
-                            i = te.sys.randIndex(t)
+                        if (!i) {
+                            const t = Object.keys(de.sys.library[e]).filter((e => !this.prevClusters.includes(e)));
+                            i = Q.sys.randIndex(t)
                         }
-                        const a = ye.sys.library[e][i];
+                        const o = de.sys.library[e][i];
                         this.prevClusters.unshift(i), this.prevClusters.length > 14 && this.prevClusters.pop();
-                        for(const e in a)
-                            if(a.hasOwnProperty(e)) {
-                                const i = a[e],
-                                    o = i.length;
-                                for(let a = 0; a < o; a++) {
-                                    const o = i[a];
+                        for (const e in o)
+                            if (o.hasOwnProperty(e)) {
+                                const i = o[e],
+                                    a = i.length;
+                                for (let o = 0; o < a; o++) {
+                                    const a = i[o];
                                     let n;
-                                    if(o.length > 2) {
-                                        const t = o[2];
-                                        n = "string" == typeof t ? te.sys.randIndex(ye.sys.legend[e][t]) : t[0]
+                                    if (a.length > 2) {
+                                        const t = a[2];
+                                        n = "string" == typeof t ? Q.sys.randIndex(de.sys.legend[e][t]) : t[0]
                                     } else {
-                                        const t = this.randKey(ye.sys.legend[e], !0);
-                                        n = te.sys.randIndex(ye.sys.legend[e][t])
+                                        const t = this.randKey(de.sys.legend[e], !0);
+                                        n = Q.sys.randIndex(de.sys.legend[e][t])
                                     }
-                                    const r = t + o[0] * this.grid.size,
-                                        l = s + o[1] * this.grid.size;
+                                    const r = t + a[0] * this.grid.size,
+                                        l = s + a[1] * this.grid.size;
                                     this.buildObject(e, r, l, n)
                                 }
                             }
@@ -7163,63 +7047,63 @@
                     randKey(e, t = !1) {
                         const s = Object.keys(e),
                             i = e[s[s.length * Math.random() << 0]],
-                            a = s.find((t => e[t] === i));
-                        if(t) return a; {
+                            o = s.find((t => e[t] === i));
+                        if (t) return o; {
                             const e = {};
-                            return e[a] = i, e
+                            return e[o] = i, e
                         }
                     }
                     buildCrashedFriend(e, t) {
-                        this.buildObject("friend", e, t, "crash").hit = !0, this.endless.friend.next = te.sys.game.dist.unit + this.endless.friend.inc
+                        this.buildObject("friend", e, t, "crash").hit = !0, this.endless.friend.next = Q.sys.game.dist.unit + this.endless.friend.inc
                     }
                     buildCheckpoint(e, t) {
-                        this.endless.row.next += this.endless.row.inc, this.top = this.sleep(this.top, -64, te.sys.session.h + 64), this.buildCluster("endlessCheckpoints", e, t)
+                        this.endless.row.next += this.endless.row.inc, this.top = this.sleep(this.top, -64, Q.sys.session.h + 64), this.buildCluster("endlessCheckpoints", e, t)
                     }
                     buildSwap() {
-                        this.swapBuilt = !0, this.endless.row.next += 1280, this.top = this.sleep(this.top, -64, te.sys.session.h + 64), this.buildCluster("endlessSwap", te.sys.session.x - (te.sys.session.h - te.sys.session.y) - 256, te.sys.session.h + 256)
+                        this.swapBuilt = !0, this.endless.row.next += 1280, this.top = this.sleep(this.top, -64, Q.sys.session.h + 64), this.buildCluster("endlessSwap", Q.sys.session.x - (Q.sys.session.h - Q.sys.session.y) - 256, Q.sys.session.h + 256)
                     }
                     buildObject(e, t, s, i) {
-                        t = Math.floor(t) + (te.sys.game.dist.x - Math.floor(te.sys.game.dist.x)), s = Math.floor(s) + (te.sys.game.dist.y - Math.floor(te.sys.game.dist.y));
-                        let a = this.wake(e, t, s, i);
-                        switch(a || (a = this.createObject(e, t, s, i)), a.type) {
+                        t = Math.floor(t) + (Q.sys.game.dist.x - Math.floor(Q.sys.game.dist.x)), s = Math.floor(s) + (Q.sys.game.dist.y - Math.floor(Q.sys.game.dist.y));
+                        let o = this.wake(e, t, s, i);
+                        switch (o || (o = this.createObject(e, t, s, i)), o.type) {
                             case "wall":
-                                !["f1", "f2", "f3"].includes(i) && Math.random() < .5 && (a.decor = te.sys.randIndex(["a", "b", "c", "d", "e", "f", "g", "h"]));
+                                !["f1", "f2", "f3"].includes(i) && Math.random() < .5 && (o.decor = Q.sys.randIndex(["a", "b", "c", "d", "e", "f", "g", "h"]));
                                 break;
                             case "ambient":
-                                a.anim = "hidden";
+                                o.anim = "hidden";
                                 break;
                             case "marker":
                             case "guide":
                             case "gate":
-                                a.gateId = this.zigzag.counter
+                                o.gateId = this.zigzag.counter
                         }
-                        a.time = Math.random();
-                        switch(be.sys.sheet[e].group) {
+                        o.time = Math.random();
+                        switch (he.sys.sheet[e].group) {
                             case "top":
-                                this.top.push(a);
+                                this.top.push(o);
                                 break;
                             case "btm":
-                                this.btm.push(a);
+                                this.btm.push(o);
                                 break;
                             case "npc":
-                                this.npc.push(a);
+                                this.npc.push(o);
                                 break;
                             case "foe":
-                                this.foe.push(a)
+                                this.foe.push(o)
                         }
-                        return a
+                        return o
                     }
                     createObject(e, t, s, i) {
-                        switch(e) {
+                        switch (e) {
                             case "gate":
                             case "swap":
-                                return new we(e, t, s);
+                                return new pe(e, t, s);
                             case "foe":
-                                return new Se(e, t, s, i);
+                                return new ue(e, t, s, i);
                             case "npc":
-                                return new xe(e, t, s, i);
+                                return new ge(e, t, s, i);
                             default:
-                                return new ve(e, t, s, i)
+                                return new be(e, t, s, i)
                         }
                     }
                     mergeAll() {
@@ -7228,45 +7112,36 @@
                         function t(e, t) {
                             return e.hitbox.y + e.hitbox.h - (t.hitbox.y + t.hitbox.h)
                         }
-                        "air" in ze.sys.dist ? (e.sort(((e, s) => t(e, s))), e.push(ze.sys)) : (e.push(ze.sys), e.sort(((e, s) => t(e, s)))), this.all = this.btm.concat(e)
+                        "air" in we.sys.dist ? (e.sort(((e, s) => t(e, s))), e.push(we.sys)) : (e.push(we.sys), e.sort(((e, s) => t(e, s)))), this.all = this.btm.concat(e)
                     }
                     wake(e, t, s, i) {
-                        let a;
-                        const o = this.wakeFromSleep(e, i);
-                        return o ? (a = o, a.shift(t - a.x, s - a.y), a.reset(), a) : null
+                        let o;
+                        const a = this.wakeFromSleep(e, i);
+                        return a ? (o = a, o.shift(t - o.x, s - o.y), o.reset(), o) : null
                     }
                     wakeFromSleep(e, t) {
                         let s = this.sleeping;
                         const i = s.length;
-                        for(let a = 0; a < i; a++)
-                            if(s[a].type === e) return s[a].pose = t, s = s.splice(a, 1), s[a];
+                        for (let o = 0; o < i; o++)
+                            if (s[o].type === e) return s[o].pose = t, s = s.splice(o, 1), s[o];
                         return null
                     }
                     putToSleep() {
-                        this.top = this.sleep(this.top), this.btm = this.sleep(this.btm), this.npc = this.sleep(this.npc, -64, te.sys.session.h + 64), this.foe = this.sleep(this.foe, -256)
+                        this.top = this.sleep(this.top), this.btm = this.sleep(this.btm), this.npc = this.sleep(this.npc, -64, Q.sys.session.h + 64), this.foe = this.sleep(this.foe, -256)
                     }
                     sleep(e, t = -64, s = 1e4) {
                         function i(e) {
                             return e.y > t && e.y < s && !e.sleep
                         }
-                        const a = e.filter((e => !i(e)));
-                        return this.sleeping = this.sleeping.concat(a), e.filter((e => i(e)))
+                        const o = e.filter((e => !i(e)));
+                        return this.sleeping = this.sleeping.concat(o), e.filter((e => i(e)))
                     }
                 }
-
-                function Te(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                Ce(ke, "sys", null);
-                class Me {
+                me.sys = null;
+                class ye {
                     constructor() {
-                        if(Te(this, "indexList", void 0), Te(this, "buttonMap", void 0), Te(this, "last", void 0), Te(this, "vib", void 0), Te(this, "vibCurrent", void 0), Te(this, "timer", void 0), Te(this, "linkedPad", void 0), Me.sys) return Me.sys;
-                        Me.sys = this, window.addEventListener("gamepadconnected", (e => Me.sys.onGamepadConnected(e))), window.addEventListener("gamepaddisconnected", (e => Me.sys.onGamepadDisconnected(e))), this.indexList = [], this.buttonMap = ["a", "b", "x", "y", "lb", "rb", "lt", "rt", "select", "start", "lstick", "rstick", "up", "down", "left", "right", "home", "touchpad"], this.linkedPad = {
+                        if (this.indexList = void 0, this.buttonMap = void 0, this.last = void 0, this.vib = void 0, this.vibCurrent = void 0, this.timer = void 0, this.linkedPad = void 0, ye.sys) return ye.sys;
+                        ye.sys = this, window.addEventListener("gamepadconnected", (e => ye.sys.onGamepadConnected(e))), window.addEventListener("gamepaddisconnected", (e => ye.sys.onGamepadDisconnected(e))), this.indexList = [], this.buttonMap = ["a", "b", "x", "y", "lb", "rb", "lt", "rt", "select", "start", "lstick", "rstick", "up", "down", "left", "right", "home", "touchpad"], this.linkedPad = {
                             index: void 0,
                             pad: void 0,
                             pressed: {}
@@ -7328,8 +7203,8 @@
                         this.vibCurrent = this.vib[e], this.timer = this.vibCurrent.dur
                     }
                     vibrateController() {
-                        const e = te.sys.session.inputType;
-                        if(e === ee.Xbox || e === ee.Ps) {
+                        const e = Q.sys.session.inputType;
+                        if (e === J.Xbox || e === J.Ps) {
                             const e = this.vibCurrent,
                                 t = this.timer / e.dur;
                             this.linkedPad.pad.vibrationActuator.playEffect("dual-rumble", {
@@ -7341,17 +7216,17 @@
                         }
                     }
                     onGamepadConnected(e) {
-                        Me.sys.indexList.push(e.gamepad.index)
+                        ye.sys.indexList.push(e.gamepad.index)
                     }
                     onGamepadDisconnected(e) {
-                        const t = Me.sys.indexList.indexOf(e.gamepad.index);
-                        t > -1 && Me.sys.indexList.splice(t, 1), this.linkedPad = {
+                        const t = ye.sys.indexList.indexOf(e.gamepad.index);
+                        t > -1 && ye.sys.indexList.splice(t, 1), this.linkedPad = {
                             index: void 0,
                             pad: void 0,
                             pressed: {}
                         };
-                        const s = te.sys.session.inputType;
-                        s !== ee.Xbox && s !== ee.Ps || Ae.sys.changeInputMethod(ee.Keyboard)
+                        const s = Q.sys.session.inputType;
+                        s !== J.Xbox && s !== J.Ps || Ce.sys.changeInputMethod(J.Keyboard)
                     }
                     setController(e, t) {
                         this.linkedPad = {
@@ -7362,11 +7237,11 @@
                     }
                     update() {
                         const e = this.indexList.length;
-                        if(!(e <= 0))
-                            if(void 0 === this.linkedPad.index)
-                                for(let t = 0; t < e; t++) {
+                        if (!(e <= 0))
+                            if (void 0 === this.linkedPad.index)
+                                for (let t = 0; t < e; t++) {
                                     const e = navigator.getGamepads()[this.indexList[t]];
-                                    if(void 0 !== e) {
+                                    if (void 0 !== e) {
                                         const s = this.checkJoysticks(e),
                                             i = this.checkButtons(e);
                                         void 0 === s && void 0 === i || this.setController(this.indexList[t], e)
@@ -7378,28 +7253,28 @@
                                 }
                     }
                     checkVibrations() {
-                        this.vibrateController(), this.timer -= 1e3 * te.sys.game.time.loop, this.timer <= 0 && this.setVibration()
+                        this.vibrateController(), this.timer -= 1e3 * Q.sys.game.time.loop, this.timer <= 0 && this.setVibration()
                     }
                     changeControllerType(e) {
-                        const t = e.id.toLowerCase().includes("054c") ? ee.Ps : ee.Xbox;
-                        Ae.sys.changeInputMethod(t)
+                        const t = e.id.toLowerCase().includes("054c") ? J.Ps : J.Xbox;
+                        Ce.sys.changeInputMethod(t)
                     }
                     checkJoysticks(e) {
                         const t = .5,
                             s = e.axes[0] > t || e.axes[2] > t,
                             i = e.axes[0] < -.5 || e.axes[2] < -.5,
-                            a = e.axes[1] > t || e.axes[3] > t,
-                            o = e.axes[1] < -.5 || e.axes[3] < -.5;
+                            o = e.axes[1] > t || e.axes[3] > t,
+                            a = e.axes[1] < -.5 || e.axes[3] < -.5;
                         let n;
-                        if(s || i || o || a ? (this.changeControllerType(e), !o || s || i ? !a || s || i ? !i || o || a ? !s || o || a ? s && o ? n = He.Right : s && a ? n = He.DownRight : i && o ? n = He.Left : i && a && (n = He.DownLeft) : n = He.Right : n = He.Left : n = He.Down : n = He.Stop) : this.last = void 0, this.last !== n) {
-                            if(this.last = n, n)
-                                if(te.sys.session.flyoutActive) switch(n) {
-                                    case He.Stop:
+                        if (s || i || a || o ? (this.changeControllerType(e), !a || s || i ? !o || s || i ? !i || a || o ? !s || a || o ? s && a ? n = Se.Right : s && o ? n = Se.DownRight : i && a ? n = Se.Left : i && o && (n = Se.DownLeft) : n = Se.Right : n = Se.Left : n = Se.Down : n = Se.Stop) : this.last = void 0, this.last !== n) {
+                            if (this.last = n, n)
+                                if (Q.sys.session.flyoutActive) switch (n) {
+                                    case Se.Stop:
                                         this.focusNextElement(-1);
                                         break;
-                                    case He.Down:
+                                    case Se.Down:
                                         this.focusNextElement(1)
-                                } else Ae.sys.routeInput(n, !0, !1);
+                                } else Ce.sys.routeInput(n, !0, !1);
                             return n
                         }
                     }
@@ -7407,19 +7282,19 @@
                         function t(e) {
                             return "object" == typeof e ? e.pressed : 1 === e
                         }
-                        if(t(e.buttons[4]) && t(e.buttons[5])) return Ae.sys.routeInput(He.Reset), this.linkedPad.pressed.lb = !0, void(this.linkedPad.pressed.rb = !0);
+                        if (t(e.buttons[4]) && t(e.buttons[5])) return Ce.sys.routeInput(Se.Reset), this.linkedPad.pressed.lb = !0, void(this.linkedPad.pressed.rb = !0);
                         let s;
                         const i = e.buttons.length;
-                        for(let a = 0; a < i; a++)
-                            if(t(e.buttons[a])) {
-                                if(this.linkedPad.pressed[this.buttonMap[a]]) return;
-                                if(this.linkedPad.pressed[this.buttonMap[a]] = !0, this.changeControllerType(e), te.sys.session.flyoutActive && ["a", "b", "up", "down"].includes(this.buttonMap[a])) {
-                                    switch(this.buttonMap[a]) {
+                        for (let o = 0; o < i; o++)
+                            if (t(e.buttons[o])) {
+                                if (this.linkedPad.pressed[this.buttonMap[o]]) return;
+                                if (this.linkedPad.pressed[this.buttonMap[o]] = !0, this.changeControllerType(e), Q.sys.session.flyoutActive && ["a", "b", "up", "down"].includes(this.buttonMap[o])) {
+                                    switch (this.buttonMap[o]) {
                                         case "a":
                                             document.activeElement.click();
                                             break;
                                         case "b":
-                                            Ae.sys.routeInput(He.Settings, !1, !1);
+                                            Ce.sys.routeInput(Se.Settings, !1, !1);
                                             break;
                                         case "up":
                                             this.focusNextElement(-1);
@@ -7429,40 +7304,40 @@
                                     }
                                     return
                                 }
-                                switch(this.buttonMap[a]) {
+                                switch (this.buttonMap[o]) {
                                     case "a":
-                                        s = He.Toggle;
+                                        s = Se.Toggle;
                                         break;
                                     case "lb":
-                                        s = He.Left;
+                                        s = Se.Left;
                                         break;
                                     case "rb":
-                                        s = He.Right;
+                                        s = Se.Right;
                                         break;
                                     case "lt":
                                     case "rt":
-                                        s = He.Boost;
+                                        s = Se.Boost;
                                         break;
                                     case "up":
-                                        s = He.Stop;
+                                        s = Se.Stop;
                                         break;
                                     case "down":
-                                        s = He.Down;
+                                        s = Se.Down;
                                         break;
                                     case "left":
-                                        s = He.Left;
+                                        s = Se.Left;
                                         break;
                                     case "right":
-                                        s = He.Right;
+                                        s = Se.Right;
                                         break;
                                     case "select":
                                     case "start":
                                     case "home":
                                     case "touchpad":
-                                        s = He.Settings
+                                        s = Se.Settings
                                 }
-                                Ae.sys.routeInput(s, !1, !1), Ae.sys.checkCheatCode(s)
-                            } else this.linkedPad.pressed[this.buttonMap[a]] = !1;
+                                Ce.sys.routeInput(s, !1, !1), Ce.sys.checkCheatCode(s)
+                            } else this.linkedPad.pressed[this.buttonMap[o]] = !1;
                         return s
                     }
                     focusNextElement(e = 1) {
@@ -7471,64 +7346,46 @@
                         (t[s + e] || t[0]).focus()
                     }
                 }
-
-                function Ie(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                Te(Me, "sys", null);
-                class Pe {
+                ye.sys = null;
+                class fe {
                     constructor() {
-                        if(Ie(this, "mousePos", void 0), Pe.sys) return Pe.sys;
-                        Pe.sys = this, window.addEventListener("click", (function(e) {
-                            Pe.sys.onClick(e)
+                        if (this.mousePos = void 0, fe.sys) return fe.sys;
+                        fe.sys = this, window.addEventListener("click", (function(e) {
+                            fe.sys.onClick(e)
                         }), !1), window.addEventListener("mousemove", (function(e) {
-                            Pe.sys.onMouseMove(e)
+                            fe.sys.onMouseMove(e)
                         }), !1), window.addEventListener("contextmenu", (function(e) {
-                            Pe.sys.onContextMenu(e)
+                            fe.sys.onContextMenu(e)
                         }), !1), this.reset()
                     }
                     reset() {
                         this.mousePos = void 0
                     }
                     onClick(e) {
-                        if(te.sys.session.flyoutActive) return;
-                        Ae.sys.changeInputMethod(ee.Mouse);
-                        const t = ue.sys.selector || null;
-                        t && t.contains(e.target) || Ae.sys.routeInput(He.Toggle)
+                        if (Q.sys.session.flyoutActive) return;
+                        Ce.sys.changeInputMethod(J.Mouse);
+                        const t = ce.sys.selector || null;
+                        t && t.contains(e.target) || Ce.sys.routeInput(Se.Toggle)
                     }
                     onMouseMove(e) {
-                        if(te.sys.session.state === Q.Play) {
-                            const t = this.checkAngle(te.sys.session, e);
-                            this.mousePos !== t && (this.mousePos = t, Ae.sys.routeInput(t, !0, !1))
+                        if (Q.sys.session.state === Y.Play) {
+                            const t = this.checkAngle(Q.sys.session, e);
+                            this.mousePos !== t && (this.mousePos = t, Ce.sys.routeInput(t, !0, !1))
                         }
                     }
                     onContextMenu(e) {
-                        e.preventDefault(), te.sys.session.state === Q.Play && Ae.sys.routeInput(He.Boost, !1, !1)
+                        e.preventDefault(), Q.sys.session.state === Y.Play && Ce.sys.routeInput(Se.Boost, !1, !1)
                     }
                     checkAngle(e, t) {
                         const s = 180 * Math.atan2(e.y - t.clientY, e.x - t.clientX) / Math.PI;
-                        return s <= 0 && s >= -55 ? He.Left : s >= -180 && s <= -125 ? He.Right : s < -55 && s > -75 ? He.DownLeft : s > -125 && s < -105 ? He.DownRight : s > 0 && s < 180 ? He.Stop : He.Down
+                        return s <= 0 && s >= -55 ? Se.Left : s >= -180 && s <= -125 ? Se.Right : s < -55 && s > -75 ? Se.DownLeft : s > -125 && s < -105 ? Se.DownRight : s > 0 && s < 180 ? Se.Stop : Se.Down
                     }
                 }
-
-                function Ee(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                Ie(Pe, "sys", null);
-                class ze extends ve {
+                fe.sys = null;
+                class we extends be {
                     constructor(e, t, s, i) {
-                        if(super(e, t, s, i), Ee(this, "pose", void 0), Ee(this, "speed", void 0), Ee(this, "timer", void 0), Ee(this, "dist", void 0), Ee(this, "angle", void 0), Ee(this, "dir", void 0), Ee(this, "scale", void 0), Ee(this, "swapped", void 0), Ee(this, "trick", void 0), Ee(this, "shadow", void 0), Ee(this, "boostFx", void 0), Ee(this, "previousGate", void 0), Ee(this, "skins", void 0), ze.sys) return ze.sys;
-                        ze.sys = this, this.reset()
+                        if (super(e, t, s, i), this.speed = void 0, this.timer = void 0, this.dist = void 0, this.angle = void 0, this.dir = void 0, this.scale = void 0, this.swapped = void 0, this.trick = void 0, this.shadow = void 0, this.boostFx = void 0, this.previousGate = void 0, this.skins = void 0, we.sys) return we.sys;
+                        we.sys = this, this.reset()
                     }
                     reset() {
                         super.reset(), this.speed = {
@@ -7548,60 +7405,60 @@
                             render: [],
                             zoom: [.2, .5, 1, .5, .2],
                             poses: ["left", "left", "left", "downleft", "down", "downright", "right", "right", "right", "downright", "down", "downleft"]
-                        }, this.changeCharacter(te.sys.session.settings.character, !0)
+                        }, this.changeCharacter(Q.sys.session.settings.character, !0)
                     }
                     move() {}
                     unlockForNewGame() {
-                        this.changeDirection("down"), Me.sys.setVibration("big")
+                        this.changeDirection("down"), ye.sys.setVibration("big")
                     }
                     update() {
                         super.update(), this.speed.x = this.speed.current * -Math.cos(this.angle), this.speed.y = this.speed.current * -Math.sin(this.angle), this.checkBoundaries(), this.updateTrackers(), this.updateBoostFx(), "stop" === this.dir || this.timer.crash || this.updateSpeed()
                     }
                     checkBoundaries() {
-                        const e = te.sys.game.dist,
-                            t = te.sys.session.settings.mode;
-                        switch(t) {
-                            case q.TimeTrial:
-                            case q.ZigZag:
-                                Math.abs(e.x) > be.sys.boundary[t] && this.bounce();
+                        const e = Q.sys.game.dist,
+                            t = Q.sys.session.settings.mode;
+                        switch (t) {
+                            case j.TimeTrial:
+                            case j.ZigZag:
+                                Math.abs(e.x) > he.sys.boundary[t] && this.bounce();
                                 break;
-                            case q.Endless:
-                                e.y < 8e3 && e.x < -6400 && !ke.sys.swapBuilt && ke.sys.buildSwap(), !te.sys.game.highScore && e.unit > te.sys.session.bestScore.endless && !te.sys.game.cheat.used && (te.sys.game.highScore = !0, ue.sys.refreshDisplay(), e.unit > 100 && ue.sys.sendNotification("score"))
+                            case j.Endless:
+                                e.y < 8e3 && e.x < -6400 && !me.sys.swapBuilt && me.sys.buildSwap(), !Q.sys.game.highScore && e.unit > Q.sys.session.bestScore.endless && !Q.sys.game.cheat.used && (Q.sys.game.highScore = !0, ce.sys.refreshDisplay(), e.unit > 100 && ce.sys.sendNotification("score"))
                         }
                     }
                     changeCharacter(e, t = !1) {
-                        t && !be.sys.selectionList.includes(be.sys.characterList[e]) && be.sys.selectionList.push(be.sys.characterList[e]);
-                        const s = be.sys.selectionList;
-                        t || (e = (s.length + te.sys.session.settings.character + e) % s.length), this.skins.render = [];
+                        t && !he.sys.selectionList.includes(he.sys.characterList[e]) && he.sys.selectionList.push(he.sys.characterList[e]);
+                        const s = he.sys.selectionList;
+                        t || (e = (s.length + Q.sys.session.settings.character + e) % s.length), this.skins.render = [];
                         const i = this.skins.zoom.length;
-                        for(let t = 0; t < i; t++) {
-                            const a = (s.length + e + (t - Math.floor(i / 2))) % s.length;
-                            this.skins.render[t] = a
+                        for (let t = 0; t < i; t++) {
+                            const o = (s.length + e + (t - Math.floor(i / 2))) % s.length;
+                            this.skins.render[t] = o
                         }
-                        te.sys.session.settings.character = e, te.sys.saveSessionSettings(), be.sys.createPlayerSprite(), Me.sys.setVibration("small")
+                        Q.sys.session.settings.character = e, Q.sys.saveSessionSettings(), he.sys.createPlayerSprite(), ye.sys.setVibration("small")
                     }
                     routeAction(e, t = !1) {
-                        if(!(te.sys.session.state !== Q.Play || this.timer.crash || "bounce" in this.dist || "air" in this.dist && e !== He.Down)) switch(e) {
-                            case He.Stop:
+                        if (!(Q.sys.session.state !== Y.Play || this.timer.crash || "bounce" in this.dist || "air" in this.dist && e !== Se.Down)) switch (e) {
+                            case Se.Stop:
                                 this.stop();
                                 break;
-                            case He.Down:
+                            case Se.Down:
                                 this.down();
                                 break;
-                            case He.Left:
-                            case He.Right:
-                            case He.DownLeft:
-                            case He.DownRight:
+                            case Se.Left:
+                            case Se.Right:
+                            case Se.DownLeft:
+                            case Se.DownRight:
                                 this.changeDirection(e, t);
                                 break;
-                            case He.Boost:
+                            case Se.Boost:
                                 this.boost()
                         }
                     }
                     changeDirection(e, t = !1) {
-                        if(this.timer.crash || "bounce" in this.dist || "air" in this.dist && "down" !== e) return;
+                        if (this.timer.crash || "bounce" in this.dist || "air" in this.dist && "down" !== e) return;
                         let s;
-                        switch(t || "left" !== e || "left" === this.dir ? t || "right" !== e || "right" === this.dir || (e = "downright" === this.dir ? "right" : "downright") : e = "downleft" === this.dir ? "left" : "downleft", e) {
+                        switch (t || "left" !== e || "left" === this.dir ? t || "right" !== e || "right" === this.dir || (e = "downright" === this.dir ? "right" : "downright") : e = "downleft" === this.dir ? "left" : "downleft", e) {
                             case "left":
                                 s = -42;
                                 break;
@@ -7626,56 +7483,56 @@
                         this.swapped && (e = "stop" === e ? "crash" : "chase"), this.pose = e
                     }
                     updateTrackers() {
-                        this.timer.crash && (this.timer.crash -= te.sys.game.time.loop * te.sys.game.time.scale, this.timer.crash < 0 && (this.timer.crash = void 0, this.stop(), Pe.sys.reset()));
-                        for(const e in this.dist) this.dist[e] -= this.speed.current, this.dist[e] <= 0 && (delete this.dist[e], this.endDistTracker(e))
+                        this.timer.crash && (this.timer.crash -= Q.sys.game.time.loop * Q.sys.game.time.scale, this.timer.crash < 0 && (this.timer.crash = void 0, this.stop(), fe.sys.reset()));
+                        for (const e in this.dist) this.dist[e] -= this.speed.current, this.dist[e] <= 0 && (delete this.dist[e], this.endDistTracker(e))
                     }
                     updateSpeed() {
                         let e = 1;
                         const t = this.speed;
                         ("air" in this.dist || "boost" in this.dist) && (e = 8), this.setMinPlayerSpeed();
-                        const s = t.accel * e * te.sys.game.time.scale;
-                        this.speed.raw = t.raw <= t.max ? t.raw += s : t.raw -= s, this.speed.current = t.raw * te.sys.game.time.scale
+                        const s = t.accel * e * Q.sys.game.time.scale;
+                        this.speed.raw = t.raw <= t.max ? t.raw += s : t.raw -= s, this.speed.current = t.raw * Q.sys.game.time.scale
                     }
                     stop() {
-                        this.changeDirection("stop"), this.stopPlayerSpeed(), Me.sys.setVibration("tiny")
+                        this.changeDirection("stop"), this.stopPlayerSpeed(), ye.sys.setVibration("tiny")
                     }
                     down() {
-                        "air" in this.dist ? (this.trick = this.trick % 2 + 1, 1 === this.trick ? this.changePose("air1") : this.changePose("air2"), Me.sys.setVibration("small")) : this.changeDirection("down")
+                        "air" in this.dist ? (this.trick = this.trick % 2 + 1, 1 === this.trick ? this.changePose("air1") : this.changePose("air2"), ye.sys.setVibration("small")) : this.changeDirection("down")
                     }
                     slow() {
-                        this.speed.raw *= .7, Me.sys.setVibration("slow")
+                        this.speed.raw *= .7, ye.sys.setVibration("slow")
                     }
                     crash() {
-                        if("immune" in this.dist) return;
-                        const e = te.sys.game.cheat;
-                        te.sys.game.friend && !e.safety && (this.removeFriend(), ke.sys.buildCrashedFriend(this.x + 48 * (Math.random() - .5), this.y + 32)), e.lives || e.safety || (te.sys.game.lives.current -= 1), ue.sys.refreshDisplay(), te.sys.game.lives.current <= 0 ? this.lose() : (this.timer.crash = 1, this.stopPlayerSpeed(), this.dist.immune = 96, this.changePose("crash"), Me.sys.setVibration("crash"))
+                        if ("immune" in this.dist) return;
+                        const e = Q.sys.game.cheat;
+                        Q.sys.game.friend && !e.safety && (this.removeFriend(), me.sys.buildCrashedFriend(this.x + 48 * (Math.random() - .5), this.y + 32)), e.lives || e.safety || (Q.sys.game.lives.current -= 1), ce.sys.refreshDisplay(), Q.sys.game.lives.current <= 0 ? this.lose() : (this.timer.crash = 1, this.stopPlayerSpeed(), this.dist.immune = 96, this.changePose("crash"), ye.sys.setVibration("crash"))
                     }
                     air(e) {
-                        this.timer.crash || (this.changeDirection("down"), "boost" in this.dist && (this.dist.boost += e), this.dist.air = e, this.trick = te.sys.rand(1, 2), this.speed.max = this.speed.base + this.speed.airAdd, this.shadow = 0, this.down(), Me.sys.setVibration("ramp"))
+                        this.timer.crash || (this.changeDirection("down"), "boost" in this.dist && (this.dist.boost += e), this.dist.air = e, this.trick = Q.sys.rand(1, 2), this.speed.max = this.speed.base + this.speed.airAdd, this.shadow = 0, this.down(), ye.sys.setVibration("ramp"))
                     }
                     boost(e = !1) {
-                        !e && (te.sys.game.boosts.current <= 0 || "boost" in this.dist) || (e || te.sys.game.cheat.boosts || (te.sys.game.boosts.current -= 1), this.dist.boost = 2e3, this.speed.max = this.speed.base + this.speed.boostAdd, ue.sys.refreshDisplay(), Me.sys.setVibration("boost"))
+                        !e && (Q.sys.game.boosts.current <= 0 || "boost" in this.dist) || (e || Q.sys.game.cheat.boosts || (Q.sys.game.boosts.current -= 1), this.dist.boost = 2e3, this.speed.max = this.speed.base + this.speed.boostAdd, ce.sys.refreshDisplay(), ye.sys.setVibration("boost"))
                     }
                     bounce() {
                         this.spin(), this.dist.bounce = 32
                     }
                     endDistTracker(e) {
-                        switch(e) {
+                        switch (e) {
                             case "air":
-                                this.dist.immune = 256, Pe.sys.reset(), "boost" in this.dist || (this.speed.max = this.speed.base), this.down(), Me.sys.setVibration("slow");
+                                this.dist.immune = 256, fe.sys.reset(), "boost" in this.dist || (this.speed.max = this.speed.base), this.down(), ye.sys.setVibration("slow");
                                 break;
                             case "boost":
-                                this.speed.max = this.speed.base, Me.sys.setVibration("tiny")
+                                this.speed.max = this.speed.base, ye.sys.setVibration("tiny")
                         }
                     }
                     swap() {
-                        this.removeFriend(!0), this.swapped = !0, this.changePose("chase"), this.speed.base += 3, this.speed.max = this.speed.base, this.hitbox.x -= 32, this.hitbox.y -= 32, this.hitbox.w += 64, this.hitbox.h += 64, ke.sys.top.filter((e => "lure" === e.type)).forEach((e => {
-                            ke.sys.buildObject("foe", e.x, e.y, "chase"), e.sleep = !0
-                        })), te.sys.game.cheat.used = !0, ue.sys.sendNotification("cheat"), Me.sys.setVibration("big")
+                        this.removeFriend(!0), this.swapped = !0, this.changePose("chase"), this.speed.base += 3, this.speed.max = this.speed.base, this.hitbox.x -= 32, this.hitbox.y -= 32, this.hitbox.w += 64, this.hitbox.h += 64, me.sys.top.filter((e => "lure" === e.type)).forEach((e => {
+                            me.sys.buildObject("foe", e.x, e.y, "chase"), e.sleep = !0
+                        })), Q.sys.game.cheat.used = !0, ce.sys.sendNotification("cheat"), ye.sys.setVibration("big")
                     }
                     spin() {
                         const e = Math.random() > .5;
-                        switch(this.dir) {
+                        switch (this.dir) {
                             case "downright":
                             case "right":
                                 this.changeDirection(e ? "left" : "downleft", !0);
@@ -7687,37 +7544,37 @@
                             default:
                                 this.changeDirection(e ? "left" : "right", !0)
                         }
-                        this.speed.raw *= .9, Me.sys.setVibration("slow")
+                        this.speed.raw *= .9, ye.sys.setVibration("slow")
                     }
                     collectBoost() {
-                        te.sys.game.boosts.current < te.sys.game.boosts.max && (te.sys.game.boosts.current += 1, ue.sys.refreshDisplay()), Me.sys.setVibration("pickup")
+                        Q.sys.game.boosts.current < Q.sys.game.boosts.max && (Q.sys.game.boosts.current += 1, ce.sys.refreshDisplay()), ye.sys.setVibration("pickup")
                     }
                     collectLife() {
-                        te.sys.game.lives.current < te.sys.game.lives.max && (te.sys.game.lives.current += 1, ue.sys.refreshDisplay()), Me.sys.setVibration("pickup")
+                        Q.sys.game.lives.current < Q.sys.game.lives.max && (Q.sys.game.lives.current += 1, ce.sys.refreshDisplay()), ye.sys.setVibration("pickup")
                     }
                     collectCoin() {
-                        te.sys.game.coins += 1, Me.sys.setVibration("pickup")
+                        Q.sys.game.coins += 1, ye.sys.setVibration("pickup")
                     }
                     collectFriend() {
-                        te.sys.game.friend = !0, be.sys.createPlayerSprite(), te.sys.session.settings.mode === q.Endless && (te.sys.game.shields.current = te.sys.game.shields.max, ue.sys.refreshDisplay()), Me.sys.setVibration("pickup")
+                        Q.sys.game.friend = !0, he.sys.createPlayerSprite(), Q.sys.session.settings.mode === j.Endless && (Q.sys.game.shields.current = Q.sys.game.shields.max, ce.sys.refreshDisplay()), ye.sys.setVibration("pickup")
                     }
                     removeFriend(e = !1) {
-                        !te.sys.game.friend || te.sys.game.cheat.safety || e || (te.sys.game.friend = !1, be.sys.createPlayerSprite(), te.sys.game.shields.current = 0, ue.sys.refreshDisplay())
+                        !Q.sys.game.friend || Q.sys.game.cheat.safety || e || (Q.sys.game.friend = !1, he.sys.createPlayerSprite(), Q.sys.game.shields.current = 0, ce.sys.refreshDisplay())
                     }
                     useShield() {
-                        te.sys.game.cheat.safety || (te.sys.game.shields.current -= 1, ue.sys.refreshDisplay(), Me.sys.setVibration("small"))
+                        Q.sys.game.cheat.safety || (Q.sys.game.shields.current -= 1, ce.sys.refreshDisplay(), ye.sys.setVibration("small"))
                     }
                     lose() {
-                        te.sys.game.lives.current = 0, te.sys.game.shields.current = 0, this.dist.immune = 0, this.stopPlayerSpeed(), this.changePose("crash"), this.boostFx = [], Ze.sys.changeGameState(Q.Over), Me.sys.setVibration("big")
+                        Q.sys.game.lives.current = 0, Q.sys.game.shields.current = 0, this.dist.immune = 0, this.stopPlayerSpeed(), this.changePose("crash"), this.boostFx = [], Te.sys.changeGameState(Y.Over), ye.sys.setVibration("big")
                     }
                     finishline() {
-                        te.sys.game.finish = !0, this.stopPlayerSpeed(), this.changePose("stop"), this.boostFx = [], Ze.sys.changeGameState(Q.Over), Me.sys.setVibration("big")
+                        Q.sys.game.finish = !0, this.stopPlayerSpeed(), this.changePose("stop"), this.boostFx = [], Te.sys.changeGameState(Y.Over), ye.sys.setVibration("big")
                     }
                     passGate(e) {
-                        e - 1 === this.previousGate && (te.sys.game.gates += 1), this.previousGate = e, te.sys.saveGameStats(), ue.sys.refreshDisplay(), Me.sys.setVibration("small")
+                        e - 1 === this.previousGate && (Q.sys.game.gates += 1), this.previousGate = e, Q.sys.saveGameStats(), ce.sys.refreshDisplay(), ye.sys.setVibration("small")
                     }
                     failGate(e) {
-                        te.sys.game.highScore && (ue.sys.sendNotification("score"), te.sys.game.highScore = !1), te.sys.game.gates = 0, this.previousGate = e, ue.sys.refreshDisplay(), Me.sys.setVibration("slow")
+                        Q.sys.game.highScore && (ce.sys.sendNotification("score"), Q.sys.game.highScore = !1), Q.sys.game.gates = 0, this.previousGate = e, ce.sys.refreshDisplay(), ye.sys.setVibration("slow")
                     }
                     stopPlayerSpeed() {
                         this.speed.current = 0, this.speed.raw = 0, this.speed.max = 0, this.speed.x = 0, this.speed.y = 0
@@ -7726,8 +7583,8 @@
                         this.speed.raw = Math.max(this.speed.raw, this.speed.min), this.speed.max = Math.max(this.speed.max, this.speed.base)
                     }
                     updateBoostFx() {
-                        if(this.boostFx.length > 0 && (this.boostFx.forEach((e => {
-                                e.start.x -= .8 * this.speed.x, e.end.x -= this.speed.x, e.start.y -= .8 * this.speed.y, e.end.y -= this.speed.y, e.time += te.sys.game.time.loop
+                        if (this.boostFx.length > 0 && (this.boostFx.forEach((e => {
+                                e.start.x -= .8 * this.speed.x, e.end.x -= this.speed.x, e.start.y -= .8 * this.speed.y, e.end.y -= this.speed.y, e.time += Q.sys.game.time.loop
                             })), this.boostFx = this.boostFx.filter((e => e.time < .5))), "boost" in this.dist && this.speed.current > 0) {
                             const e = 16 - 32 * Math.random();
                             this.boostFx.push({
@@ -7744,81 +7601,72 @@
                         }
                     }
                     renderCharacterSelection() {
-                        const e = te.sys.game.time.elapsed,
+                        const e = Q.sys.game.time.elapsed,
                             t = this.skins.render.length,
                             s = Math.floor(t / 2),
-                            i = Math.floor(e * be.sys.sheet.player.fps) % this.skins.poses.length,
-                            a = de.sys.ctx;
-                        a.save();
-                        for(let o = 0; o < t; o++) {
+                            i = Math.floor(e * he.sys.sheet.player.fps) % this.skins.poses.length,
+                            o = re.sys.ctx;
+                        o.save();
+                        for (let a = 0; a < t; a++) {
                             let t = 80,
                                 n = 1;
-                            const r = this.skins.zoom[o];
+                            const r = this.skins.zoom[a];
                             let l = this.skins.poses[i];
-                            o !== s - 1 && o !== s + 1 || (t = 96), a.globalAlpha = r;
-                            const h = be.sys.characterList[this.skins.render[o]];
-                            if(o !== s) l = "down", de.sys.drawPlayerMenu(h, l, te.sys.session.x + t * (o - s), te.sys.session.y, n + r);
+                            a !== s - 1 && a !== s + 1 || (t = 96), o.globalAlpha = r;
+                            const h = he.sys.characterList[this.skins.render[a]];
+                            if (a !== s) l = "down", re.sys.drawPlayerMenu(h, l, Q.sys.session.x + t * (a - s), Q.sys.session.y, n + r);
                             else {
                                 n = this.scale;
-                                te.sys.game.shields.current / te.sys.game.shields.max > 0 && de.sys.drawShield(this.x, this.y + 16), de.sys.drawPlayerSprite(l, e, te.sys.session.x + t * (o - s), te.sys.session.y, n + r)
+                                Q.sys.game.shields.current / Q.sys.game.shields.max > 0 && re.sys.drawShield(this.x, this.y + 16), re.sys.drawPlayerSprite(l, e, Q.sys.session.x + t * (a - s), Q.sys.session.y, n + r)
                             }
                         }
-                        a.restore()
+                        o.restore()
                     }
                     draw() {
-                        if(this.boostFx.length > 0 && de.sys.drawBoost(this.boostFx), this.swapped) de.sys.drawLayer("foe", this.pose, this.x, this.y, this.time, this.anim);
+                        if (this.boostFx.length > 0 && re.sys.drawBoost(this.boostFx), this.swapped) re.sys.drawLayer("foe", this.pose, this.x, this.y, this.time, this.anim);
                         else {
-                            const e = te.sys.game.time.elapsed;
-                            te.sys.game.shields.current / te.sys.game.shields.max > 0 && de.sys.drawShield(this.x, this.y + 16), "air" in this.dist && (this.dist.air < 256 ? this.shadow = this.dist.air / 4 : this.shadow < 64 ? this.shadow += 3 * te.sys.game.time.scale : this.shadow = 64, de.sys.drawShadow(this.x, this.y + 16, this.shadow)), "immune" in this.dist && (de.sys.ctx.save(), de.sys.ctx.globalAlpha = Math.floor(4 * e) % 2 == 0 ? .4 : .7), de.sys.drawPlayerSprite(this.pose, e, this.x, this.y, this.scale), "immune" in this.dist && de.sys.ctx.restore()
+                            const e = Q.sys.game.time.elapsed;
+                            Q.sys.game.shields.current / Q.sys.game.shields.max > 0 && re.sys.drawShield(this.x, this.y + 16), "air" in this.dist && (this.dist.air < 256 ? this.shadow = this.dist.air / 4 : this.shadow < 64 ? this.shadow += 3 * Q.sys.game.time.scale : this.shadow = 64, re.sys.drawShadow(this.x, this.y + 16, this.shadow)), "immune" in this.dist && (re.sys.ctx.save(), re.sys.ctx.globalAlpha = Math.floor(4 * e) % 2 == 0 ? .4 : .7), re.sys.drawPlayerSprite(this.pose, e, this.x, this.y, this.scale), "immune" in this.dist && re.sys.ctx.restore()
                         }
                     }
                 }
-
-                function Le(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                Ee(ze, "sys", null);
-                class De {
+                we.sys = null;
+                class ve {
                     constructor() {
-                        if(Le(this, "pressed", void 0), De.sys) return De.sys;
-                        De.sys = this, window.addEventListener("keydown", (e => De.sys.onKeydown(e)), !1), window.addEventListener("keyup", (e => De.sys.onKeyup(e)), !1), this.pressed = {}
+                        if (this.pressed = void 0, ve.sys) return ve.sys;
+                        ve.sys = this, window.addEventListener("keydown", (e => ve.sys.onKeydown(e)), !1), window.addEventListener("keyup", (e => ve.sys.onKeyup(e)), !1), this.pressed = {}
                     }
                     onKeydown(e) {
                         const t = e.key.toLowerCase();
-                        if(Ae.sys.changeInputMethod(ee.Keyboard), !this.pressed[t]) {
-                            switch(this.pressed[t] = !0, t) {
+                        if (Ce.sys.changeInputMethod(J.Keyboard), !this.pressed[t]) {
+                            switch (this.pressed[t] = !0, t) {
                                 case "arrowdown":
                                 case "s":
-                                    Ae.sys.routeInput(He.Down);
+                                    Ce.sys.routeInput(Se.Down);
                                     break;
                                 case "arrowleft":
                                 case "a":
-                                    Ae.sys.routeInput(He.Left);
+                                    Ce.sys.routeInput(Se.Left);
                                     break;
                                 case "arrowright":
                                 case "d":
-                                    Ae.sys.routeInput(He.Right);
+                                    Ce.sys.routeInput(Se.Right);
                                     break;
                                 case "arrowup":
                                 case "w":
-                                    Ae.sys.routeInput(He.Stop);
+                                    Ce.sys.routeInput(Se.Stop);
                                     break;
                                 case "enter":
                                 case " ":
-                                    Ae.sys.routeInput(He.Toggle);
+                                    Ce.sys.routeInput(Se.Toggle);
                                     break;
                                 case "escape":
-                                    Ae.sys.routeInput(He.Settings, !1, !1);
+                                    Ce.sys.routeInput(Se.Settings, !1, !1);
                                     break;
                                 case "f":
-                                    Ae.sys.routeInput(He.Boost, !1, !1)
+                                    Ce.sys.routeInput(Se.Boost, !1, !1)
                             }
-                            Ae.sys.checkCheatCode(t)
+                            Ce.sys.checkCheatCode(t)
                         }
                     }
                     onKeyup(e) {
@@ -7826,20 +7674,11 @@
                         delete this.pressed[t]
                     }
                 }
-
-                function _e(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                Le(De, "sys", null);
-                class Oe {
+                ve.sys = null;
+                class xe {
                     constructor() {
-                        if(_e(this, "swipeStart", void 0), _e(this, "swipeDelta", void 0), _e(this, "touchData", void 0), _e(this, "touchPos", void 0), Oe.sys) return Oe.sys;
-                        Oe.sys = this, window.addEventListener("touchstart", (e => Oe.sys.onTouchStart(e)), !1), window.addEventListener("touchmove", (e => Oe.sys.onTouchMove(e)), !1), window.addEventListener("touchend", (e => Oe.sys.onTouchEnd(e)), !1), this.reset()
+                        if (this.swipeStart = void 0, this.swipeDelta = void 0, this.touchData = void 0, this.touchPos = void 0, xe.sys) return xe.sys;
+                        xe.sys = this, window.addEventListener("touchstart", (e => xe.sys.onTouchStart(e)), !1), window.addEventListener("touchmove", (e => xe.sys.onTouchMove(e)), !1), window.addEventListener("touchend", (e => xe.sys.onTouchEnd(e)), !1), this.reset()
                     }
                     reset() {
                         this.swipeStart = 0, this.swipeDelta = 400, this.touchData = {
@@ -7854,7 +7693,7 @@
                         }
                     }
                     onTouchStart(e) {
-                        if(!this.interact(e) && (Ae.sys.changeInputMethod(ee.Touch), e.targetTouches)) {
+                        if (!this.interact(e) && (Ce.sys.changeInputMethod(J.Touch), e.targetTouches)) {
                             const t = e.targetTouches[0];
                             this.swipeStart = Date.now(), this.touchPos = void 0, this.touchData = {
                                 down: {
@@ -7869,73 +7708,64 @@
                         }
                     }
                     onTouchMove(e) {
-                        if(this.interact(e)) return;
+                        if (this.interact(e)) return;
                         const t = e.targetTouches[0];
-                        if(this.touchData.move = {
+                        if (this.touchData.move = {
                                 x: t.clientX,
                                 y: t.clientY
-                            }, te.sys.session.state === Q.Play && Date.now() - this.swipeStart > 80) {
-                            const e = this.checkAngle(te.sys.session, this.touchData.move);
-                            this.touchPos !== e && (this.touchPos = e, Ae.sys.routeInput(e, !0, !1))
+                            }, Q.sys.session.state === Y.Play && Date.now() - this.swipeStart > 80) {
+                            const e = this.checkAngle(Q.sys.session, this.touchData.move);
+                            this.touchPos !== e && (this.touchPos = e, Ce.sys.routeInput(e, !0, !1))
                         }
                     }
                     onTouchEnd(e) {
-                        if(this.interact(e)) return;
+                        if (this.interact(e)) return;
                         const t = this.touchData.move.x - this.touchData.down.x,
                             s = this.touchData.move.y - this.touchData.down.y;
-                        if(this.touchPos = void 0, Math.abs(t) < 10 && Math.abs(s) < 10) {
+                        if (this.touchPos = void 0, Math.abs(t) < 10 && Math.abs(s) < 10) {
                             const e = {
-                                    x: te.sys.session.x,
-                                    y: te.sys.session.y
+                                    x: Q.sys.session.x,
+                                    y: Q.sys.session.y
                                 },
                                 t = this.checkAngle(e, this.touchData.down);
-                            te.sys.session.state === Q.Menu ? t === He.Left || t === He.Right ? Ae.sys.routeInput(t, !0, !1) : Ae.sys.routeInput(He.Toggle) : Ae.sys.routeInput(t, !0, !0), Ae.sys.checkCheatCode(t)
-                        } else if(Date.now() - this.swipeStart <= this.swipeDelta) {
+                            Q.sys.session.state === Y.Menu ? t === Se.Left || t === Se.Right ? Ce.sys.routeInput(t, !0, !1) : Ce.sys.routeInput(Se.Toggle) : Ce.sys.routeInput(t, !0, !0), Ce.sys.checkCheatCode(t)
+                        } else if (Date.now() - this.swipeStart <= this.swipeDelta) {
                             let e = this.checkAngle(this.touchData.down, this.touchData.move);
-                            if(te.sys.session.state === Q.Menu) switch(e) {
-                                case He.Right:
-                                    e = He.Left;
+                            if (Q.sys.session.state === Y.Menu) switch (e) {
+                                case Se.Right:
+                                    e = Se.Left;
                                     break;
-                                case He.Left:
-                                    e = He.Right
+                                case Se.Left:
+                                    e = Se.Right
                             }
-                            const t = e === He.Down;
-                            Ae.sys.routeInput(e, !1, t)
+                            const t = e === Se.Down;
+                            Ce.sys.routeInput(e, !1, t)
                         }
                     }
                     checkAngle(e, t) {
                         const s = 180 * Math.atan2(e.y - t.y, e.x - t.x) / Math.PI;
-                        return s <= 30 && s >= -55 ? He.Left : s >= 150 || s >= -180 && s <= -125 ? He.Right : s < -55 && s > -75 ? He.DownLeft : s > -125 && s < -105 ? He.DownRight : s > 30 && s < 150 ? He.Stop : He.Down
+                        return s <= 30 && s >= -55 ? Se.Left : s >= 150 || s >= -180 && s <= -125 ? Se.Right : s < -55 && s > -75 ? Se.DownLeft : s > -125 && s < -105 ? Se.DownRight : s > 30 && s < 150 ? Se.Stop : Se.Down
                     }
                     interact(e) {
                         const t = e.target;
-                        return !(!te.sys.session.flyoutActive && !t.closest("button")) || (e.cancelable && e.preventDefault(), !1)
+                        return !(!Q.sys.session.flyoutActive && !t.closest("button")) || (e.cancelable && e.preventDefault(), !1)
                     }
                 }
-
-                function Re(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-                let He;
-                _e(Oe, "sys", null),
+                let Se;
+                xe.sys = null,
                     function(e) {
                         e.Settings = "settings", e.Left = "left", e.Right = "right", e.Down = "down", e.Stop = "stop", e.DownLeft = "downleft", e.DownRight = "downright", e.Boost = "boost", e.Toggle = "toggle", e.Reset = "reset"
-                    }(He || (He = {}));
-                class Ae {
+                    }(Se || (Se = {}));
+                class Ce {
                     constructor() {
-                        if(Re(this, "codes", void 0), Re(this, "lastTime", void 0), Re(this, "thisTime", void 0), Re(this, "lastInput", void 0), Re(this, "lastInputTime", void 0), Re(this, "doubleDelta", void 0), Re(this, "codesPossible", void 0), Ae.sys) return Ae.sys;
-                        Ae.sys = this, new Me, new De, new Pe, new Oe, this.defineCodes(), this.reset()
+                        if (this.codes = void 0, this.lastTime = void 0, this.thisTime = void 0, this.lastInput = void 0, this.lastInputTime = void 0, this.doubleDelta = void 0, this.codesPossible = void 0, Ce.sys) return Ce.sys;
+                        Ce.sys = this, new ye, new ve, new fe, new xe, this.defineCodes(), this.reset()
                     }
                     reset() {
-                        Me.sys.reset(), Pe.sys.reset(), Oe.sys.reset(), this.lastTime = 0, this.thisTime = 0, this.lastInput = void 0, this.lastInputTime = Date.now(), this.doubleDelta = 300, this.codesPossible = []
+                        ye.sys.reset(), fe.sys.reset(), xe.sys.reset(), this.lastTime = 0, this.thisTime = 0, this.lastInput = void 0, this.lastInputTime = Date.now(), this.doubleDelta = 300, this.codesPossible = []
                     }
                     update() {
-                        Me.sys.update()
+                        ye.sys.update()
                     }
                     defineCodes() {
                         this.codes = {
@@ -7956,28 +7786,28 @@
                         }
                     }
                     routeInput(e, t = !1, s = !0) {
-                        if(te.sys.session.flyoutActive) return void(e === He.Settings && this.inputSettings());
-                        const i = te.sys.session.inputType;
-                        let a = !1;
-                        if(s && (a = this.registerDoubleInput(e)), i !== ee.Mouse && i !== ee.Touch || e !== He.Toggle || a)
-                            if(i !== ee.Keyboard && i !== ee.Touch || e !== He.Down || t || !a ? i === ee.Touch && a && (e = He.Toggle) : e = He.Boost, te.sys.session.state !== Q.Menu || e !== He.Left && e !== He.Right) switch(e) {
-                                case He.Toggle:
+                        if (Q.sys.session.flyoutActive) return void(e === Se.Settings && this.inputSettings());
+                        const i = Q.sys.session.inputType;
+                        let o = !1;
+                        if (s && (o = this.registerDoubleInput(e)), i !== J.Mouse && i !== J.Touch || e !== Se.Toggle || o)
+                            if (i !== J.Keyboard && i !== J.Touch || e !== Se.Down || t || !o ? i === J.Touch && o && (e = Se.Toggle) : e = Se.Boost, Q.sys.session.state !== Y.Menu || e !== Se.Left && e !== Se.Right) switch (e) {
+                                case Se.Toggle:
                                     this.inputToggle();
                                     break;
-                                case He.Settings:
+                                case Se.Settings:
                                     this.inputSettings();
                                     break;
-                                case He.Reset:
-                                    Ze.sys.changeGameState(Q.Menu);
+                                case Se.Reset:
+                                    Te.sys.changeGameState(Y.Menu);
                                     break;
                                 default:
-                                    ze.sys.routeAction(e, t)
-                            } else switch(e) {
-                                case He.Left:
-                                    ze.sys.changeCharacter(-1);
+                                    we.sys.routeAction(e, t)
+                            } else switch (e) {
+                                case Se.Left:
+                                    we.sys.changeCharacter(-1);
                                     break;
-                                case He.Right:
-                                    ze.sys.changeCharacter(1)
+                                case Se.Right:
+                                    we.sys.changeCharacter(1)
                             }
                     }
                     registerDoubleInput(e) {
@@ -7986,28 +7816,28 @@
                         return this.thisTime - this.lastTime <= this.doubleDelta && this.lastInput === e && (t = !0, e = void 0), this.lastTime = this.thisTime, this.lastInput = e, t
                     }
                     changeInputMethod(e) {
-                        te.sys.session.inputType === e || this.lastInputTime + 100 > Date.now() || (this.lastInputTime = Date.now(), te.sys.session.inputType = e, ue.sys.updateInputTypeUI())
+                        Q.sys.session.inputType === e || this.lastInputTime + 100 > Date.now() || (this.lastInputTime = Date.now(), Q.sys.session.inputType = e, ce.sys.updateInputTypeUI())
                     }
                     inputToggle() {
-                        const e = te.sys.session.state;
-                        e === Q.Play ? Ze.sys.changeGameState(Q.Pause) : e === Q.Pause || e === Q.Menu ? Ze.sys.changeGameState(Q.Play) : e === Q.Over && Ze.sys.changeGameState(Q.Menu)
+                        const e = Q.sys.session.state;
+                        e === Y.Play ? Te.sys.changeGameState(Y.Pause) : e === Y.Pause || e === Y.Menu ? Te.sys.changeGameState(Y.Play) : e === Y.Over && Te.sys.changeGameState(Y.Menu)
                     }
                     inputSettings() {
-                        te.sys.session.state === Q.Play && Ze.sys.changeGameState(Q.Pause), document.dispatchEvent(new CustomEvent(lt))
+                        Q.sys.session.state === Y.Play && Te.sys.changeGameState(Y.Pause), document.dispatchEvent(new CustomEvent(qe))
                     }
                     checkCheatCode(e) {
-                        const t = te.sys.session.inputType;
-                        if(te.sys.session.state !== Q.Menu) return;
-                        const s = t === ee.Keyboard ? this.codes.keyboard : this.codes.directional;
+                        const t = Q.sys.session.inputType;
+                        if (Q.sys.session.state !== Y.Menu) return;
+                        const s = t === J.Keyboard ? this.codes.keyboard : this.codes.directional;
                         this.codesPossible = this.codesPossible.filter((t => e === s[t.idx][t.pos])), s.filter((t => e === t[0])).forEach((e => {
                             this.codesPossible.push({
                                 idx: s.indexOf(e),
                                 pos: 0
                             })
                         })), this.codesPossible.some((e => {
-                            if(e.pos++, e.pos === s[e.idx].length) {
+                            if (e.pos++, e.pos === s[e.idx].length) {
                                 let t = "code";
-                                switch(e.idx) {
+                                switch (e.idx) {
                                     case 0:
                                         this.cheat("lives"), t = "cheatcode";
                                         break;
@@ -8018,52 +7848,52 @@
                                         this.cheat("safety"), t = "cheatcode";
                                         break;
                                     case 3:
-                                        ze.sys.changeCharacter(7, !0);
+                                        we.sys.changeCharacter(7, !0);
                                         break;
                                     case 4:
-                                        ze.sys.scale = 2
+                                        we.sys.scale = 2
                                 }
-                                ue.sys.sendNotification(t)
+                                ce.sys.sendNotification(t)
                             }
                         }))
                     }
                     cheat(e, t = !0) {
-                        const s = te.sys.game.cheat;
-                        if(t && te.sys.session.state === Q.Menu) switch(s.used = !0, s[e] = !0, e) {
+                        const s = Q.sys.game.cheat;
+                        if (t && Q.sys.session.state === Y.Menu) switch (s.used = !0, s[e] = !0, e) {
                             case "lives":
                             case "boosts":
-                                te.sys.game[e].current = 3;
+                                Q.sys.game[e].current = 3;
                                 break;
                             case "safety":
-                                ze.sys.collectFriend()
-                        } else switch(s[e] = !1, e) {
+                                we.sys.collectFriend()
+                        } else switch (s[e] = !1, e) {
                             case "boosts":
-                                te.sys.game[e].current = 0;
+                                Q.sys.game[e].current = 0;
                                 break;
                             case "safety":
-                                ze.sys.removeFriend()
+                                we.sys.removeFriend()
                         }
-                        s.lives || s.boosts || s.safety || (s.used = !1), ue.sys.updateIcons()
+                        s.lives || s.boosts || s.safety || (s.used = !1), ce.sys.updateIcons()
                     }
                 }
-                Re(Ae, "sys", null);
-                class Ne {
+                Ce.sys = null;
+                class ke {
                     constructor() {
-                        if(Ne.sys) return Ne.sys;
-                        Ne.sys = this
+                        if (ke.sys) return ke.sys;
+                        ke.sys = this
                     }
                     update() {
                         this.checkCollisions()
                     }
                     checkCollisions() {
-                        const e = ze.sys,
+                        const e = we.sys,
                             t = "air" in e.dist,
                             s = "boost" in e.dist,
-                            i = this.filterVisible(ke.sys.top.concat(ke.sys.btm)),
-                            a = i.length;
+                            i = this.filterVisible(me.sys.top.concat(me.sys.btm)),
+                            o = i.length;
 
-                        function o(e, t) {
-                            if(!(e.y < 16) && Ne.sys.collision(t, e) && !t.objectsHit.includes(e)) switch(t.objectsHit.push(e), e.type) {
+                        function a(e, t) {
+                            if (!(e.y < 16) && ke.sys.collision(t, e) && !t.objectsHit.includes(e)) switch (t.objectsHit.push(e), e.type) {
                                 case "wall":
                                 case "snag":
                                 case "snagsml":
@@ -8076,12 +7906,12 @@
                                     return void t.slow()
                             }
                         }
-                        for(let n = 0; n < a; n++) {
-                            const a = i[n];
-                            if(!this.collision(e, a) || a.hit || t) "gate" === a.type && !a.hit && a.y < e.y ? (e.failGate(a.gateId), ke.sys.denyGate(a.gateId), a.hit = !0) : "ambient" === a.type && "hidden" === a.anim && a.y + 32 < e.y ? (a.anim = "oneshot", a.time = 0) : "lure" === a.type && a.hit && a.y + 192 < e.y && (ke.sys.buildObject("foe", a.x, a.y + 32, "chase"), a.sleep = !0);
+                        for (let n = 0; n < o; n++) {
+                            const o = i[n];
+                            if (!this.collision(e, o) || o.hit || t) "gate" === o.type && !o.hit && o.y < e.y ? (e.failGate(o.gateId), me.sys.denyGate(o.gateId), o.hit = !0) : "ambient" === o.type && "hidden" === o.anim && o.y + 32 < e.y ? (o.anim = "oneshot", o.time = 0) : "lure" === o.type && o.hit && o.y + 192 < e.y && (me.sys.buildObject("foe", o.x, o.y + 32, "chase"), o.sleep = !0);
                             else {
-                                if(a.hit = !0, e.swapped) return "lure" === a.type && ke.sys.buildObject("foe", a.x, a.y, "chase"), void(a.sleep = !0);
-                                switch(a.type) {
+                                if (o.hit = !0, e.swapped) return "lure" === o.type && me.sys.buildObject("foe", o.x, o.y, "chase"), void(o.sleep = !0);
+                                switch (o.type) {
                                     case "wall":
                                     case "snag":
                                     case "snagsml":
@@ -8103,65 +7933,65 @@
                                         e.spin();
                                         break;
                                     case "boost":
-                                        e.collectBoost(), this.collectAnim(a);
+                                        e.collectBoost(), this.collectAnim(o);
                                         break;
                                     case "ramp":
-                                        s && te.sys.session.settings.mode !== q.TimeTrial ? e.air(1600) : te.sys.session.settings.mode === q.TimeTrial ? e.air(576) : e.air(1080);
+                                        s && Q.sys.session.settings.mode !== j.TimeTrial ? e.air(1600) : Q.sys.session.settings.mode === j.TimeTrial ? e.air(576) : e.air(1080);
                                         break;
                                     case "life":
-                                        e.collectLife(), this.collectAnim(a);
+                                        e.collectLife(), this.collectAnim(o);
                                         break;
                                     case "coin":
-                                        e.collectCoin(), this.collectAnim(a);
+                                        e.collectCoin(), this.collectAnim(o);
                                         break;
                                     case "friend":
-                                        e.collectFriend(), this.collectAnim(a);
+                                        e.collectFriend(), this.collectAnim(o);
                                         break;
                                     case "gate": {
-                                        e.passGate(a.gateId);
-                                        const t = ke.sys.buildObject("ambient", e.x, e.y);
-                                        t.hit = !0, this.collectAnim(t), ke.sys.confirmGate(a.gateId);
+                                        e.passGate(o.gateId);
+                                        const t = me.sys.buildObject("ambient", e.x, e.y);
+                                        t.hit = !0, this.collectAnim(t), me.sys.confirmGate(o.gateId);
                                         break
                                     }
                                     case "finish":
                                         e.finishline();
                                         break;
                                     case "checkpoint":
-                                        ke.sys.npc.forEach((e => {
+                                        me.sys.npc.forEach((e => {
                                             e.crash()
-                                        })), ke.sys.foe.forEach((e => {
+                                        })), me.sys.foe.forEach((e => {
                                             e.crash()
-                                        })), te.sys.saveGameStats(), e.boost(!0);
+                                        })), Q.sys.saveGameStats(), e.boost(!0);
                                         break;
                                     case "swap":
                                         e.swap()
                                 }
                             }
-                            ke.sys.npc.forEach((e => {
-                                o(a, e)
-                            })), ke.sys.foe.forEach((e => {
-                                o(a, e)
+                            me.sys.npc.forEach((e => {
+                                a(o, e)
+                            })), me.sys.foe.forEach((e => {
+                                a(o, e)
                             }))
                         }
-                        const n = ke.sys.foe.length,
-                            r = ke.sys.npc.length;
-                        for(let t = 0; t < n; t++) {
-                            const s = ke.sys.foe[t];
-                            this.collision(s, e) && !s.hit && s.timer.crash <= 0 && (te.sys.game.shields.current > 0 ? (s.crash(), e.useShield()) : e.swapped ? s.crash() : (s.ending(), ke.sys.endingFoe = s, e.lose()));
-                            for(let e = 0; e < r; e++) {
-                                const t = ke.sys.npc[e];
+                        const n = me.sys.foe.length,
+                            r = me.sys.npc.length;
+                        for (let t = 0; t < n; t++) {
+                            const s = me.sys.foe[t];
+                            this.collision(s, e) && !s.hit && s.timer.crash <= 0 && (Q.sys.game.shields.current > 0 ? (s.crash(), e.useShield()) : e.swapped ? s.crash() : (s.ending(), me.sys.endingFoe = s, e.lose()));
+                            for (let e = 0; e < r; e++) {
+                                const t = me.sys.npc[e];
                                 this.collision(s, t) && t.timer.crash <= 0 && t.crash()
                             }
                         }
-                        if(!t)
-                            for(let t = 0; t < r; t++) {
-                                const i = ke.sys.npc[t];
-                                this.collision(i, e) && i.timer.crash <= 0 && (s || e.swapped ? i.crash() : te.sys.game.shields.current > 0 ? (i.crash(), e.useShield()) : e.crash())
+                        if (!t)
+                            for (let t = 0; t < r; t++) {
+                                const i = me.sys.npc[t];
+                                this.collision(i, e) && i.timer.crash <= 0 && (s || e.swapped ? i.crash() : Q.sys.game.shields.current > 0 ? (i.crash(), e.useShield()) : e.crash())
                             }
                     }
                     filterVisible(e) {
                         return e.filter((e => function(e) {
-                            return e.y > -64 && e.y < te.sys.session.h + 64 && e.x > -64 && e.x < te.sys.session.w + 64 || "gate" === e.type
+                            return e.y > -64 && e.y < Q.sys.session.h + 64 && e.x > -64 && e.x < Q.sys.session.w + 64 || "gate" === e.type
                         }(e)))
                     }
                     collectAnim(e) {
@@ -8171,223 +8001,202 @@
                         return !(t.hitbox.x + t.hitbox.w < e.hitbox.x) && (!(e.hitbox.x + e.hitbox.w < t.hitbox.x) && (!(t.hitbox.y + t.hitbox.h < e.hitbox.y) && !(e.hitbox.y + e.hitbox.h < t.hitbox.y)))
                     }
                 }
-                var Fe, Be, Ve;
-                Ve = null, (Be = "sys") in (Fe = Ne) ? Object.defineProperty(Fe, Be, {
-                    value: Ve,
-                    enumerable: !0,
-                    configurable: !0,
-                    writable: !0
-                }) : Fe[Be] = Ve;
-                class Ze {
+                ke.sys = null;
+                class Te {
                     constructor() {
-                        if(Ze.sys) return Ze.sys;
-                        Ze.sys = this, new te, new Y, new Ae, new pe, new be, new de, new ke, new Ne, new ue, de.sys.createBackground(), this.updateTheme(te.sys.session.settings.theme, !1), this.reflowCanvas(), this.changeGameState(Q.Menu)
+                        if (Te.sys) return Te.sys;
+                        Te.sys = this, new Q, new X, new Ce, new le, new he, new re, new me, new ke, new ce, re.sys.createBackground(), this.updateTheme(Q.sys.session.settings.theme, !1), this.reflowCanvas(), this.changeGameState(Y.Menu)
                     }
                     gameLoop(e) {
-                        if(Ae.sys.update(), te.sys.session.state !== Q.Pause) switch(te.sys.update(e), te.sys.session.state) {
-                            case Q.Play:
+                        if (Ce.sys.update(), Q.sys.session.state !== Y.Pause) switch (Q.sys.update(e), Q.sys.session.state) {
+                            case Y.Play:
                                 this.updatePlay();
                                 break;
-                            case Q.Menu:
+                            case Y.Menu:
                                 this.updateMenu();
                                 break;
-                            case Q.Over:
+                            case Y.Over:
                                 this.updateOver()
                         }
                     }
                     changeGameState(e) {
-                        const t = te.sys.session.state;
-                        switch(te.sys.session.state = e, e) {
-                            case Q.Pause:
+                        const t = Q.sys.session.state;
+                        switch (Q.sys.session.state = e, e) {
+                            case Y.Pause:
                                 this.triggerPause();
                                 break;
-                            case Q.Play:
+                            case Y.Play:
                                 this.triggerPlay(t);
                                 break;
-                            case Q.Menu:
+                            case Y.Menu:
                                 this.triggerMenu();
                                 break;
-                            case Q.Over:
+                            case Y.Over:
                                 this.triggerOver()
                         }
-                        this.checkForcedColors(), re.dispatch(function(e) {
+                        this.checkForcedColors(), ae.dispatch(function(e) {
                             return {
-                                type: ae.UPDATE_GAME_STATE,
+                                type: se.UPDATE_GAME_STATE,
                                 gameState: e
                             }
                         }(e))
                     }
                     triggerMenu() {
-                        ue.sys.hideNotification(), te.sys.saveGameStats(), te.sys.resetGameData(), de.sys.defineCanvas(), de.sys.clearCanvas(), ke.sys.reset(), ue.sys.showMenuScreen(), Ae.sys.reset()
+                        ce.sys.hideNotification(), Q.sys.saveGameStats(), Q.sys.resetGameData(), re.sys.defineCanvas(), re.sys.clearCanvas(), me.sys.reset(), ce.sys.showMenuScreen(), Ce.sys.reset()
                     }
                     triggerPlay(e) {
-                        e === Q.Menu && this.triggerStart(), ue.sys.hideOverlayUI(), ue.sys.refreshDisplay()
+                        e === Y.Menu && this.triggerStart(), ce.sys.hideOverlayUI(), ce.sys.refreshDisplay()
                     }
                     triggerStart() {
-                        te.sys.game.time.elapsed = 0, ze.sys.unlockForNewGame(), ke.sys.buildStartScene(), ue.sys.hideNotification()
+                        Q.sys.game.time.elapsed = 0, we.sys.unlockForNewGame(), me.sys.buildStartScene(), ce.sys.hideNotification()
                     }
                     triggerPause() {
-                        ue.sys.showPauseScreen()
+                        ce.sys.showPauseScreen()
                     }
                     triggerOver() {
-                        ke.sys.all.forEach((e => {
+                        me.sys.all.forEach((e => {
                             "ending" === e.anim && (e.sleep = !0)
-                        })), ue.sys.showOverScreen(), (te.sys.session.settings.mode !== q.TimeTrial || te.sys.game.finish) && te.sys.saveGameStats();
-                        const e = te.sys.game.highScore ? "score" : "share";
-                        ue.sys.sendNotification(e, 1e4)
+                        })), ce.sys.showOverScreen(), (Q.sys.session.settings.mode !== j.TimeTrial || Q.sys.game.finish) && Q.sys.saveGameStats();
+                        const e = Q.sys.game.highScore ? "score" : "share";
+                        ce.sys.sendNotification(e, 1e4)
                     }
                     updateMenu() {
                         this.render()
                     }
                     updatePlay() {
-                        Ne.sys.update(), ke.sys.update(), ke.sys.all.forEach((e => {
+                        ke.sys.update(), me.sys.update(), me.sys.all.forEach((e => {
                             e.update()
-                        })), ke.sys.all.forEach((e => {
-                            e.move(ze.sys.speed)
-                        })), ue.sys.updateScore(), te.sys.updateDistances(ze.sys.speed.x, ze.sys.speed.y), de.sys.updateBackground(0, 0, ze.sys.speed), this.render()
+                        })), me.sys.all.forEach((e => {
+                            e.move(we.sys.speed)
+                        })), ce.sys.updateScore(), Q.sys.updateDistances(we.sys.speed.x, we.sys.speed.y), re.sys.updateBackground(0, 0, we.sys.speed), this.render()
                     }
                     updateOver() {
-                        const e = ke.sys.endingFoe;
+                        const e = me.sys.endingFoe;
                         e && e.hit && "paused" !== e.anim && (e.update(), this.render())
                     }
                     updateMode() {
-                        ue.sys.updateGameModeUI(), ue.sys.sendNotification("mode")
+                        ce.sys.updateGameModeUI(), ce.sys.sendNotification("mode")
                     }
                     updateTheme(e, t = !1) {
-                        pe.sys.loadNewTheme(e), (async () => {
-                            await pe.sys.objectsTemp.decode(), await pe.sys.playerTemp.decode(), await pe.sys.bgTemp.decode(), pe.sys.setNewTheme(e), ue.sys.updateIcons(), ue.sys.updateGameTitleUI(), t && ue.sys.sendNotification("theme")
+                        le.sys.loadNewTheme(e), (async () => {
+                            await le.sys.objectsTemp.decode(), await le.sys.playerTemp.decode(), await le.sys.bgTemp.decode(), le.sys.setNewTheme(e), ce.sys.updateIcons(), ce.sys.updateGameTitleUI(), t && ce.sys.sendNotification("theme")
                         })()
                     }
                     reflowCanvas() {
-                        te.sys.session.state === Q.Play && this.changeGameState(Q.Pause);
-                        const e = te.sys.session.x,
-                            t = te.sys.session.y;
-                        de.sys.defineCanvas();
-                        const s = te.sys.session.x - e,
-                            i = te.sys.session.y - t;
-                        ke.sys.calcClusterSlots(), ke.sys.all.forEach((e => {
+                        Q.sys.session.state === Y.Play && this.changeGameState(Y.Pause);
+                        const e = Q.sys.session.x,
+                            t = Q.sys.session.y;
+                        re.sys.defineCanvas();
+                        const s = Q.sys.session.x - e,
+                            i = Q.sys.session.y - t;
+                        me.sys.calcClusterSlots(), me.sys.all.forEach((e => {
                             e.shift(s, i)
-                        })), de.sys.updateBackground(s, i, {
+                        })), re.sys.updateBackground(s, i, {
                             x: 0,
                             y: 0
                         }), this.render()
                     }
                     checkForcedColors() {
                         const e = window.matchMedia("(forced-colors:active)");
-                        te.sys.session.forcedColors = e.matches
+                        Q.sys.session.forcedColors = e.matches
                     }
                     render() {
-                        if(de.sys.clearCanvas(), te.sys.session.state === Q.Menu) return void ze.sys.renderCharacterSelection();
-                        const e = ke.sys.all.filter((function(e) {
-                            return e.x > -96 && e.x < te.sys.session.w + 96 && e.y < te.sys.session.h + 96
+                        if (re.sys.clearCanvas(), Q.sys.session.state === Y.Menu) return void we.sys.renderCharacterSelection();
+                        const e = me.sys.all.filter((function(e) {
+                            return e.x > -96 && e.x < Q.sys.session.w + 96 && e.y < Q.sys.session.h + 96
                         }));
                         e.forEach((e => {
                             e.draw()
-                        })), te.sys.session.settings.hitbox && e.forEach((e => {
-                            de.sys.drawHitbox(e.type, e.hitbox)
-                        })), te.sys.session.settings.mode !== q.Endless && de.sys.drawBoundaries()
+                        })), Q.sys.session.settings.hitbox && e.forEach((e => {
+                            re.sys.drawHitbox(e.type, e.hitbox)
+                        })), Q.sys.session.settings.mode !== j.Endless && re.sys.drawBoundaries()
                     }
-                }! function(e, t, s) {
-                    t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s
-                }(Ze, "sys", null);
-                var je = s(325),
-                    qe = s(33832);
+                }
+                Te.sys = null;
+                var Me = s(325),
+                    Ie = s(33832);
 
-                function Ge(e) {
-                    return a.createElement("svg", {
+                function Pe(e) {
+                    return o.createElement("svg", {
                         className: e,
                         xmlns: "https://www.w3.org/2000/svg",
                         viewBox: "0 0 2048 2048",
                         width: "16",
                         height: "16"
-                    }, a.createElement("path", {
+                    }, o.createElement("path", {
                         d: "M1783 384q30 0 55 12t43 31 28 46 11 55v864q0 29-10 55t-29 45-43 32-55 12H137q-30 0-55-12t-43-31-28-46-11-55V528q0-28 10-54t29-46 43-32 55-12h1646zm9 144q0-11-9-16H137q-9 5-9 16v864q0 11 9 16h1646q9-5 9-16V528zM384 768H256V640h128v128zM256 896h256v128H256V896zm1152 0h256v128h-256V896zm0 256h256v128h-256v-128zm-1152 0h256v128H256v-128zm384 0h640v128H640v-128zm0-384H512V640h128v128zm0 128h128v128H640V896zm256 0h128v128H896V896zm256 0h128v128h-128V896zM896 768H768V640h128v128zm256 0h-128V640h128v128zm256 0h-128V640h128v128zm128-128h128v128h-128V640z"
                     }))
                 }
 
-                function Ke(e) {
-                    return a.createElement("svg", {
+                function Ee(e) {
+                    return o.createElement("svg", {
                         className: e,
                         xmlns: "https://www.w3.org/2000/svg",
                         viewBox: "0 0 2048 2048",
                         width: "16",
                         height: "16"
-                    }, a.createElement("path", {
+                    }, o.createElement("path", {
                         d: "M1184 0q100 0 187 37t153 103 102 152 38 188v864q0 97-25 187t-71 168-110 143-142 110-169 71-187 25q-97 0-187-25t-168-71-143-110-110-142-71-169-25-187V480q0-100 37-187t103-153T548 38 736 0h448zm352 480q0-73-27-137t-76-112-112-75-137-28h-160v640H896V128H736q-73 0-137 27t-112 76-75 112-28 137v864q0 119 45 224t124 183 183 123 224 46q119 0 224-45t183-124 123-183 46-224V480z"
                     }))
                 }
 
-                function Ue(e) {
-                    return a.createElement("svg", {
+                function ze(e) {
+                    return o.createElement("svg", {
                         className: e,
                         xmlns: "https://www.w3.org/2000/svg",
                         viewBox: "0 0 2048 2048",
                         width: "16",
                         height: "16"
-                    }, a.createElement("path", {
+                    }, o.createElement("path", {
                         d: "M1600 896q40 0 75 15t61 41 41 61 15 75v384q0 119-45 224t-124 183-183 123-224 46q-144 0-268-55t-226-156l-472-472q-28-28-43-65t-15-76q0-42 16-78t43-64 63-42 78-16q82 0 141 59l107 106V853q-59-28-106-70t-80-95-52-114-18-126q0-93 35-174t96-143 142-96T832 0q93 0 174 35t143 96 96 142 35 175q0 93-37 178t-105 149q35 9 63 30t49 52q45-25 94-25 50 0 93 23t69 66q45-25 94-25zM512 448q0 75 34 143t94 113V448q0-40 15-75t41-61 61-41 75-15q40 0 75 15t61 41 41 61 15 75v256q60-45 94-113t34-143q0-66-25-124t-69-101-102-69-124-26q-66 0-124 25t-102 69-69 102-25 124zm1152 640q0-26-19-45t-45-19q-34 0-47 19t-16 47-1 62 0 61-16 48-48 19q-37 0-50-23t-16-60 2-77 2-77-15-59-51-24q-34 0-47 19t-16 47-1 62 0 61-16 48-48 19q-37 0-50-23t-16-60 2-77 2-77-15-59-51-24q-34 0-47 19t-16 47-1 62 0 61-16 48-48 19q-26 0-45-19t-19-45V448q0-26-19-45t-45-19q-26 0-45 19t-19 45v787q0 23-8 42t-23 35-35 23-42 9q-22 0-42-8t-37-24l-139-139q-21-21-50-21t-50 21-22 51q0 29 21 50l472 473q84 84 184 128t219 45q93 0 174-35t142-96 96-142 36-175v-384z"
                     }))
                 }
 
-                function We(e) {
-                    return a.createElement("svg", {
+                function Le(e) {
+                    return o.createElement("svg", {
                         className: e,
                         xmlns: "https://www.w3.org/2000/svg",
                         viewBox: "0 0 2048 2048",
                         width: "16",
                         height: "16"
-                    }, a.createElement("path", {
+                    }, o.createElement("path", {
                         d: "M1728 480q17 14 31 31t26 38q35 68 64 139t59 142q37 92 70 186t52 193q8 44 13 88t5 89q0 59-13 115t-45 107q-15 22-37 44t-48 39-56 28-57 11q-31 0-69-27t-77-64-71-76-54-62q-22-25-46-55t-52-49l-24-17q-20-14-42-21t-46-10-48-3-47-1H785q-24 0-47 4t-46 10-43 21l-24 17q-27 20-51 49t-47 55q-21 23-54 62t-71 76-76 64-70 27q-28 0-57-11t-55-28-49-39-37-44q-32-51-45-107T0 1386q0-45 5-89t13-88q8-46 23-100t36-114 43-120 48-119 49-110 46-96q11-20 25-37t32-33v-25q0-12 2-22t9-20 20-18q11-7 35-15t52-17 54-15 40-10q38-8 77-12t77-4q15 0 33 1t33 9h1q23 12 45 25t45 26h362q23-13 40-24t34-19 36-13 47-5q38 0 77 4t77 12q14 3 40 9t53 15 52 17 36 16q25 17 28 37t3 48zm69 1120q36-10 60-32t38-51 19-63 6-67q0-39-4-78t-12-78q-20-106-58-208t-80-202q-23-54-45-108t-50-106q-8-15-20-23t-23-18-20-20-8-32v-20q-57-20-115-32t-119-12h-11q-6 0-11 1-38 22-57 34t-37 18-38 7-61 1H897q-40 0-61-1t-38-7-37-18-57-34q-5-1-11-1t-11 0q-60 0-118 12t-116 32q0 28-5 44t-30 33q-11 6-20 15t-16 21q-28 51-50 105t-45 109q-41 99-79 201t-59 209q-8 38-12 77t-4 79q0 33 5 66t20 63 37 51 60 33q15-9 40-32t52-52 51-56 38-44q10-11 26-30t35-38 35-36 31-25q5-3 9-6t9-6q28-21 59-32t63-17 66-7 68-2h384q34 0 67 1t66 7 64 17 59 33q5 3 9 6t9 6q13 8 30 24t36 36 34 39 27 30q15 17 38 44t49 54 51 51 42 35zm-773-960q26 0 45 19t19 45q0 26-19 45t-45 19q-26 0-45-19t-19-45q0-26 19-45t45-19z"
                     }))
                 }
 
-                function $e() {
-                    return ($e = Object.assign || function(e) {
-                        for(var t = 1; t < arguments.length; t++) {
+                function De() {
+                    return (De = Object.assign || function(e) {
+                        for (var t = 1; t < arguments.length; t++) {
                             var s = arguments[t];
-                            for(var i in s) Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i])
+                            for (var i in s) Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i])
                         }
                         return e
                     }).apply(this, arguments)
                 }
 
-                function Xe(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-
-                function Ye(e) {
+                function _e(e) {
                     e.stopPropagation()
                 }
-                class Je extends O.Z {
+                class Oe extends O.Z {
                     constructor(...e) {
-                        super(...e), Xe(this, "handledProps", {
+                        super(...e), this.handledProps = {
                             managedClasses: void 0
-                        }), Xe(this, "inputRefMap", new Map([
-                            ["keyboard", a.createRef()],
-                            ["mouse", a.createRef()],
-                            ["touch", a.createRef()],
-                            ["controller", a.createRef()]
-                        ])), Xe(this, "state", {
+                        }, this.inputRefMap = new Map([
+                            ["keyboard", o.createRef()],
+                            ["mouse", o.createRef()],
+                            ["touch", o.createRef()],
+                            ["controller", o.createRef()]
+                        ]), this.state = {
                             selectedInput: "keyboard"
-                        }), Xe(this, "renderHowToPlayContent", (() => a.createElement(a.Fragment, null, a.createElement(x.nv, {
+                        }, this.renderHowToPlayContent = () => o.createElement(o.Fragment, null, o.createElement(x.nv, {
                             className: this.props.managedClasses.howToPlayModal_paragraph
-                        }, a.createElement("strong", null, Z.pz.getString("endlessModeTitleInline")), " ", Z.pz.getString("howToPlayEndless")), a.createElement(x.nv, {
+                        }, o.createElement("strong", null, Z.pz.getString("endlessModeTitleInline")), " ", Z.pz.getString("howToPlayEndless")), o.createElement(x.nv, {
                             className: this.props.managedClasses.howToPlayModal_paragraph
-                        }, a.createElement("strong", null, Z.pz.getString("timetrialModeTitleInline")), " ", Z.pz.getString("howToPlayTimeTrial")), a.createElement(x.nv, {
+                        }, o.createElement("strong", null, Z.pz.getString("timetrialModeTitleInline")), " ", Z.pz.getString("howToPlayTimeTrial")), o.createElement(x.nv, {
                             className: this.props.managedClasses.howToPlayModal_paragraph
-                        }, a.createElement("strong", null, Z.pz.getString("zigzagModeTitleInline")), " ", Z.pz.getString("howToPlayZigZag")), this.renderInputSection()))), Xe(this, "onInputIconKeydown", (e => {
+                        }, o.createElement("strong", null, Z.pz.getString("zigzagModeTitleInline")), " ", Z.pz.getString("howToPlayZigZag")), this.renderInputSection()), this.onInputIconKeydown = e => {
                             let t = this.state.selectedInput;
-                            if(e.keyCode === qe.mW.arrowLeft || e.keyCode === qe.mW.arrowUp) switch(this.state.selectedInput) {
+                            if (e.keyCode === Ie.mW.arrowLeft || e.keyCode === Ie.mW.arrowUp) switch (this.state.selectedInput) {
                                 case "keyboard":
                                     return;
                                 case "mouse":
@@ -8399,8 +8208,8 @@
                                 case "controller":
                                     t = "touch"
                             } else {
-                                if(e.keyCode !== qe.mW.arrowRight && e.keyCode !== qe.mW.arrowDown) return;
-                                switch(this.state.selectedInput) {
+                                if (e.keyCode !== Ie.mW.arrowRight && e.keyCode !== Ie.mW.arrowDown) return;
+                                switch (this.state.selectedInput) {
                                     case "keyboard":
                                         t = "mouse";
                                         break;
@@ -8417,92 +8226,92 @@
                             e.stopPropagation(), this.setState({
                                 selectedInput: t
                             })
-                        }))
+                        }
                     }
                     render() {
-                        return a.createElement(je.S, $e({}, this.unhandledProps(), {
-                            onKeyDown: Ye,
+                        return o.createElement(Me.S, De({}, this.unhandledProps(), {
+                            onKeyDown: _e,
                             content: this.renderHowToPlayContent
                         }))
                     }
                     componentDidUpdate(e, t) {
-                        if(t.selectedInput !== this.state.selectedInput) {
+                        if (t.selectedInput !== this.state.selectedInput) {
                             const e = this.inputRefMap.get(this.state.selectedInput);
-                            if(e.current) {
+                            if (e.current) {
                                 const t = (0, i.findDOMNode)(e.current);
                                 t && "function" == typeof t.focus && t.focus()
                             }
                         }
                     }
                     renderInputSection() {
-                        return a.createElement("div", null, this.renderInputIcons(), this.getInputDescription(this.state.selectedInput))
+                        return o.createElement("div", null, this.renderInputIcons(), this.getInputDescription(this.state.selectedInput))
                     }
                     getInputDescription(e) {
                         const t = this.props.managedClasses.howToPlayModal_icon,
                             s = this.props.managedClasses.howToPlayModal_iconContainer,
                             i = this.props.managedClasses.howToPlayModal_listItem;
-                        let o, n, r;
-                        switch(e) {
+                        let a, n, r;
+                        switch (e) {
                             case "touch":
-                                o = "howToPlayTouchMovement", n = "howToPlayTouchBoost", r = "howToPlayTouchRefresh";
+                                a = "howToPlayTouchMovement", n = "howToPlayTouchBoost", r = "howToPlayTouchRefresh";
                                 break;
                             case "mouse":
-                                o = "howToPlayMouseMovement", n = "howToPlayMouseBoost", r = "howToPlayMouseRefresh";
+                                a = "howToPlayMouseMovement", n = "howToPlayMouseBoost", r = "howToPlayMouseRefresh";
                                 break;
                             case "controller":
-                                o = "howToPlayControllerMovement", n = "howToPlayControllerBoost", r = "howToPlayControllerRefresh";
+                                a = "howToPlayControllerMovement", n = "howToPlayControllerBoost", r = "howToPlayControllerRefresh";
                                 break;
                             default:
                             case "keyboard":
-                                o = "howToPlayKeyboardMovement", n = "howToPlayKeyboardBoost", r = "howToPlayKeyboardRefresh"
+                                a = "howToPlayKeyboardMovement", n = "howToPlayKeyboardBoost", r = "howToPlayKeyboardRefresh"
                         }
-                        return a.createElement("ul", {
+                        return o.createElement("ul", {
                             className: this.props.managedClasses.howToPlayModal_bulletedList
-                        }, a.createElement("li", {
+                        }, o.createElement("li", {
                             className: i
-                        }, a.createElement("div", {
+                        }, o.createElement("div", {
                             "aria-hidden": !0,
                             className: s
-                        }, (l = t, a.createElement("svg", {
+                        }, (l = t, o.createElement("svg", {
                             width: 20,
                             height: 20,
                             viewBox: "0 0 20 20",
                             className: l
-                        }, a.createElement("path", {
+                        }, o.createElement("path", {
                             d: "M7.15 4.35c.2.2.5.2.7 0L9.5 2.71V6.5a.5.5 0 001 0V2.7l1.65 1.65a.5.5 0 00.7-.7l-2.5-2.5a.5.5 0 00-.7 0l-2.5 2.5a.5.5 0 000 .7z"
-                        }), a.createElement("path", {
+                        }), o.createElement("path", {
                             d: "M4.35 7.85a.5.5 0 10-.7-.7l-2.5 2.5a.5.5 0 000 .7l2.5 2.5a.5.5 0 00.7-.7L2.71 10.5H6.5a.5.5 0 000-1H2.7l1.65-1.65z"
-                        }), a.createElement("path", {
+                        }), o.createElement("path", {
                             d: "M15.65 7.85a.5.5 0 01.7-.7l2.5 2.5c.2.2.2.5 0 .7l-2.5 2.5a.5.5 0 01-.7-.7l1.64-1.65H13.5a.5.5 0 010-1h3.8l-1.65-1.65z"
-                        }), a.createElement("path", {
+                        }), o.createElement("path", {
                             d: "M7.85 15.65a.5.5 0 00-.7.7l2.5 2.5c.2.2.5.2.7 0l2.5-2.5a.5.5 0 00-.7-.7l-1.65 1.64V13.5a.5.5 0 00-1 0v3.8l-1.65-1.65z"
-                        })))), Z.pz.getString(o)), a.createElement("li", {
+                        })))), Z.pz.getString(a)), o.createElement("li", {
                             className: i
-                        }, a.createElement("div", {
+                        }, o.createElement("div", {
                             "aria-hidden": !0,
                             className: s
                         }, function(e) {
-                            return a.createElement("svg", {
+                            return o.createElement("svg", {
                                 width: "28",
                                 height: "28",
                                 viewBox: "0 0 28 28",
                                 className: e,
                                 xmlns: "http://www.w3.org/2000/svg"
-                            }, a.createElement("path", {
+                            }, o.createElement("path", {
                                 d: "M9.28568 2.52142C9.38509 2.21078 9.67385 2 10 2H18.75C18.998 2 19.23 2.12264 19.3697 2.32761C19.5094 2.53258 19.5388 2.79337 19.4481 3.02424L17.1004 8.99999H22.25C22.5476 8.99999 22.8171 9.17598 22.9367 9.44849C23.0564 9.72101 23.0035 10.0385 22.8021 10.2576L8.55213 25.7576C8.32001 26.0101 7.94619 26.0729 7.64426 25.9102C7.34233 25.7476 7.18921 25.4008 7.2724 25.0681L9.53942 16H6C5.76052 16 5.53543 15.8856 5.39423 15.6922C5.25303 15.4987 5.2127 15.2495 5.28569 15.0214L9.28568 2.52142Z"
                             }))
-                        }(t)), Z.pz.getString(n)), a.createElement("li", {
+                        }(t)), Z.pz.getString(n)), o.createElement("li", {
                             className: i
-                        }, a.createElement("div", {
+                        }, o.createElement("div", {
                             "aria-hidden": !0,
                             className: s
                         }, function(e) {
-                            return a.createElement("svg", {
+                            return o.createElement("svg", {
                                 width: 20,
                                 height: 20,
                                 viewBox: "0 0 20 20",
                                 className: e
-                            }, a.createElement("path", {
+                            }, o.createElement("path", {
                                 d: "M3.07 9.05a7 7 0 0112.55-3.22l.13.17H12.5a.5.5 0 100 1h4a.5.5 0 00.5-.5v-4a.5.5 0 00-1 0v2.2a8 8 0 101.99 4.77.5.5 0 00-1 .08 7 7 0 11-13.92-.5z"
                             }))
                         }(t)), Z.pz.getString(r)));
@@ -8510,16 +8319,16 @@
                     }
                     renderInputIcons() {
                         const e = [
-                            [Ge, "keyboard"],
-                            [Ke, "mouse"],
-                            [Ue, "touch"],
-                            [We, "controller"]
+                            [Pe, "keyboard"],
+                            [Ee, "mouse"],
+                            [ze, "touch"],
+                            [Le, "controller"]
                         ].map((e => {
                             const t = e[0],
                                 s = e[1],
                                 i = this.state.selectedInput === s;
-                            let o = this.props.managedClasses.howToPlayModal_inputButton;
-                            return i && (o += ` ${this.props.managedClasses.howToPlayModal_inputButton__selected}`), a.createElement(k.XC, {
+                            let a = this.props.managedClasses.howToPlayModal_inputButton;
+                            return i && (a += ` ${this.props.managedClasses.howToPlayModal_inputButton__selected}`), o.createElement(k.XC, {
                                 role: "radio",
                                 key: s,
                                 innerRef: this.inputRefMap.get(s),
@@ -8527,27 +8336,27 @@
                                     selectedInput: s
                                 }),
                                 onKeyDown: this.onInputIconKeydown,
-                                className: o,
+                                className: a,
                                 "aria-checked": i,
                                 tabIndex: i ? 0 : -1
                             }, t(""))
                         }));
-                        return a.createElement("div", {
+                        return o.createElement("div", {
                             className: this.props.managedClasses.howToPlayModal_inputButtonGroup,
                             role: "radiogroup"
                         }, e)
                     }
                 }
-                var Qe = s(53363),
-                    et = s(58934);
-                const tt = {
+                var Re = s(53363),
+                    He = s(58934);
+                const Ae = {
                         howToPlayModal: {},
                         howToPlayModal_bulletedList: {
                             listStyle: "none",
                             color: p.CH
                         },
                         howToPlayModal_listItem: {
-                            ...(0, Qe.Sh)("t7"),
+                            ...(0, Re.Sh)("t7"),
                             display: "flex",
                             alignItems: "center",
                             marginBottom: "0.25em"
@@ -8565,7 +8374,7 @@
                         },
                         howToPlayModal_inputButton: {},
                         howToPlayModal_inputButton__selected: {
-                            backgroundColor: et.Ob
+                            backgroundColor: He.Ob
                         },
                         howToPlayModal_inputButtonGroup: {
                             display: "flex",
@@ -8578,39 +8387,30 @@
                             marginBottom: "0.5em"
                         }
                     },
-                    st = (0, c.ZP)(tt)(Je);
+                    Ne = (0, c.ZP)(Ae)(Oe);
 
-                function it() {
-                    return (it = Object.assign || function(e) {
-                        for(var t = 1; t < arguments.length; t++) {
+                function Fe() {
+                    return (Fe = Object.assign || function(e) {
+                        for (var t = 1; t < arguments.length; t++) {
                             var s = arguments[t];
-                            for(var i in s) Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i])
+                            for (var i in s) Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i])
                         }
                         return e
                     }).apply(this, arguments)
                 }
 
-                function at(e, t, s) {
-                    return t in e ? Object.defineProperty(e, t, {
-                        value: s,
-                        enumerable: !0,
-                        configurable: !0,
-                        writable: !0
-                    }) : e[t] = s, e
-                }
-
-                function ot(e) {
+                function Be(e) {
                     e.stopPropagation()
                 }
-                const nt = "#38c2ee",
-                    rt = {
+                const Ve = "#38c2ee",
+                    Ze = {
                         ...l.fn,
-                        neutralPalette: (0, A.D)((0, H.in)(nt))
+                        neutralPalette: (0, A.D)((0, H.in)(Ve))
                     },
-                    lt = "toggleSettingsMenu";
-                class ht extends O.Z {
+                    qe = "toggleSettingsMenu";
+                class je extends O.Z {
                     constructor(e) {
-                        super(e), at(this, "handledProps", {
+                        super(e), this.handledProps = {
                             setModal: void 0,
                             dispatch: void 0,
                             currentCharacter: void 0,
@@ -8622,55 +8422,55 @@
                             endless_bestScore: void 0,
                             timetrial_bestScore: void 0,
                             zigzag_bestScore: void 0
-                        }), at(this, "buttonRef", a.createRef()), at(this, "onHighVisiblityModeChange", (() => {
+                        }, this.buttonRef = o.createRef(), this.onHighVisiblityModeChange = () => {
                             const e = !this.props.highVisibilityMode;
-                            he.saveHighVisibilityMode(e), this.props.dispatch(oe({
-                                ...re.getState(),
+                            ne.saveHighVisibilityMode(e), this.props.dispatch(ie({
+                                ...ae.getState(),
                                 highVisibilityMode: e
-                            })), te.sys.session.settings.hitbox = e, Ze.sys.render()
-                        })), at(this, "onReducedSpeedModeChange", (() => {
-                            const e = this.props.gameSpeed === se ? .5 : se;
-                            he.saveReducedSpeedMode(e !== se), this.props.dispatch(oe({
-                                ...re.getState(),
+                            })), Q.sys.session.settings.hitbox = e, Te.sys.render()
+                        }, this.onReducedSpeedModeChange = () => {
+                            const e = this.props.gameSpeed === ee ? .5 : ee;
+                            ne.saveReducedSpeedMode(e !== ee), this.props.dispatch(ie({
+                                ...ae.getState(),
                                 gameSpeed: e
                             }))
-                        })), at(this, "onGameModeChange", (e => {
-                            this.props.dispatch(oe({
-                                ...re.getState(),
+                        }, this.onGameModeChange = e => {
+                            this.props.dispatch(ie({
+                                ...ae.getState(),
                                 mode: e
-                            })), Ze.sys.changeGameState(Q.Menu), Ze.sys.updateMode(), he.saveGameMode(e)
-                        })), at(this, "onNewGameClick", (() => {
-                            Ze.sys.changeGameState(Q.Menu)
-                        })), at(this, "copyShareLinkToClipboard", (() => {
-                            $(Z.pz.getString("shareLink")), this.setState({
+                            })), Te.sys.changeGameState(Y.Menu), Te.sys.updateMode(), ne.saveGameMode(e)
+                        }, this.onNewGameClick = () => {
+                            Te.sys.changeGameState(Y.Menu)
+                        }, this.copyShareLinkToClipboard = () => {
+                            $(Z.pz.getString("shareLinkFlyout")), this.setState({
                                 shareLinkCopied: !0
                             })
-                        })), at(this, "onHamburgerMenuClick", (e => {
+                        }, this.onHamburgerMenuClick = e => {
                             "function" == typeof this.props.onClick && this.props.onClick(e), this.toggleSettingsMenu()
-                        })), at(this, "toggleSettingsMenu", (() => {
-                            this.state.menuOpen || this.props.gameState !== Q.Play || Ze.sys.changeGameState(Q.Pause), this.setState({
+                        }, this.toggleSettingsMenu = () => {
+                            this.state.menuOpen || this.props.gameState !== Y.Play || Te.sys.changeGameState(Y.Pause), this.setState({
                                 menuOpen: !this.state.menuOpen,
                                 shareLinkCopied: !1
-                            }), te.sys.session.flyoutActive = !te.sys.session.flyoutActive
-                        })), at(this, "dismissMenu", (() => {
+                            }), Q.sys.session.flyoutActive = !Q.sys.session.flyoutActive
+                        }, this.dismissMenu = () => {
                             this.setState({
                                 menuOpen: !1,
                                 shareLinkCopied: !1
-                            }), te.sys.session.flyoutActive = !1
-                        })), at(this, "closeModal", (() => {
+                            }), Q.sys.session.flyoutActive = !1
+                        }, this.closeModal = () => {
                             this.props.setModal(null)
-                        })), at(this, "openHowToPlayModal", (() => {
-                            this.props.setModal(a.createElement(st, {
-                                onClick: ot,
+                        }, this.openHowToPlayModal = () => {
+                            this.props.setModal(o.createElement(Ne, {
+                                onClick: Be,
                                 label: Z.pz.getString("howToPlayDialogTitle"),
                                 accept: this.closeModal,
                                 acceptMessage: Z.pz.getString("close"),
                                 dismiss: this.closeModal,
                                 closeButtonToolTip: Z.pz.getString("close")
                             }))
-                        })), at(this, "openGameCreditsModal", (() => {
-                            this.props.setModal(a.createElement(je.S, {
-                                onClick: ot,
+                        }, this.openGameCreditsModal = () => {
+                            this.props.setModal(o.createElement(Me.S, {
+                                onClick: Be,
                                 label: Z.pz.getString("gameCreditsDialogTitle"),
                                 accept: this.closeModal,
                                 acceptMessage: Z.pz.getString("close"),
@@ -8678,12 +8478,12 @@
                                 closeButtonToolTip: Z.pz.getString("close"),
                                 content: this.getGameCreditsModalBody
                             }))
-                        })), at(this, "getGameCreditsModalBody", (() => a.createElement(a.Fragment, null, a.createElement(x.nv, null, "Parker Young, Scott Porterfield, Patrick Evan Little, Connor Smith, William Devereux, Adina Shanholtz"), a.createElement(S.X6, {
+                        }, this.getGameCreditsModalBody = () => o.createElement(o.Fragment, null, o.createElement(x.nv, null, "Parker Young, Scott Porterfield, Patrick Evan Little, Connor Smith, William Devereux, Adina Shanholtz"), o.createElement(S.X6, {
                             className: this.props.managedClasses.settingsHamburgerMenu_creditsTable_specialThanks,
                             size: C.Gm._7,
                             tag: C.lb.h3
-                        }, Z.pz.getString("specialThanks")), a.createElement(x.nv, null, "Jonathan Merrin, Charles Duval, Addison Kaufmann, Rachel Weil, Joseph Oak, Amanda Velasco Gallardo, Ramya Challa, Chris Pirih")))), at(this, "confirmResetStats", (() => {
-                            this.props.setModal(a.createElement(N.Z, {
+                        }, Z.pz.getString("specialThanks")), o.createElement(x.nv, null, "Jonathan Merrin, Charles Duval, Addison Kaufmann, Rachel Weil, Joseph Oak, Amanda Velasco Gallardo, Ramya Challa, Chris Pirih")), this.confirmResetStats = () => {
+                            this.props.setModal(o.createElement(N.Z, {
                                 title: Z.pz.getString("resetAllStatsDialogTitle"),
                                 closeButtonTooltip: Z.pz.getString("close"),
                                 dialogText: Z.pz.getString("resetAllStatsDialogText"),
@@ -8691,49 +8491,49 @@
                                 rejectText: Z.pz.getString("cancel"),
                                 handleConfirm: this.resetStats,
                                 handleReject: this.closeModal,
-                                onClick: ot
+                                onClick: Be
                             }))
-                        })), at(this, "resetStats", (() => {
-                            this.props.dispatch(ne()), he.resetAllStats(), ue.sys.refreshDisplay(), this.closeModal()
-                        })), this.state = {
+                        }, this.resetStats = () => {
+                            this.props.dispatch(oe()), ne.resetAllStats(), ce.sys.refreshDisplay(), this.closeModal()
+                        }, this.state = {
                             menuOpen: !1,
                             shareLinkCopied: !1
                         }
                     }
                     componentDidMount() {
-                        document.addEventListener(lt, this.toggleSettingsMenu)
+                        document.addEventListener(qe, this.toggleSettingsMenu)
                     }
                     componentWillUnmount() {
-                        document.removeEventListener(lt, this.toggleSettingsMenu)
+                        document.removeEventListener(qe, this.toggleSettingsMenu)
                     }
                     render() {
-                        return a.createElement(a.Fragment, null, a.createElement(n.h, {
-                            designSystem: rt
-                        }, a.createElement(v.ZP, {
-                            value: nt,
+                        return o.createElement(o.Fragment, null, o.createElement(n.h, {
+                            designSystem: Ze
+                        }, o.createElement(v.ZP, {
+                            value: Ve,
                             tag: null,
                             drawBackground: !1
-                        }, a.createElement(k.XC, it({}, this.unhandledProps(), {
+                        }, o.createElement(k.XC, Fe({}, this.unhandledProps(), {
                             ref: this.buttonRef,
                             onClick: this.onHamburgerMenuClick,
                             className: (0, R.A)(this.props.managedClasses.settingsHamburgerMenu)
-                        }), (e = this.props.managedClasses.settingsHamburgerMenu_settingsButton, a.createElement("svg", {
+                        }), (e = this.props.managedClasses.settingsHamburgerMenu_settingsButton, o.createElement("svg", {
                             width: 24,
                             height: 24,
                             viewBox: "0 0 24 24",
                             className: e,
                             xmlns: "http://www.w3.org/2000/svg"
-                        }, a.createElement("path", {
+                        }, o.createElement("path", {
                             d: "M12.0124 2.25C12.7464 2.25846 13.4775 2.34326 14.1939 2.50304C14.5067 2.57279 14.7406 2.83351 14.7761 3.15196L14.9463 4.67881C15.0233 5.37986 15.6152 5.91084 16.3209 5.91158C16.5105 5.91188 16.6982 5.87238 16.8734 5.79483L18.2741 5.17956C18.5654 5.05159 18.9057 5.12136 19.1232 5.35362C20.1354 6.43464 20.8892 7.73115 21.3279 9.14558C21.4225 9.45058 21.3137 9.78203 21.0566 9.9715L19.8151 10.8866C19.461 11.1468 19.2518 11.56 19.2518 11.9995C19.2518 12.4389 19.461 12.8521 19.8159 13.1129L21.0585 14.0283C21.3156 14.2177 21.4246 14.5492 21.3299 14.8543C20.8914 16.2685 20.138 17.5649 19.1264 18.6461C18.9091 18.8783 18.569 18.9483 18.2777 18.8206L16.8714 18.2045C16.4691 18.0284 16.007 18.0542 15.6268 18.274C15.2466 18.4937 14.9935 18.8812 14.9452 19.3177L14.7761 20.8444C14.7413 21.1592 14.5124 21.4182 14.2043 21.4915C12.7558 21.8361 11.2467 21.8361 9.79828 21.4915C9.49015 21.4182 9.26129 21.1592 9.22643 20.8444L9.0576 19.32C9.00802 18.8843 8.75459 18.498 8.37467 18.279C7.99475 18.06 7.53345 18.0343 7.13244 18.2094L5.72582 18.8256C5.43446 18.9533 5.09428 18.8833 4.87703 18.6509C3.86487 17.5685 3.11144 16.2705 2.67344 14.8548C2.57911 14.5499 2.68811 14.2186 2.94509 14.0293L4.18842 13.1133C4.54256 12.8531 4.75172 12.4399 4.75172 12.0005C4.75172 11.561 4.54256 11.1478 4.18796 10.8873L2.94541 9.97285C2.68804 9.78345 2.57894 9.45178 2.67361 9.14658C3.11236 7.73215 3.86619 6.43564 4.87837 5.35462C5.09584 5.12236 5.43618 5.05259 5.72749 5.18056L7.12786 5.79572C7.53081 5.97256 7.99404 5.94585 8.37601 5.72269C8.75633 5.50209 9.00953 5.11422 9.05841 4.67764L9.22849 3.15196C9.26401 2.83335 9.49811 2.57254 9.81105 2.50294C10.5283 2.34342 11.2602 2.25865 12.0124 2.25ZM11.9999 8.99995C10.3431 8.99995 8.99994 10.3431 8.99994 12C8.99994 13.6568 10.3431 15 11.9999 15C13.6568 15 14.9999 13.6568 14.9999 12C14.9999 10.3431 13.6568 8.99995 11.9999 8.99995Z"
                         })))))), this.renderMenu());
                         var e
                     }
                     getHighScoreString() {
-                        return Z.pz.getStringF("bestScoreMenuDisplay", te.sys.getHighScore(te.sys.session.settings.mode), Z.pz.getString(te.sys.session.settings.mode + "Unit"))
+                        return Z.pz.getStringF("bestScoreMenuDisplay", Q.sys.getHighScore(Q.sys.session.settings.mode), Z.pz.getString(Q.sys.session.settings.mode + "Unit"))
                     }
                     renderMenu() {
                         const e = this.getHighScoreString();
-                        return a.createElement(T.zg, {
+                        return o.createElement(T.zg, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout,
                             width: "280px",
                             height: "fit-content",
@@ -8743,32 +8543,32 @@
                             visible: this.state.menuOpen,
                             anchor: this.buttonRef,
                             onDismiss: this.dismissMenu,
-                            onClick: ot
-                        }, this.renderCloseButton(), a.createElement(I.Of, {
+                            onClick: Be
+                        }, this.renderCloseButton(), o.createElement(I.Of, {
                             jssStyleSheet: y,
                             onClick: this.onNewGameClick
-                        }, Z.pz.getString("newGame")), a.createElement(P.iz, {
+                        }, Z.pz.getString("newGame")), o.createElement(P.iz, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_divider
-                        }), this.renderGameModePicker(), a.createElement(x.nv, {
+                        }), this.renderGameModePicker(), o.createElement(x.nv, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_score
-                        }, (t = this.props.managedClasses.settingsHamburgerMenu_flyout_scoreStar, a.createElement("svg", {
+                        }, (t = this.props.managedClasses.settingsHamburgerMenu_flyout_scoreStar, o.createElement("svg", {
                             width: 20,
                             height: 20,
                             viewBox: "0 0 20 20",
                             className: t
-                        }, a.createElement("path", {
+                        }, o.createElement("path", {
                             d: "M9.1 2.9a1 1 0 011.8 0l1.93 3.91 4.31.63a1 1 0 01.56 1.7l-3.13 3.05.74 4.3a1 1 0 01-1.45 1.05L10 15.51l-3.86 2.03a1 1 0 01-1.45-1.05l.74-4.3L2.3 9.14a1 1 0 01.56-1.7l4.31-.63L9.1 2.9z"
-                        }))), Z.pz.getStringF("bestScoreFlyout", e)), a.createElement(P.iz, {
+                        }))), Z.pz.getStringF("bestScoreFlyout", e)), o.createElement(P.iz, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_divider
-                        }), this.renderShareSection(), a.createElement(P.iz, {
+                        }), this.renderShareSection(), o.createElement(P.iz, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_divider
-                        }), this.renderToggleSection(), a.createElement(P.iz, {
+                        }), this.renderToggleSection(), o.createElement(P.iz, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_divider
                         }), this.renderButtonSection());
                         var t
                     }
                     renderCloseButton() {
-                        return a.createElement(k.XC, {
+                        return o.createElement(k.XC, {
                             className: this.props.managedClasses.settingsHamburgerMenu_closeButton,
                             title: Z.pz.getString("close"),
                             onClick: this.dismissMenu
@@ -8779,63 +8579,63 @@
                             t = Z.pz.getString("endlessTitle"),
                             s = Z.pz.getString("timetrialTitle"),
                             i = this.props.mode,
-                            o = this.props.gameState === Q.Pause || this.props.gameState === Q.Play;
-                        return a.createElement(a.Fragment, null, a.createElement(E.__, {
+                            a = this.props.gameState === Y.Pause || this.props.gameState === Y.Play;
+                        return o.createElement(o.Fragment, null, o.createElement(E.__, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_label
-                        }, o ? Z.pz.getString("gameModeSelectLabelDisabled") : Z.pz.getString("gameModeSelectLabel")), a.createElement(z.Ph, {
+                        }, a ? Z.pz.getString("gameModeSelectLabelDisabled") : Z.pz.getString("gameModeSelectLabel")), o.createElement(z.Ph, {
                             jssStyleSheet: g.O0,
                             menu: g.gj,
                             onValueChange: this.onGameModeChange,
                             selectedItems: [i],
-                            disabled: o
-                        }, a.createElement(L.$m, {
-                            id: q.Endless,
-                            value: q.Endless,
+                            disabled: a
+                        }, o.createElement(L.$m, {
+                            id: j.Endless,
+                            value: j.Endless,
                             displayString: t
-                        }), a.createElement(L.$m, {
-                            id: q.TimeTrial,
-                            value: q.TimeTrial,
+                        }), o.createElement(L.$m, {
+                            id: j.TimeTrial,
+                            value: j.TimeTrial,
                             displayString: s
-                        }), a.createElement(L.$m, {
-                            id: q.ZigZag,
-                            value: q.ZigZag,
+                        }), o.createElement(L.$m, {
+                            id: j.ZigZag,
+                            value: j.ZigZag,
                             displayString: e
                         })))
                     }
                     renderToggleSection() {
                         const e = Z.pz.getString("on"),
                             t = Z.pz.getString("off");
-                        return a.createElement(a.Fragment, null, a.createElement("div", {
+                        return o.createElement(o.Fragment, null, o.createElement("div", {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_toggleRow
-                        }, a.createElement(E.__, {
+                        }, o.createElement(E.__, {
                             htmlFor: "highVisibilityMode"
-                        }, Z.pz.getString("highVisiblityModeToggleLabel")), a.createElement(D.ZD, {
+                        }, Z.pz.getString("highVisiblityModeToggleLabel")), o.createElement(D.ZD, {
                             jssStyleSheet: m,
                             inputId: "highVisibilityMode",
                             selectedMessage: e,
                             unselectedMessage: t,
                             selected: this.props.highVisibilityMode,
                             onChange: this.onHighVisiblityModeChange
-                        })), a.createElement("div", {
+                        })), o.createElement("div", {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_toggleRow
-                        }, a.createElement(E.__, {
+                        }, o.createElement(E.__, {
                             htmlFor: "reducedSpeedMode"
-                        }, Z.pz.getString("reducedSpeedModeToggleLabel")), a.createElement(D.ZD, {
+                        }, Z.pz.getString("reducedSpeedModeToggleLabel")), o.createElement(D.ZD, {
                             jssStyleSheet: m,
                             inputId: "reducedSpeedMode",
                             defaultChecked: !0,
                             selectedMessage: e,
                             unselectedMessage: t,
-                            selected: this.props.gameSpeed !== se,
+                            selected: this.props.gameSpeed !== ee,
                             onChange: this.onReducedSpeedModeChange
                         })))
                     }
                     renderShareSection() {
-                        return a.createElement("div", {
+                        return o.createElement("div", {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_shareRow
-                        }, a.createElement(E.__, {
+                        }, o.createElement(E.__, {
                             htmlFor: "shareButton"
-                        }, Z.pz.getString("share")), a.createElement(_.ER, {
+                        }, Z.pz.getString("share")), o.createElement(_.ER, {
                             id: "shareButton",
                             jssStyleSheet: f,
                             onClick: this.copyShareLinkToClipboard,
@@ -8843,53 +8643,52 @@
                         }, this.state.shareLinkCopied ? Z.pz.getString("shareLinkCopied") : Z.pz.getString("shareCopy")))
                     }
                     renderButtonSection() {
-                        return a.createElement("div", {
+                        return o.createElement("div", {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_buttonSection
-                        }, a.createElement(I.Of, {
+                        }, o.createElement(I.Of, {
                             jssStyleSheet: f,
                             onClick: this.openHowToPlayModal
-                        }, Z.pz.getString("howToPlayButton")), a.createElement(I.Of, {
+                        }, Z.pz.getString("howToPlayButton")), o.createElement(I.Of, {
                             jssStyleSheet: f,
                             onClick: this.openGameCreditsModal
-                        }, Z.pz.getString("gameCreditsButton")), a.createElement(I.Of, {
+                        }, Z.pz.getString("gameCreditsButton")), o.createElement(I.Of, {
                             jssStyleSheet: f,
                             onClick: this.confirmResetStats
                         }, Z.pz.getString("resetAllStats")))
                     }
                 }
-                s(73120);
-                const ct = (0, o.$j)((function(e) {
+                const Ge = (0, a.$j)((function(e) {
                     return e
-                }))((0, c.ZP)(w)(ht));
+                }))((0, c.ZP)(w)(je));
 
-                function dt() {
-                    const [e, t] = a.useState(null);
-                    return a.createElement(a.Fragment, null, a.createElement(ct, {
+                function Ke() {
+                    const [e, t] = o.useState(null);
+                    return o.createElement(o.Fragment, null, o.createElement(Ge, {
                         setModal: t
-                    }), a.createElement(r.f, {
+                    }), o.createElement(r.f, {
                         modal: e,
                         rootElement: document.getElementById("modal-root")
                     }))
                 }
                 window.addEventListener("beforeunload", (() => {
-                    he.recordUnload()
+                    ne.recordUnload()
                 })), window.onload = async function() {
                     await async function() {
-                            const e = await he.getAllStats();
-                            re.dispatch(oe({
+                            const e = await ne.getAllStats();
+                            ae.dispatch(ie({
                                 zigzag_bestScore: e.zigzag_bestScore,
                                 endless_bestScore: e.endless_bestScore,
                                 highVisibilityMode: e.highVisibilityMode,
                                 currentCharacter: e.currentCharacter,
                                 mode: e.mode,
                                 timetrial_bestScore: e.timetrial_bestScore < 0 ? -1 : e.timetrial_bestScore / 1e3,
-                                gameSpeed: e.reducedSpeedMode ? .5 : se,
-                                mode: j(e.mode),
+                                gameSpeed: e.reducedSpeedMode ? .5 : ee,
+                                mode: q(e.mode),
                                 theme: K(e.theme)
                             }))
                         }(),
                         function() {
-                            const e = new Ze;
+                            const e = new Te;
                             let t = window.performance.now();
                             const s = () => {
                                 requestAnimationFrame(s);
@@ -8912,28 +8711,26 @@
                         }(),
                         function() {
                             const e = document.getElementById("hamburger-container");
-                            e.style.zIndex = h._p.CONTEXT_MENU.toString(), i.render(a.createElement(o.zt, {
-                                store: re
-                            }, a.createElement(n.h, {
+                            e.style.zIndex = h._p.CONTEXT_MENU.toString(), i.render(o.createElement(a.zt, {
+                                store: ae
+                            }, o.createElement(n.h, {
                                 designSystem: l.fn
-                            }, a.createElement(dt, null))), e)
+                            }, o.createElement(Ke, null))), e)
                         }()
                 }
             },
-            73120: () => {},
             81164: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     C: () => h
                 });
-                var i, a = s(11754),
-                    o = s(37834),
+                var i, o = s(11754),
+                    a = s(37834),
                     n = s(89526),
                     r = s(12468);
                 ! function(e) {
                     e.a = "a", e.button = "button"
                 }(i || (i = {}));
-                class l extends a.Z {
+                class l extends o.Z {
                     constructor() {
                         super(...arguments), this.handledProps = {
                             disabled: void 0,
@@ -8952,10 +8749,10 @@
                             button: e,
                             button__disabled: t
                         } = this.props.managedClasses;
-                        return super.generateClassNames((0, o.A)(e, [t, this.props.disabled]))
+                        return super.generateClassNames((0, a.A)(e, [t, this.props.disabled]))
                     }
                     renderDisabledAttribute() {
-                        if(!0 === this.props.disabled) return this.tag === i.a ? {
+                        if (!0 === this.props.disabled) return this.tag === i.a ? {
                             "aria-disabled": !0
                         } : {
                             disabled: !0
@@ -8971,29 +8768,26 @@
                 const h = l
             },
             65173: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     ZP: () => i
                 });
                 const i = s(81164).C
             },
             81545: (e, t, s) => {
-                "use strict";
                 s.d(t, {
-                    Z: () => u
+                    Z: () => g
                 });
                 var i = s(11754),
+                    o = s(86577),
                     a = s(33832),
-                    o = s(37834),
-                    n = s(9453),
-                    r = s(89526),
-                    l = s(86577),
-                    h = s(64829),
-                    c = s(64702),
-                    d = s(78943),
-                    p = s.n(d),
-                    b = s(12468);
-                class g extends i.Z {
+                    n = s(37834),
+                    r = s(9453),
+                    l = s(64829),
+                    h = s(64702),
+                    c = s(89526),
+                    d = s(29418),
+                    p = s(12468);
+                class b extends i.Z {
                     constructor() {
                         super(...arguments), this.handledProps = {
                             describedBy: void 0,
@@ -9006,8 +8800,8 @@
                             onDismiss: void 0,
                             visible: void 0,
                             focusTargetOnClose: void 0
-                        }, this.rootElement = r.createRef(), this.shouldAddKeyListener = e => !(!e.modal && !e.onDismiss), this.handleDocumentKeyDown = e => {
-                            if(!e.defaultPrevented && this.props.visible) switch(e.keyCode) {
+                        }, this.rootElement = c.createRef(), this.shouldAddKeyListener = e => !(!e.modal && !e.onDismiss), this.handleDocumentKeyDown = e => {
+                            if (!e.defaultPrevented && this.props.visible) switch (e.keyCode) {
                                 case a.Lp:
                                     this.checkForSoftDismiss(e);
                                     break;
@@ -9017,24 +8811,24 @@
                         }, this.checkForSoftDismiss = e => {
                             this.props.onDismiss && "function" == typeof this.props.onDismiss && this.props.visible && this.props.onDismiss(e)
                         }, this.handleTabKeyDown = e => {
-                            if(!this.props.modal) return;
-                            const t = p()(this.rootElement.current),
+                            if (!this.props.modal) return;
+                            const t = (0, d.ht)(this.rootElement.current),
                                 s = t.length;
-                            if(0 === s) return this.tryFocusOnRootElement(), void e.preventDefault();
+                            if (0 === s) return this.tryFocusOnRootElement(), void e.preventDefault();
                             e.shiftKey && e.target === t[0] ? (t[s - 1].focus(), e.preventDefault()) : e.shiftKey || e.target !== t[s - 1] || (t[0].focus(), e.preventDefault())
                         }, this.handleDocumentFocus = e => {
                             !e.defaultPrevented && this.shouldForceFocus(e.target) && (this.focusOnFirstElement(), e.preventDefault())
                         }, this.shouldForceFocus = e => this.props.visible && this.rootElement.current instanceof HTMLElement && !this.rootElement.current.contains(e), this.focusOnFirstElement = () => {
-                            if((0, n.N)() && this.rootElement.current instanceof HTMLElement) {
-                                const e = p()(this.rootElement.current);
+                            if ((0, r.N)() && this.rootElement.current instanceof HTMLElement) {
+                                const e = (0, d.ht)(this.rootElement.current);
                                 0 === e.length ? this.tryFocusOnRootElement() : e[0].focus()
                             }
                         }, this.tryFocusOnRootElement = () => {
                             this.rootElement.current instanceof HTMLElement && this.rootElement.current.focus()
                         }, this.invokeFocusOnCloseTarget = () => {
-                            if((0, h.Z)(this.props.focusTargetOnClose)) return;
-                            if((0, c.Z)(this.props.focusTargetOnClose)) return void this.props.focusTargetOnClose();
-                            const e = (0, l.x)(this.props.focusTargetOnClose);
+                            if ((0, l.Z)(this.props.focusTargetOnClose)) return;
+                            if ((0, h.Z)(this.props.focusTargetOnClose)) return void this.props.focusTargetOnClose();
+                            const e = (0, o.x)(this.props.focusTargetOnClose);
                             e instanceof HTMLElement && e.focus()
                         }
                     }
@@ -9043,18 +8837,18 @@
                             dialog_positioningRegion: e,
                             dialog_contentRegion: t
                         } = this.props.managedClasses;
-                        return r.createElement("div", Object.assign({
+                        return c.createElement("div", Object.assign({
                             ref: this.rootElement
                         }, this.unhandledProps(), {
                             className: this.generateClassNames(),
                             "aria-hidden": !this.props.visible
-                        }), r.createElement("div", {
-                            className: (0, o.A)(e)
-                        }, this.renderModalOverlay(), r.createElement("div", {
+                        }), c.createElement("div", {
+                            className: (0, n.A)(e)
+                        }, this.renderModalOverlay(), c.createElement("div", {
                             role: "dialog",
                             "aria-modal": this.props.modal,
                             tabIndex: -1,
-                            className: (0, o.A)(t),
+                            className: (0, n.A)(t),
                             style: {
                                 height: this.props.contentHeight,
                                 width: this.props.contentWidth
@@ -9065,20 +8859,20 @@
                         }, this.props.children)))
                     }
                     componentDidMount() {
-                        (0, n.N)() && (this.shouldAddKeyListener(this.props) && document.addEventListener("keydown", this.handleDocumentKeyDown), this.props.modal && (document.addEventListener("focusin", this.handleDocumentFocus), this.shouldForceFocus(document.activeElement) && this.focusOnFirstElement()))
+                        (0, r.N)() && (this.shouldAddKeyListener(this.props) && document.addEventListener("keydown", this.handleDocumentKeyDown), this.props.modal && (document.addEventListener("focusin", this.handleDocumentFocus), this.shouldForceFocus(document.activeElement) && this.focusOnFirstElement()))
                     }
                     componentDidUpdate(e) {
-                        (0, n.N)() && (!e.modal && this.props.modal ? (document.addEventListener("focusin", this.handleDocumentFocus), this.focusOnFirstElement()) : e.modal && !this.props.modal && document.removeEventListener("focusin", this.handleDocumentFocus), !this.shouldAddKeyListener(e) && this.shouldAddKeyListener(this.props) ? document.addEventListener("keydown", this.handleDocumentKeyDown) : this.shouldAddKeyListener(e) && !this.shouldAddKeyListener(this.props) && document.removeEventListener("keydown", this.handleDocumentKeyDown))
+                        (0, r.N)() && (!e.modal && this.props.modal ? (document.addEventListener("focusin", this.handleDocumentFocus), this.focusOnFirstElement()) : e.modal && !this.props.modal && document.removeEventListener("focusin", this.handleDocumentFocus), !this.shouldAddKeyListener(e) && this.shouldAddKeyListener(this.props) ? document.addEventListener("keydown", this.handleDocumentKeyDown) : this.shouldAddKeyListener(e) && !this.shouldAddKeyListener(this.props) && document.removeEventListener("keydown", this.handleDocumentKeyDown))
                     }
                     componentWillUnmount() {
-                        (0, n.N)() && (this.shouldAddKeyListener(this.props) && document.removeEventListener("keydown", this.handleDocumentKeyDown), this.props.modal && document.removeEventListener("focusin", this.handleDocumentFocus), this.invokeFocusOnCloseTarget())
+                        (0, r.N)() && (this.shouldAddKeyListener(this.props) && document.removeEventListener("keydown", this.handleDocumentKeyDown), this.props.modal && document.removeEventListener("focusin", this.handleDocumentFocus), this.invokeFocusOnCloseTarget())
                     }
                     generateClassNames() {
-                        return super.generateClassNames((0, o.A)(this.props.managedClasses.dialog))
+                        return super.generateClassNames((0, n.A)(this.props.managedClasses.dialog))
                     }
                     renderModalOverlay() {
-                        if(this.props.modal) return r.createElement("div", {
-                            className: (0, o.A)(this.props.managedClasses.dialog_modalOverlay),
+                        if (this.props.modal) return c.createElement("div", {
+                            className: (0, n.A)(this.props.managedClasses.dialog_modalOverlay),
                             onClick: this.checkForSoftDismiss,
                             onTouchStart: this.checkForSoftDismiss,
                             role: "presentation",
@@ -9089,34 +8883,39 @@
                         })
                     }
                 }
-                g.defaultProps = {
+                b.defaultProps = {
                     contentHeight: "480px",
                     contentWidth: "640px",
                     visible: !1,
                     managedClasses: {}
-                }, g.displayName = `${b.k}Dialog`;
-                const u = g
+                }, b.displayName = `${p.k}Dialog`;
+                const g = b
             },
             46076: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     ZP: () => i
                 });
                 const i = s(81545).Z
             },
-            2057: (e, t, s) => {
-                "use strict";
+            81047: (e, t, s) => {
+                var i;
+                s.d(t, {
+                        Q: () => i
+                    }),
+                    function(e) {
+                        e.presentation = "presentation", e.separator = "separator"
+                    }(i || (i = {}))
+            },
+            35203: (e, t, s) => {
                 s.d(t, {
                     ZP: () => h
                 });
-                var i, a = s(11754),
+                var i = s(11754),
                     o = s(37834),
-                    n = s(89526),
-                    r = s(12468);
-                ! function(e) {
-                    e.presentation = "presentation", e.separator = "separator"
-                }(i || (i = {}));
-                class l extends a.Z {
+                    a = s(89526),
+                    n = s(12468),
+                    r = s(81047);
+                class l extends i.Z {
                     constructor() {
                         super(...arguments), this.handledProps = {
                             managedClasses: void 0,
@@ -9124,38 +8923,37 @@
                         }
                     }
                     render() {
-                        return n.createElement("hr", Object.assign({}, this.unhandledProps(), this.generateAttributes(), {
+                        return a.createElement("hr", Object.assign({}, this.unhandledProps(), this.generateAttributes(), {
                             className: this.generateClassNames()
                         }))
                     }
                     generateAttributes() {
-                        if(this.props.role && this.props.role !== i.separator) return {
-                            role: i[this.props.role]
+                        if (this.props.role && this.props.role !== r.Q.separator) return {
+                            role: r.Q[this.props.role]
                         }
                     }
                     generateClassNames() {
                         return super.generateClassNames((0, o.A)(this.props.managedClasses.divider))
                     }
                 }
-                l.displayName = `${r.k}Divider`, l.defaultProps = {
+                l.displayName = `${n.k}Divider`, l.defaultProps = {
                     managedClasses: {}
                 };
                 const h = l
             },
             67483: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     ZP: () => c
                 });
-                var i, a = s(11754),
-                    o = s(37834),
+                var i, o = s(11754),
+                    a = s(37834),
                     n = s(57872),
                     r = s(89526),
                     l = s(12468);
                 ! function(e) {
                     e.label = "label", e.legend = "legend"
                 }(i || (i = {}));
-                class h extends a.Z {
+                class h extends o.Z {
                     constructor() {
                         super(...arguments), this.handledProps = {
                             hidden: void 0,
@@ -9176,7 +8974,7 @@
                             label: e,
                             label__hidden: t
                         } = this.props.managedClasses;
-                        return super.generateClassNames((0, o.A)(e, [t, this.props.hidden]))
+                        return super.generateClassNames((0, a.A)(e, [t, this.props.hidden]))
                     }
                 }
                 h.displayName = `${l.k}Label`, h.defaultProps = {
@@ -9186,20 +8984,18 @@
                 const c = h
             },
             22545: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     ZP: () => i
                 });
                 const i = s(28293).Z
             },
             28293: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     Z: () => c
                 });
                 var i = s(11754),
-                    a = s(33832),
-                    o = s(37834),
+                    o = s(33832),
+                    a = s(37834),
                     n = s(89526),
                     r = s(97084),
                     l = s(12468);
@@ -9216,9 +9012,9 @@
                             let e = !1;
                             return void 0 !== this.context.listboxSelectedItems && (e = 1 === this.context.listboxSelectedItems.filter((e => e.id === this.props.id)).length), e
                         }, this.handleKeyDown = e => {
-                            if(!this.props.disabled && ("function" == typeof this.props.onKeyDown && this.props.onKeyDown(e), !e.defaultPrevented)) switch(e.keyCode) {
-                                case a.bq:
-                                case a.ei:
+                            if (!this.props.disabled && ("function" == typeof this.props.onKeyDown && this.props.onKeyDown(e), !e.defaultPrevented)) switch (e.keyCode) {
+                                case o.bq:
+                                case o.ei:
                                     this.invokeOption(e)
                             }
                         }, this.handleClick = e => {
@@ -9245,7 +9041,7 @@
                             listboxItem__disabled: t,
                             listboxItem__selected: s
                         } = this.props.managedClasses;
-                        return super.generateClassNames((0, o.A)(e, [t, this.props.disabled], [s, this.isItemSelected()]))
+                        return super.generateClassNames((0, a.A)(e, [t, this.props.disabled], [s, this.isItemSelected()]))
                     }
                     invokeOption(e) {
                         this.context.listboxItemInvoked && this.context.listboxItemInvoked(this.props, e), "function" == typeof this.props.onInvoke && this.props.onInvoke(e, this.props)
@@ -9258,14 +9054,12 @@
                 const c = h
             },
             18078: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     ZP: () => i
                 });
                 const i = s(42999).Z
             },
             97084: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     R: () => i
                 });
@@ -9277,13 +9071,12 @@
                 })
             },
             42999: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     Z: () => u
                 });
                 var i = s(11754),
-                    a = s(33832),
-                    o = s(99478),
+                    o = s(33832),
+                    a = s(99478),
                     n = s(37834),
                     r = s(9453),
                     l = s(18868),
@@ -9314,14 +9107,14 @@
                             tabIndex: this.props.tabbableItems && t === this.state.focusIndex ? 0 : -1
                         }), this.isFocusableElement = e => e instanceof HTMLElement && "option" === e.getAttribute("role") && !this.isDisabledElement(e) && !this.props.disabled, this.isDisabledElement = e => e instanceof HTMLElement && "true" === e.getAttribute("aria-disabled"), this.setInitialFocus = (e, t) => {
                             let s = -1;
-                            for(let t = 0; t < e.length; t++) s = g.getItemIndexById(e[t].id, this.props.children); - 1 === s && (s = this.domChildren().findIndex(this.isFocusableElement)), this.props.focusItemOnMount && t && -1 !== s ? this.setFocus(s, 1) : this.setState({
+                            for (let t = 0; t < e.length; t++) s = g.getItemIndexById(e[t].id, this.props.children); - 1 === s && (s = this.domChildren().findIndex(this.isFocusableElement)), this.props.focusItemOnMount && t && -1 !== s ? this.setFocus(s, 1) : this.setState({
                                 focusIndex: s
                             })
                         }, this.getInitialSelection = () => {
                             let e;
                             return e = void 0 !== this.props.selectedItems ? g.getListboxItemDataFromIds(this.props.selectedItems, this.props.children) : g.getListboxItemDataFromIds(this.props.defaultSelection, this.props.children), !this.props.multiselectable && e.length > 1 && (e = e.slice(0, 1)), e
                         }, this.listboxItemfocused = (e, t) => {
-                            if(this.props.disabled) return;
+                            if (this.props.disabled) return;
                             const s = t.currentTarget,
                                 i = this.domChildren().indexOf(s);
                             this.isDisabledElement(s) ? s.blur() : (this.setState({
@@ -9329,34 +9122,34 @@
                                 focussedItemId: e.id
                             }), !this.props.multiselectable && this.props.selectOnFocus && this.updateSelection([e]))
                         }, this.handleMenuKeyDown = e => {
-                            if("function" == typeof this.props.onKeyDown && this.props.onKeyDown(e), e.defaultPrevented || this.props.disabled) return;
+                            if ("function" == typeof this.props.onKeyDown && this.props.onKeyDown(e), e.defaultPrevented || this.props.disabled) return;
                             let t;
-                            switch(e.keyCode) {
-                                case a.Lp:
-                                case a.bq:
-                                case a.ei:
-                                case a.RN:
+                            switch (e.keyCode) {
+                                case o.Lp:
+                                case o.bq:
+                                case o.ei:
+                                case o.RN:
                                     return;
-                                case a.Q6:
-                                case a.ho:
-                                    if(t = this.setFocus(this.state.focusIndex + 1, 1), this.props.multiselectable && e.shiftKey && "" !== t) {
+                                case o.Q6:
+                                case o.ho:
+                                    if (t = this.setFocus(this.state.focusIndex + 1, 1), this.props.multiselectable && e.shiftKey && "" !== t) {
                                         const e = g.getItemPropsById(t, this.props.children);
                                         null !== e && this.toggleItem(e)
                                     }
                                     e.preventDefault();
                                     break;
-                                case a.$Y:
-                                case a.BJ:
-                                    if(t = this.setFocus(this.state.focusIndex - 1, -1), this.props.multiselectable && e.shiftKey && "" !== t) {
+                                case o.$Y:
+                                case o.BJ:
+                                    if (t = this.setFocus(this.state.focusIndex - 1, -1), this.props.multiselectable && e.shiftKey && "" !== t) {
                                         const e = g.getItemPropsById(t, this.props.children);
                                         null !== e && this.toggleItem(e)
                                     }
                                     e.preventDefault();
                                     break;
-                                case a.$B:
+                                case o.$B:
                                     this.props.multiselectable && e.shiftKey && e.ctrlKey && this.selectRange(this.state.focusIndex, this.domChildren().length - 1), this.setFocus(this.domChildren().length - 1, -1), e.preventDefault();
                                     break;
-                                case a.wn:
+                                case o.wn:
                                     this.props.multiselectable && e.shiftKey && e.ctrlKey && this.selectRange(0, this.state.focusIndex), this.setFocus(0, 1), e.preventDefault();
                                     break;
                                 default:
@@ -9365,20 +9158,20 @@
                         }, this.processTypeAhead = e => {
                             clearTimeout(this.typeAheadTimer), this.typeAheadString = this.typeAheadString + e.key.toLowerCase();
                             let t = -1;
-                            d.Children.toArray(this.props.children).some(((e, s) => void 0 !== e.props[this.props.typeAheadPropertyKey] && ((0, o.Ny)(e.props[this.props.typeAheadPropertyKey].toLowerCase(), this.typeAheadString) ? (t = s, !0) : void 0))), -1 !== t ? (this.typeAheadTimer = setTimeout((() => {
+                            d.Children.toArray(this.props.children).some(((e, s) => void 0 !== e.props[this.props.typeAheadPropertyKey] && ((0, a.Ny)(e.props[this.props.typeAheadPropertyKey].toLowerCase(), this.typeAheadString) ? (t = s, !0) : void 0))), -1 !== t ? (this.typeAheadTimer = setTimeout((() => {
                                 this.typeAheadTimerExpired()
                             }), 1e3), this.setFocus(t, 1)) : this.typeAheadString = ""
                         }, this.typeAheadTimerExpired = () => {
                             this.typeAheadString = "", clearTimeout(this.typeAheadTimer)
                         }, this.listboxItemInvoked = (e, t) => {
-                            if(this.props.disabled) return;
+                            if (this.props.disabled) return;
                             "function" == typeof this.props.onItemInvoked && this.props.onItemInvoked(e);
                             const s = t.currentTarget,
                                 i = this.domChildren().indexOf(s);
                             this.props.multiselectable && "click" === t.type ? (t.shiftKey && -1 !== this.shiftRangeSelectStartIndex || (this.shiftRangeSelectStartIndex = i), t.ctrlKey ? this.toggleItem(e) : t.shiftKey ? this.selectRange(this.shiftRangeSelectStartIndex, i) : this.updateSelection([e])) : this.props.multiselectable && "keydown" === t.type ? t.shiftKey ? this.selectRange(this.shiftRangeSelectStartIndex, i) : this.toggleItem(e) : this.updateSelection([e])
                         }, this.toggleItem = e => {
                             const t = this.state.selectedItems.filter((t => t.id !== e.id));
-                            if(t.length < this.state.selectedItems.length) this.updateSelection(t);
+                            if (t.length < this.state.selectedItems.length) this.updateSelection(t);
                             else {
                                 const t = this.state.selectedItems.concat([e]);
                                 this.updateSelection(t)
@@ -9443,10 +9236,10 @@
                     }
                     componentDidUpdate(e) {
                         let t = null;
-                        if((0, l.Z)(e.defaultSelection, this.props.defaultSelection) || void 0 !== this.props.selectedItems || (t = this.updateSelection(this.getInitialSelection())), e.children !== this.props.children) {
+                        if ((0, l.Z)(e.defaultSelection, this.props.defaultSelection) || void 0 !== this.props.selectedItems || (t = this.updateSelection(this.getInitialSelection())), e.children !== this.props.children) {
                             t = null === t ? this.updateSelection(this.state.selectedItems.slice(0)) : t;
                             const e = this.domChildren();
-                            if(!(0, h.Z)(this.rootElement.current) && this.rootElement.current.contains(document.activeElement)) return void this.setState({
+                            if (!(0, h.Z)(this.rootElement.current) && this.rootElement.current.contains(document.activeElement)) return void this.setState({
                                 focusIndex: e.indexOf(document.activeElement)
                             });
                             (e.length <= this.state.focusIndex || !this.isFocusableElement(e[this.state.focusIndex])) && this.setInitialFocus(t, !1)
@@ -9474,11 +9267,11 @@
                     setFocus(e, t) {
                         const s = this.domChildren();
                         let i = "";
-                        for(;
+                        for (;
                             (0, c.Z)(e, s.length);) {
-                            const a = s[e];
-                            if(i = a.id, this.isFocusableElement(a)) {
-                                this.props.disabled || a.focus();
+                            const o = s[e];
+                            if (i = o.id, this.isFocusableElement(o)) {
+                                this.props.disabled || o.focus();
                                 break
                             }
                             e += t
@@ -9496,28 +9289,26 @@
                     selectOnFocus: !0,
                     tabbableItems: !0
                 }, g.getFirstValidOptionInRange = (e, t, s, i) => {
-                    for(let a = e; a !== t + i; a += i) {
-                        const e = s[a];
+                    for (let o = e; o !== t + i; o += i) {
+                        const e = s[o];
                         return g.isValidSelectedItem(e) ? e : null
                     }
                 }, g.getValidOptions = e => e.filter((e => g.isValidSelectedItem(e))), g.valuePropertyKey = "value", g.idPropertyKey = "id", g.disabledPropertyKey = "disabled";
                 const u = g
             },
             79389: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     ZP: () => i
                 });
                 const i = s(63566).Z
             },
             63566: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     Z: () => y
                 });
                 var i = s(11754),
-                    a = s(33832),
-                    o = s(5346),
+                    o = s(33832),
+                    a = s(5346),
                     n = s(37834),
                     r = s(9453),
                     l = s(48527),
@@ -9557,9 +9348,9 @@
                         }, this.updateSelection = e => {
                             e = this.trimSelection(e);
                             const t = this.getValueFromSelection(e);
-                            if(this.state.value === t) return;
+                            if (this.state.value === t) return;
                             const s = this.getFormattedDisplayString(e);
-                            if("function" != typeof this.props.onValueChange || (0, h.Z)(e, this.state.selectedItems) || this.props.onValueChange(t, e, s), void 0 === this.props.selectedItems) {
+                            if ("function" != typeof this.props.onValueChange || (0, h.Z)(e, this.state.selectedItems) || this.props.onValueChange(t, e, s), void 0 === this.props.selectedItems) {
                                 const i = this.getValidOptions();
                                 this.setState({
                                     selectedItems: e,
@@ -9577,23 +9368,23 @@
                                 displayString: this.getFormattedDisplayString(e)
                             })
                         }, this.trimSelection = e => !1 === this.props.multiselectable && e.length > 1 ? [this.state.selectedItems[0]] : e, this.getValueFromSelection = e => this.props.multiselectable ? e.map((e => e.value)) : 0 === e.length ? "" : e[0].value, this.getSelectedItemPosInSet = (e, t) => {
-                            if(!this.props.multiselectable && 1 === t.length) {
+                            if (!this.props.multiselectable && 1 === t.length) {
                                 const s = t[0].id,
                                     i = e.length;
-                                for(let t = 0; t < i; t++)
-                                    if(e[t].props[m.idPropertyKey] === s) return t + 1
+                                for (let t = 0; t < i; t++)
+                                    if (e[t].props[m.idPropertyKey] === s) return t + 1
                             }
                             return 0
                         }, this.defaultTriggerRenderFunction = (e, t, s) => {
-                            if(e.multiselectable) return null;
+                            if (e.multiselectable) return null;
                             const i = `${(0,c.Z)(this.props.labelledBy)?"":`${this.props.labelledBy} `}${s}`,
-                                a = "" + ((0, c.Z)(this.props.describedBy) ? "" : `${this.props.describedBy}`);
+                                o = "" + ((0, c.Z)(this.props.describedBy) ? "" : `${this.props.describedBy}`);
                             return p.createElement("button", {
                                 disabled: e.disabled,
                                 id: s,
                                 "aria-haspopup": "listbox",
                                 "aria-labelledby": i,
-                                "aria-describedby": a,
+                                "aria-describedby": o,
                                 "aria-expanded": t.isMenuOpen
                             }, t.displayString)
                         }, this.defaultDisplayStringFormatter = (e, t) => {
@@ -9602,30 +9393,30 @@
                         }, this.handleClick = e => {
                             "function" == typeof this.props.onClick && this.props.onClick(e), this.props.disabled || e.defaultPrevented || (e.preventDefault(), this.toggleMenu(!this.state.isMenuOpen), !1 === this.validateMenuState(!this.state.isMenuOpen) && this.focusTriggerElement())
                         }, this.handleKeydown = e => {
-                            if("function" == typeof this.props.onKeyDown && this.props.onKeyDown(e), !this.props.disabled && !e.defaultPrevented) switch(e.keyCode) {
-                                case a.bq:
-                                case a.ei:
+                            if ("function" == typeof this.props.onKeyDown && this.props.onKeyDown(e), !this.props.disabled && !e.defaultPrevented) switch (e.keyCode) {
+                                case o.bq:
+                                case o.ei:
                                     e.preventDefault(), this.toggleMenu(!this.state.isMenuOpen), !1 === this.validateMenuState(!this.state.isMenuOpen) && this.focusTriggerElement();
                                     break;
-                                case a.Lp:
-                                    e.preventDefault(), this.toggleMenu(!1), this.focusTriggerElement();
+                                case o.Lp:
+                                    this.state.isMenuOpen && (e.preventDefault(), this.toggleMenu(!1), this.focusTriggerElement());
                                     break;
-                                case a.Q6:
-                                case a.ho:
+                                case o.Q6:
+                                case o.ho:
                                     e.preventDefault(), this.props.multiselectable || this.state.isMenuOpen || this.incrementSelectedOption(1);
                                     break;
-                                case a.$Y:
-                                case a.BJ:
+                                case o.$Y:
+                                case o.BJ:
                                     e.preventDefault(), this.props.multiselectable || this.state.isMenuOpen || this.incrementSelectedOption(-1)
                             }
                         }, this.incrementSelectedOption = e => {
                             const t = p.Children.toArray(this.props.children);
-                            if(1 === this.state.selectedItems.length) {
+                            if (1 === this.state.selectedItems.length) {
                                 const s = b.ZP.getItemIndexById(this.state.selectedItems[0].id, this.props.children);
-                                if(-1 !== s) {
+                                if (-1 !== s) {
                                     const i = s + e,
-                                        a = e > -1 ? t.length - 1 : 0;
-                                    this.selectItemInRange(i, a, t, e)
+                                        o = e > -1 ? t.length - 1 : 0;
+                                    this.selectItemInRange(i, o, t, e)
                                 }
                             } else {
                                 const s = e > -1,
@@ -9633,8 +9424,8 @@
                                 this.selectItemInRange(s ? 0 : i, s ? i : 0, t, e)
                             }
                         }, this.selectItemInRange = (e, t, s, i) => {
-                            const a = b.ZP.getFirstValidOptionInRange(e, t, s, i);
-                            (0, c.Z)(a) || this.updateSelection([a.props])
+                            const o = b.ZP.getFirstValidOptionInRange(e, t, s, i);
+                            (0, c.Z)(o) || this.updateSelection([o.props])
                         }, this.toggleMenu = e => {
                             const t = this.validateMenuState(e);
                             t !== this.state.isMenuOpen && this.setState({
@@ -9644,7 +9435,7 @@
                             let t = e;
                             return void 0 !== this.props.isMenuOpen ? t = this.props.isMenuOpen : !0 === this.props.multiselectable && (t = !0), t
                         }, this.handleMenuBlur = e => {
-                            this.state.isMenuOpen && !this.props.multiselectable && null !== this.rootElement.current && (!this.rootElement.current.contains(e.relatedTarget) || (0, o.Re)(e.relatedTarget) && e.relatedTarget.id === this.triggerId) && this.toggleMenu(!1)
+                            this.state.isMenuOpen && !this.props.multiselectable && null !== this.rootElement.current && (!this.rootElement.current.contains(e.relatedTarget) || (0, a.Re)(e.relatedTarget) && e.relatedTarget.id === this.triggerId) && this.toggleMenu(!1)
                         }, this.getFormattedDisplayString = e => void 0 === this.props.displayStringFormatter ? this.defaultDisplayStringFormatter(e, this.props.placeholder) : this.props.displayStringFormatter(e, this.props.placeholder), this.isFocusableButton = e => e instanceof HTMLButtonElement && "true" !== e.getAttribute("aria-disabled"), this.focusTriggerElement = () => {
                             const e = this.getTriggerButton();
                             null !== e && e.focus()
@@ -9683,9 +9474,9 @@
                             select__scaleToFit: t,
                             select__disabled: s,
                             select_menu__open: i,
-                            select__multiSelectable: a
+                            select__multiSelectable: o
                         } = this.props.managedClasses;
-                        return super.generateClassNames((0, n.A)(e, [t, !(0, c.Z)(this.props.menuFlyoutConfig) && this.props.menuFlyoutConfig.scaleToFit], [s, this.props.disabled], [i, this.state.isMenuOpen], [a, this.props.multiselectable]))
+                        return super.generateClassNames((0, n.A)(e, [t, !(0, c.Z)(this.props.menuFlyoutConfig) && this.props.menuFlyoutConfig.scaleToFit], [s, this.props.disabled], [i, this.state.isMenuOpen], [o, this.props.multiselectable]))
                     }
                     renderHiddenSelectElement() {
                         return p.createElement("select", {
@@ -9705,7 +9496,7 @@
                         return void 0 !== this.props.trigger ? this.props.trigger(this.props, this.state, this.triggerId) : this.defaultTriggerRenderFunction(this.props, this.state, this.triggerId)
                     }
                     renderMenu() {
-                        if(!this.state.isMenuOpen) return;
+                        if (!this.state.isMenuOpen) return;
                         let e = !this.props.multiselectable;
                         this.props.multiselectable && this.props.autoFocus && (e = this.props.multiselectable);
                         const t = p.createElement(b.ZP, {
@@ -9738,8 +9529,8 @@
                             select__menuPositionLeft: t,
                             select__menuPositionRight: s,
                             select__menuPositionTop: i,
-                            select__menuPositionBottom: a,
-                            select__menuPositionHorizontalInset: o,
+                            select__menuPositionBottom: o,
+                            select__menuPositionHorizontalInset: a,
                             select__menuPositionVerticalInset: n
                         } = this.props.managedClasses;
                         return {
@@ -9747,8 +9538,8 @@
                             viewportPositioner__left: t,
                             viewportPositioner__right: s,
                             viewportPositioner__top: i,
-                            viewportPositioner__bottom: a,
-                            viewportPositioner__horizontalInset: o,
+                            viewportPositioner__bottom: o,
+                            viewportPositioner__horizontalInset: a,
                             viewportPositioner__verticalInset: n
                         }
                     }
@@ -9768,20 +9559,18 @@
                 const y = m
             },
             87472: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     ZP: () => i
                 });
                 const i = s(39093).Z
             },
             39093: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     Z: () => l
                 });
                 var i = s(11754),
-                    a = s(37834),
-                    o = s(89526),
+                    o = s(37834),
+                    a = s(89526),
                     n = s(12468);
                 class r extends i.Z {
                     constructor(e) {
@@ -9815,13 +9604,13 @@
                             toggle_input: t,
                             toggle_stateIndicator: s
                         } = this.props.managedClasses;
-                        return o.createElement("div", Object.assign({}, this.unhandledProps(), {
+                        return a.createElement("div", Object.assign({}, this.unhandledProps(), {
                             className: this.generateClassNames(),
                             "aria-disabled": this.props.disabled || null
-                        }), this.generateLabel(), o.createElement("div", {
-                            className: (0, a.A)(e)
-                        }, o.createElement("input", {
-                            className: (0, a.A)(t),
+                        }), this.generateLabel(), a.createElement("div", {
+                            className: (0, o.A)(e)
+                        }, a.createElement("input", {
+                            className: (0, o.A)(t),
                             type: "checkbox",
                             id: this.props.inputId,
                             "aria-describedby": this.props.statusMessageId,
@@ -9830,8 +9619,8 @@
                             value: this.generateToggleStateLabel(),
                             onChange: this.handleToggleChange,
                             checked: this.state.selected
-                        }), o.createElement("span", {
-                            className: (0, a.A)(s)
+                        }), a.createElement("span", {
+                            className: (0, o.A)(s)
                         })), this.renderStatusMessage())
                     }
                     generateClassNames() {
@@ -9840,22 +9629,22 @@
                             toggle__disabled: t,
                             toggle__checked: s
                         } = this.props.managedClasses;
-                        return super.generateClassNames((0, a.A)(e, [t, this.props.disabled], [s, this.state.selected]))
+                        return super.generateClassNames((0, o.A)(e, [t, this.props.disabled], [s, this.state.selected]))
                     }
                     generateToggleStateLabel() {
                         return this.state.selected ? this.props.selectedMessage : this.props.unselectedMessage
                     }
                     generateLabel() {
-                        if(this.props.labelId || this.props.children) return o.createElement("label", {
-                            className: (0, a.A)(this.props.managedClasses.toggle_label),
+                        if (this.props.labelId || this.props.children) return a.createElement("label", {
+                            className: (0, o.A)(this.props.managedClasses.toggle_label),
                             id: this.props.labelId,
                             htmlFor: this.props.inputId
                         }, this.props.children)
                     }
                     renderStatusMessage() {
-                        if(this.props.selectedMessage || this.props.unselectedMessage) return o.createElement("span", {
+                        if (this.props.selectedMessage || this.props.unselectedMessage) return a.createElement("span", {
                             id: this.props.statusMessageId,
-                            className: (0, a.A)(this.props.managedClasses.toggle_statusMessage)
+                            className: (0, o.A)(this.props.managedClasses.toggle_statusMessage)
                         }, this.generateToggleStateLabel())
                     }
                 }
@@ -9865,13 +9654,12 @@
                 const l = r
             },
             61341: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     ZP: () => h
                 });
                 var i = s(11754),
-                    a = s(37834),
-                    o = s(89526),
+                    o = s(37834),
+                    a = s(89526),
                     n = s(12468),
                     r = s(14895);
                 class l extends i.Z {
@@ -9886,13 +9674,13 @@
                         return this.generateHTMLTag()
                     }
                     render() {
-                        return o.createElement(this.tag, Object.assign({}, this.unhandledProps(), {
+                        return a.createElement(this.tag, Object.assign({}, this.unhandledProps(), {
                             className: this.generateClassNames()
                         }), this.props.children)
                     }
                     generateClassNames() {
                         const e = this.props.managedClasses;
-                        return super.generateClassNames((0, a.A)(e.typography, e[`typography__${this.props.size}`]))
+                        return super.generateClassNames((0, o.A)(e.typography, e[`typography__${this.props.size}`]))
                     }
                     generateHTMLTag() {
                         return r.l[this.props.tag] || r.l.p
@@ -9906,34 +9694,31 @@
                 const h = l
             },
             14895: (e, t, s) => {
-                "use strict";
-                var i, a;
+                var i, o;
                 s.d(t, {
                         l: () => i,
-                        H: () => a
+                        H: () => o
                     }),
                     function(e) {
                         e.caption = "caption", e.h1 = "h1", e.h2 = "h2", e.h3 = "h3", e.h4 = "h4", e.h5 = "h5", e.h6 = "h6", e.p = "p", e.span = "span", e.figcaption = "figcaption"
                     }(i || (i = {})),
                     function(e) {
                         e[e._1 = 1] = "_1", e[e._2 = 2] = "_2", e[e._3 = 3] = "_3", e[e._4 = 4] = "_4", e[e._5 = 5] = "_5", e[e._6 = 6] = "_6", e[e._7 = 7] = "_7", e[e._8 = 8] = "_8", e[e._9 = 9] = "_9"
-                    }(a || (a = {}))
+                    }(o || (o = {}))
             },
             12468: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     k: () => i
                 });
                 const i = "Base"
             },
             8641: (e, t, s) => {
-                "use strict";
                 s.d(t, {
                     ZP: () => m
                 });
                 var i = s(11754),
-                    a = s(37834),
-                    o = s(86577),
+                    o = s(37834),
+                    a = s(86577),
                     n = s(9453),
                     r = s(9680),
                     l = s(64829),
@@ -9993,7 +9778,7 @@
                         }, this.enableComponent = () => {
                             const e = this.getViewportElement(this.props.viewport),
                                 t = this.getAnchorElement();
-                            !this.state.disabled || this.props.disabled || (0, l.Z)(t) || (0, l.Z)(e) || (0, l.Z)(this.rootElement.current) || (window.IntersectionObserver && window.ResizeObserver ? (this.setState({
+                            !this.state.disabled || this.props.disabled || (0, l.Z)(t) || (0, l.Z)(e) || (0, l.Z)(this.rootElement.current) || (window.IntersectionObserver && window.ResizeObserver && !this.props.shouldUseNoObserverMode ? (this.setState({
                                 disabled: !1,
                                 noObserverMode: !1,
                                 validRefChecksRemaining: 0
@@ -10005,7 +9790,7 @@
                         }, this.setNoObserverMode = () => {
                             const e = this.getViewportElement(this.props.viewport),
                                 t = this.getAnchorElement();
-                            if((0, l.Z)(e) || (0, l.Z)(t)) return;
+                            if ((0, l.Z)(e) || (0, l.Z)(t)) return;
                             const s = this.rootElement.current.getBoundingClientRect();
                             this.positionerDimension = {
                                 height: s.height,
@@ -10026,14 +9811,14 @@
                             const t = this.getViewportElement(e);
                             (0, l.Z)(t) || t.removeEventListener("scroll", this.handleScroll), this.collisionDetector && "function" == typeof this.collisionDetector.disconnect && (this.collisionDetector.disconnect(), this.collisionDetector = null), this.resizeDetector && "function" == typeof this.resizeDetector.disconnect && (this.resizeDetector.disconnect(), this.resizeDetector = null)
                         }, this.getHorizontalPositioningOptions = () => {
-                            switch(this.props.horizontalPositioningMode) {
+                            switch (this.props.horizontalPositioningMode) {
                                 case d.tg.inset:
                                     return [b.insetLeft, b.insetRight];
                                 case d.tg.adjacent:
                                     return [b.left, b.right]
                             }
                         }, this.getVerticalPositioningOptions = () => {
-                            switch(this.props.verticalPositioningMode) {
+                            switch (this.props.verticalPositioningMode) {
                                 case d.tg.inset:
                                     return [g.insetTop, g.insetBottom];
                                 case d.tg.adjacent:
@@ -10042,7 +9827,7 @@
                         }, this.getAvailableWidth = e => {
                             const t = this.anchorLeft - this.viewportRect.left,
                                 s = this.viewportRect.right - (this.anchorLeft + this.anchorWidth);
-                            switch(e) {
+                            switch (e) {
                                 case b.left:
                                     return t;
                                 case b.insetLeft:
@@ -10055,7 +9840,7 @@
                         }, this.getAvailableHeight = e => {
                             const t = this.anchorTop - this.viewportRect.top,
                                 s = this.viewportRect.bottom - (this.anchorTop + this.anchorHeight);
-                            switch(e) {
+                            switch (e) {
                                 case g.top:
                                     return t;
                                 case g.insetTop:
@@ -10090,11 +9875,11 @@
                         }, this.handlePositionerCollision = (e, t) => {
                             this.viewportRect = e.rootBounds;
                             const s = e.boundingClientRect;
-                            if(this.positionerDimension = {
+                            if (this.positionerDimension = {
                                     height: s.height,
                                     width: s.width
                                 }, t) {
-                                switch(this.state.currentVerticalPosition) {
+                                switch (this.state.currentVerticalPosition) {
                                     case g.top:
                                         this.anchorTop = s.bottom - this.state.yTranslate, this.anchorBottom = this.anchorTop + this.anchorHeight;
                                         break;
@@ -10107,7 +9892,7 @@
                                     case g.bottom:
                                         this.anchorBottom = s.top - this.state.yTranslate, this.anchorTop = this.anchorBottom - this.anchorHeight
                                 }
-                                switch(this.state.currentHorizontalPosition) {
+                                switch (this.state.currentHorizontalPosition) {
                                     case b.left:
                                         this.anchorLeft = s.right - this.state.xTranslate, this.anchorRight = this.anchorLeft + this.anchorWidth;
                                         break;
@@ -10122,8 +9907,8 @@
                                 }
                             }
                         }, this.updatePositionerOffset = e => {
-                            if(this.props.horizontalPositioningMode === d.tg.uncontrolled) this.baseHorizontalOffset = this.anchorLeft - e.left;
-                            else switch(this.state.currentHorizontalPosition) {
+                            if (this.props.horizontalPositioningMode === d.tg.uncontrolled) this.baseHorizontalOffset = this.anchorLeft - e.left;
+                            else switch (this.state.currentHorizontalPosition) {
                                 case b.undefined:
                                     this.baseHorizontalOffset = this.anchorLeft + this.state.xTranslate - e.left;
                                     break;
@@ -10139,8 +9924,8 @@
                                 case b.right:
                                     this.baseHorizontalOffset = this.baseHorizontalOffset + (this.anchorRight + this.state.xTranslate - e.left)
                             }
-                            if(this.props.verticalPositioningMode === d.tg.uncontrolled) this.baseVerticalOffset = this.anchorBottom - e.top;
-                            else switch(this.state.currentVerticalPosition) {
+                            if (this.props.verticalPositioningMode === d.tg.uncontrolled) this.baseVerticalOffset = this.anchorBottom - e.top;
+                            else switch (this.state.currentVerticalPosition) {
                                 case g.undefined:
                                     this.baseVerticalOffset = this.anchorBottom + this.state.yTranslate - e.top;
                                     break;
@@ -10158,29 +9943,29 @@
                             }
                         }, this.updateForScrolling = () => {
                             const e = this.getViewportElement(this.props.viewport);
-                            if((0, l.Z)(e) || isNaN(e.scrollTop)) return;
+                            if ((0, l.Z)(e) || isNaN(e.scrollTop)) return;
                             const t = e.scrollTop,
                                 s = e.scrollLeft;
-                            if(this.scrollTop !== t) {
+                            if (this.scrollTop !== t) {
                                 const e = this.scrollTop - t;
                                 this.scrollTop = t, this.anchorTop = this.anchorTop + e, this.anchorBottom = this.anchorBottom + e
                             }
-                            if(this.scrollLeft !== s) {
+                            if (this.scrollLeft !== s) {
                                 const e = this.scrollLeft - s;
                                 this.scrollLeft = s, this.anchorLeft = this.anchorLeft + e, this.anchorRight = this.anchorRight + e
                             }
                         }, this.updateLayout = () => {
-                            if(this.openRequestAnimationFrame = null, this.state.disabled || (0, l.Z)(this.viewportRect) || (0, l.Z)(this.positionerDimension) || this.props.fixedAfterInitialPlacement && this.state.initialLayoutComplete || this.state.noObserverMode && this.state.initialLayoutComplete) return;
+                            if (this.openRequestAnimationFrame = null, this.state.disabled || (0, l.Z)(this.viewportRect) || (0, l.Z)(this.positionerDimension) || this.props.fixedAfterInitialPlacement && this.state.initialLayoutComplete || this.state.noObserverMode && this.state.initialLayoutComplete) return;
                             this.updateForScrolling();
                             let e = g.undefined,
                                 t = b.undefined;
-                            if(this.props.horizontalPositioningMode !== d.tg.uncontrolled) {
+                            if (this.props.horizontalPositioningMode !== d.tg.uncontrolled) {
                                 const e = this.getHorizontalPositioningOptions();
                                 t = this.state.defaultHorizontalPosition;
                                 const s = void 0 !== this.props.horizontalThreshold ? this.props.horizontalThreshold : this.positionerDimension.width;
                                 (t === b.undefined || !this.props.horizontalLockToDefault && this.getAvailableWidth(t) < s) && (t = this.getAvailableWidth(e[0]) > this.getAvailableWidth(e[1]) ? e[0] : e[1])
                             }
-                            if(this.props.verticalPositioningMode !== d.tg.uncontrolled) {
+                            if (this.props.verticalPositioningMode !== d.tg.uncontrolled) {
                                 const t = this.getVerticalPositioningOptions();
                                 e = this.state.defaultVerticalPosition;
                                 const s = void 0 !== this.props.verticalThreshold ? this.props.verticalThreshold : this.positionerDimension.height;
@@ -10201,22 +9986,22 @@
                         }, this.getHorizontalPositioningState = (e, t) => {
                             let s = null,
                                 i = null,
-                                a = "left";
-                            switch(e) {
+                                o = "left";
+                            switch (e) {
                                 case b.left:
-                                    a = "right", s = t.width - this.baseHorizontalOffset;
+                                    o = "right", s = t.width - this.baseHorizontalOffset;
                                     break;
                                 case b.insetLeft:
-                                    a = "right", s = t.width - this.anchorWidth - this.baseHorizontalOffset;
+                                    o = "right", s = t.width - this.anchorWidth - this.baseHorizontalOffset;
                                     break;
                                 case b.insetRight:
-                                    a = "left", i = this.baseHorizontalOffset;
+                                    o = "left", i = this.baseHorizontalOffset;
                                     break;
                                 case b.right:
-                                    a = "left", i = this.anchorWidth + this.baseHorizontalOffset
+                                    o = "left", i = this.anchorWidth + this.baseHorizontalOffset
                             }
                             return {
-                                xTransformOrigin: a,
+                                xTransformOrigin: o,
                                 right: s,
                                 left: i,
                                 currentHorizontalPosition: e,
@@ -10225,31 +10010,31 @@
                         }, this.getVerticalPositioningState = (e, t) => {
                             let s = null,
                                 i = null,
-                                a = "top";
-                            switch(e) {
+                                o = "top";
+                            switch (e) {
                                 case g.top:
-                                    a = "bottom", i = t.height + this.anchorHeight - this.baseVerticalOffset;
+                                    o = "bottom", i = t.height + this.anchorHeight - this.baseVerticalOffset;
                                     break;
                                 case g.insetTop:
-                                    a = "bottom", i = t.height - this.baseVerticalOffset;
+                                    o = "bottom", i = t.height - this.baseVerticalOffset;
                                     break;
                                 case g.insetBottom:
-                                    a = "top", s = this.baseVerticalOffset - this.anchorHeight;
+                                    o = "top", s = this.baseVerticalOffset - this.anchorHeight;
                                     break;
                                 case g.bottom:
-                                    a = "top", s = this.baseVerticalOffset
+                                    o = "top", s = this.baseVerticalOffset
                             }
                             return {
-                                yTransformOrigin: a,
+                                yTransformOrigin: o,
                                 top: s,
                                 bottom: i,
                                 currentVerticalPosition: e,
                                 verticalSelectedPositionHeight: t.height
                             }
                         }, this.getHorizontalTranslate = e => {
-                            if(!this.props.horizontalAlwaysInView || this.state.disabled) return 0;
+                            if (!this.props.horizontalAlwaysInView || this.state.disabled) return 0;
                             let t = 0;
-                            switch(e) {
+                            switch (e) {
                                 case b.left:
                                     t = this.viewportRect.right - this.anchorLeft, t = t < 0 ? t - 1 : 0;
                                     break;
@@ -10264,9 +10049,9 @@
                             }
                             return t
                         }, this.getVerticalTranslate = e => {
-                            if(!this.props.verticalAlwaysInView || this.state.disabled) return 0;
+                            if (!this.props.verticalAlwaysInView || this.state.disabled) return 0;
                             let t = 0;
-                            switch(e) {
+                            switch (e) {
                                 case g.top:
                                     t = this.viewportRect.bottom - this.anchorTop, t = t < 0 ? t - 1 : 0;
                                     break;
@@ -10283,37 +10068,37 @@
                         }, this.requestFrame = () => {
                             null === this.openRequestAnimationFrame && (this.openRequestAnimationFrame = window.requestAnimationFrame(this.updateLayout))
                         }, this.getAnchorElement = () => (0, l.Z)(this.props.anchor) ? null : this.extractElement(this.props.anchor), this.getViewportElement = e => {
-                            if(!(0, l.Z)(e)) {
+                            if (!(0, l.Z)(e)) {
                                 const t = this.extractElement(e);
                                 return null !== t ? t : null
                             }
-                            if(!(0, l.Z)(this.context.viewport)) {
+                            if (!(0, l.Z)(this.context.viewport)) {
                                 const e = this.extractElement(this.context.viewport);
                                 return null !== e ? e : null
                             }
                             return document.scrollingElement instanceof HTMLElement ? document.scrollingElement : null
                         }, this.extractElement = e => {
-                            const t = (0, o.x)(e);
+                            const t = (0, a.x)(e);
                             return t instanceof HTMLElement ? t : null
                         }, this.getHorizontalPositionToLabel = (e, t) => {
-                            switch(e) {
+                            switch (e) {
                                 case d.tg.inset:
-                                    if(t === d.kv.left) return b.insetLeft;
-                                    if(t === d.kv.right) return b.insetRight;
+                                    if (t === d.kv.left) return b.insetLeft;
+                                    if (t === d.kv.right) return b.insetRight;
                                 case d.tg.adjacent:
-                                    if(t === d.kv.left) return b.left;
-                                    if(t === d.kv.right) return b.right;
+                                    if (t === d.kv.left) return b.left;
+                                    if (t === d.kv.right) return b.right;
                                 case d.tg.uncontrolled:
                                     return b.undefined
                             }
                         }, this.getVerticalPositionToLabel = (e, t) => {
-                            switch(e) {
+                            switch (e) {
                                 case d.tg.inset:
-                                    if(t === d.Lp.top) return g.insetTop;
-                                    if(t === d.Lp.bottom) return g.insetBottom;
+                                    if (t === d.Lp.top) return g.insetTop;
+                                    if (t === d.Lp.bottom) return g.insetBottom;
                                 case d.tg.adjacent:
-                                    if(t === d.Lp.top) return g.top;
-                                    if(t === d.Lp.bottom) return g.bottom;
+                                    if (t === d.Lp.top) return g.top;
+                                    if (t === d.Lp.bottom) return g.bottom;
                                 case d.tg.uncontrolled:
                                     return g.undefined
                             }
@@ -10345,8 +10130,8 @@
                         this.state.disabled || this.detachListeners(this.props.viewport)
                     }
                     componentDidUpdate(e) {
-                        if(e !== this.props) {
-                            if(e.anchor !== this.props.anchor || e.viewport !== this.props.viewport) return this.detachListeners(e.viewport), void this.setState(this.generateInitialState());
+                        if (e !== this.props) {
+                            if (e.anchor !== this.props.anchor || e.viewport !== this.props.viewport) return this.detachListeners(e.viewport), void this.setState(this.generateInitialState());
                             this.requestFrame()
                         }(e.disabled !== this.props.disabled || this.state.validRefChecksRemaining > 0) && this.updateDisabledState()
                     }
@@ -10363,11 +10148,11 @@
                             viewportPositioner__left: t,
                             viewportPositioner__right: s,
                             viewportPositioner__top: i,
-                            viewportPositioner__bottom: o,
+                            viewportPositioner__bottom: a,
                             viewportPositioner__horizontalInset: n,
                             viewportPositioner__verticalInset: r
                         } = this.props.managedClasses, l = this.state.currentHorizontalPosition, h = this.state.currentVerticalPosition, c = h === g.insetTop || h === g.insetBottom, d = l === b.insetLeft || l === b.insetRight;
-                        return super.generateClassNames((0, a.A)(e, [t, l === b.left || l === b.insetLeft], [s, l === b.right || l === b.insetRight], [n, d], [i, h === g.top || h === g.insetTop], [o, h === g.bottom || h === g.insetBottom], [r, c]))
+                        return super.generateClassNames((0, o.A)(e, [t, l === b.left || l === b.insetLeft], [s, l === b.right || l === b.insetRight], [n, d], [i, h === g.top || h === g.insetTop], [a, h === g.bottom || h === g.insetBottom], [r, c]))
                     }
                 }
                 u.displayName = `${c.k}ViewportPositioner`, u.contextType = p, u.defaultProps = {
@@ -10387,64 +10172,63 @@
                 const m = u
             },
             10736: (e, t, s) => {
-                "use strict";
-                var i, a, o;
+                var i, o, a;
                 s.d(t, {
                         kv: () => i,
-                        Lp: () => a,
-                        tg: () => o
+                        Lp: () => o,
+                        tg: () => a
                     }),
                     function(e) {
                         e.left = "left", e.right = "right", e.uncontrolled = "uncontrolled"
                     }(i || (i = {})),
                     function(e) {
                         e.top = "top", e.bottom = "bottom", e.uncontrolled = "uncontrolled"
-                    }(a || (a = {})),
+                    }(o || (o = {})),
                     function(e) {
                         e.uncontrolled = "uncontrolled", e.adjacent = "adjacent", e.inset = "inset"
-                    }(o || (o = {}))
+                    }(a || (a = {}))
             }
         },
         s = {};
 
     function i(e) {
-        var a = s[e];
-        if(void 0 !== a) return a.exports;
-        var o = s[e] = {
+        var o = s[e];
+        if (void 0 !== o) return o.exports;
+        var a = s[e] = {
             id: e,
             loaded: !1,
             exports: {}
         };
-        return t[e].call(o.exports, o, o.exports, i), o.loaded = !0, o.exports
+        return t[e].call(a.exports, a, a.exports, i), a.loaded = !0, a.exports
     }
-    i.m = t, e = [], i.O = (t, s, a, o) => {
-        if(!s) {
+    i.m = t, e = [], i.O = (t, s, o, a) => {
+        if (!s) {
             var n = 1 / 0;
-            for(h = 0; h < e.length; h++) {
-                for(var [s, a, o] = e[h], r = !0, l = 0; l < s.length; l++)(!1 & o || n >= o) && Object.keys(i.O).every((e => i.O[e](s[l]))) ? s.splice(l--, 1) : (r = !1, o < n && (n = o));
-                r && (e.splice(h--, 1), t = a())
+            for (h = 0; h < e.length; h++) {
+                for (var [s, o, a] = e[h], r = !0, l = 0; l < s.length; l++)(!1 & a || n >= a) && Object.keys(i.O).every((e => i.O[e](s[l]))) ? s.splice(l--, 1) : (r = !1, a < n && (n = a));
+                r && (e.splice(h--, 1), t = o())
             }
             return t
         }
-        o = o || 0;
-        for(var h = e.length; h > 0 && e[h - 1][2] > o; h--) e[h] = e[h - 1];
-        e[h] = [s, a, o]
+        a = a || 0;
+        for (var h = e.length; h > 0 && e[h - 1][2] > a; h--) e[h] = e[h - 1];
+        e[h] = [s, o, a]
     }, i.n = e => {
         var t = e && e.__esModule ? () => e.default : () => e;
         return i.d(t, {
             a: t
         }), t
     }, i.d = (e, t) => {
-        for(var s in t) i.o(t, s) && !i.o(e, s) && Object.defineProperty(e, s, {
+        for (var s in t) i.o(t, s) && !i.o(e, s) && Object.defineProperty(e, s, {
             enumerable: !0,
             get: t[s]
         })
-    }, i.g = function() {
-        if("object" == typeof globalThis) return globalThis;
+    }, i.e = () => Promise.resolve(), i.g = function() {
+        if ("object" == typeof globalThis) return globalThis;
         try {
             return this || new Function("return this")()
         } catch (e) {
-            if("object" == typeof window) return window
+            if ("object" == typeof window) return window
         }
     }(), i.hmd = e => ((e = Object.create(e)).children || (e.children = []), Object.defineProperty(e, "exports", {
         enumerable: !0,
@@ -10463,16 +10247,16 @@
         };
         i.O.j = t => 0 === e[t];
         var t = (t, s) => {
-                var a, o, [n, r, l] = s,
+                var o, a, [n, r, l] = s,
                     h = 0;
-                for(a in r) i.o(r, a) && (i.m[a] = r[a]);
-                if(l) var c = l(i);
-                for(t && t(s); h < n.length; h++) o = n[h], i.o(e, o) && e[o] && e[o][0](), e[n[h]] = 0;
+                for (o in r) i.o(r, o) && (i.m[o] = r[o]);
+                if (l) var c = l(i);
+                for (t && t(s); h < n.length; h++) a = n[h], i.o(e, a) && e[a] && e[a][0](), e[n[h]] = 0;
                 return i.O(c)
             },
             s = self.webpackChunkedge_common = self.webpackChunkedge_common || [];
         s.forEach(t.bind(null, 0)), s.push = t.bind(null, s.push.bind(s))
     })();
-    var a = i.O(void 0, [692, 197], (() => i(13695)));
-    a = i.O(a)
+    var o = i.O(void 0, [692, 197], (() => i(13695)));
+    o = i.O(o)
 })();

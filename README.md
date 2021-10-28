@@ -15,9 +15,10 @@ On iOS, you need to use Safari and add the page to the homescreen.
 On Chrome Android, a notification may appear at the bottom of the screen.
 
 ## Features
-- New code from Microsoft Edge v93.0.961.38.
+- New code from Microsoft Edge v95.
 - 3 game modes.
-- Keyboard, mouse and controller support.
+- Keyboard, mouse, touch and controller support.
 - Use ``localstorage`` for storing high score instead of ``chrome.send``, which is not present for client-side.
 - PWA support. You can install this game as an app to play offline.
 - Mobile support. The game is responsive to most screen sizes.
+- Show touch instructions for touch screens as default.
