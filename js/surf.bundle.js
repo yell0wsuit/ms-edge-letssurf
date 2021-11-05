@@ -19,7 +19,7 @@
                     }))
                 }
             },
-            13695: (e, t, s) => {
+            37922: (e, t, s) => {
                 var i = s(73961),
                     o = s(89526),
                     a = s(87958),
@@ -233,10 +233,10 @@
                 class X {
                     constructor() {
                         if (this.localData = void 0, X.offline) return X.offline;
-                        X.offline = this, this.loadData(), ae.subscribe(this.loadData.bind(this))
+                        X.offline = this, this.loadData(), le.subscribe(this.loadData.bind(this))
                     }
                     loadData() {
-                        const e = ae.getState();
+                        const e = le.getState();
                         this.localData = {
                             settings: {
                                 character: e.currentCharacter,
@@ -253,13 +253,13 @@
                         }
                     }
                     saveData(e) {
-                        ae.dispatch(ie(e)), ne.saveZigZagHighScore(e.zigzag_bestScore), ne.saveEndlessHighScore(e.endless_bestScore), ne.saveTimeTrialHighScore(e.timetrial_bestScore), ne.saveGameMode(e.mode), ne.saveHighVisibilityMode(e.highVisibilityMode), ne.saveReducedSpeedMode(e.gameSpeed < ee), ne.saveDefaultCharacter(e.currentCharacter), ne.saveDefaultTheme(e.theme)
+                        le.dispatch(ae(e)), he.saveZigZagHighScore(e.zigzag_bestScore), he.saveEndlessHighScore(e.endless_bestScore), he.saveTimeTrialHighScore(e.timetrial_bestScore), he.saveGameMode(e.mode), he.saveHighVisibilityMode(e.highVisibilityMode), he.saveReducedSpeedMode(e.gameSpeed < te), he.saveDefaultCharacter(e.currentCharacter), he.saveDefaultTheme(e.theme)
                     }
                     resetData() {
-                        ae.dispatch(oe()), ne.resetAllStats()
+                        le.dispatch(ne()), he.resetAllStats()
                     }
                     getCommonStats(e, t) {
-                        const s = Q.sys.game;
+                        const s = ee.sys.game;
                         return {
                             gameMode: e,
                             score: e === j.TimeTrial ? Math.floor(1e3 * t) : t,
@@ -271,55 +271,70 @@
                         }
                     }
                     storeEndlessStats() {
-                        const e = Q.sys.getCurrentScore(),
-                            t = Q.sys.session.bestScore.endless,
-                            s = Q.sys.game;
-                        ne.recordGameEnd({
+                        const e = ee.sys.getCurrentScore(),
+                            t = ee.sys.session.bestScore.endless,
+                            s = ee.sys.game;
+                        he.recordGameEnd({
                             ...this.getCommonStats(j.Endless, e),
                             loseCondition: s.caught ? "kraken" : "lives",
                             dogCollected: s.friend
-                        }), !s.cheat.used && e > t && (Q.sys.session.bestScore.endless = e, s.highScore = !0, this.saveData({
-                            ...ae.getState(),
+                        }), !s.cheat.used && e > t && (ee.sys.session.bestScore.endless = e, s.highScore = !0, this.saveData({
+                            ...le.getState(),
                             endless_bestScore: e
                         }))
                     }
                     storeTimeTrialStats() {
-                        const e = Q.sys.getCurrentScore(),
-                            t = Q.sys.session.bestScore.timetrial,
-                            s = Q.sys.game;
-                        ne.recordGameEnd({
+                        const e = ee.sys.getCurrentScore(),
+                            t = ee.sys.session.bestScore.timetrial,
+                            s = ee.sys.game;
+                        he.recordGameEnd({
                             ...this.getCommonStats(j.TimeTrial, e),
                             livesCollected: s.lives.numCollected
-                        }), !s.cheat.used && (e < t || t < 0) && s.finish && (Q.sys.session.bestScore.timetrial = e, s.highScore = !0, this.saveData({
-                            ...ae.getState(),
+                        }), !s.cheat.used && (e < t || t < 0) && s.finish && (ee.sys.session.bestScore.timetrial = e, s.highScore = !0, this.saveData({
+                            ...le.getState(),
                             timetrial_bestScore: e
                         }))
                     }
                     storeZigZagStreak() {
-                        const e = Q.sys.getCurrentScore(),
-                            t = Q.sys.session.bestScore.zigzag,
-                            s = Q.sys.game;
-                        ne.recordGameEnd(this.getCommonStats(j.ZigZag, e)), !s.cheat.used && e > t && (Q.sys.session.bestScore.zigzag = e, s.highScore = !0, this.saveData({
-                            ...ae.getState(),
+                        const e = ee.sys.getCurrentScore(),
+                            t = ee.sys.session.bestScore.zigzag,
+                            s = ee.sys.game;
+                        he.recordGameEnd(this.getCommonStats(j.ZigZag, e)), !s.cheat.used && e > t && (ee.sys.session.bestScore.zigzag = e, s.highScore = !0, this.saveData({
+                            ...le.getState(),
                             zigzag_bestScore: e
                         }))
                     }
                 }
-                let Y, J;
+                
+                function _isIpad() {
+                    var isIpad = navigator.userAgent.toLowerCase().indexOf('ipad') !== -1;
+                    if (!isIpad && navigator.userAgent.match(/Mac/) && navigator.maxTouchPoints && navigator.maxTouchPoints > 2) {
+                        return true;
+                        }
+                    return isIpad;
+                } /* newly added */
+                
+                var IS_IOS = !!window.navigator.userAgent.match(/iP(hone|ad|od)/i) && !!window.navigator.userAgent.match(/Safari/i)
+                                || _isIpad() || /CriOS/.test(window.navigator.userAgent) || /FxiOS/.test(window.navigator.userAgent); /* newly added */
+                                
+                function Y() {
+                    return /Android/.test(window.navigator.userAgent) || IS_IOS /* newly added */
+                }
+                let J, Q;
                 X.offline = void 0,
                     function(e) {
                         e.Menu = "menu", e.Play = "play", e.Pause = "pause", e.Over = "over"
-                    }(Y || (Y = {})),
+                    }(J || (J = {})),
                     function(e) {
                         e.Keyboard = "keyboard", e.Mouse = "mouse", e.Touch = "touch", e.Xbox = "xbox", e.Ps = "ps"
-                    }(J || (J = {}));
-                class Q {
+                    }(Q || (Q = {}));
+                class ee {
                     constructor() {
-                        if (this.session = void 0, this.game = void 0, Q.sys) return Q.sys;
-                        Q.sys = this, this.defineSessionSettings(), this.resetGameData(), ae.subscribe(this.loadSessionSettings.bind(this))
+                        if (this.session = void 0, this.game = void 0, ee.sys) return ee.sys;
+                        ee.sys = this, this.defineSessionSettings(), this.resetGameData(), le.subscribe(this.loadSessionSettings.bind(this))
                     }
                     defineSessionSettings() {
-                        const e = ae.getState();
+                        const e = le.getState();
                         this.session = {
                             settings: {
                                 mode: e.mode,
@@ -333,10 +348,10 @@
                                 timetrial: e.timetrial_bestScore,
                                 zigzag: e.zigzag_bestScore
                             },
-                            state: Y.Menu,
+                            state: J.Menu,
                             flyoutActive: !1,
                             forcedColors: !1,
-                            inputType: isTouch() ? J.Touch : J.Keyboard,
+                            inputType: Y() ? Q.Touch : Q.Keyboard,
                             w: 0,
                             h: 0,
                             x: 0,
@@ -357,7 +372,7 @@
                         })
                     }
                     loadSessionSettings() {
-                        const e = ae.getState();
+                        const e = le.getState();
                         this.session.settings.mode = e.mode, this.session.settings.theme = e.theme, this.session.settings.character = e.currentCharacter, this.session.settings.hitbox = e.highVisibilityMode, this.session.settings.gameSpeed = e.gameSpeed, this.session.bestScore.endless = e.endless_bestScore, this.session.bestScore.timetrial = e.timetrial_bestScore, this.session.bestScore.zigzag = e.zigzag_bestScore
                     }
                     saveGameStats() {
@@ -457,43 +472,48 @@
                         return e[Math.floor(Math.random() * e.length)]
                     }
                 }
-                Q.sys = void 0;
-                const ee = 1,
-                    te = {
-                        currentCharacter: Z.pz.getInteger("lastSelectedPlayer"),
+                ee.sys = void 0;
+                const te = 1,
+                    se = Z.pz.getBoolean("isIOS"),
+                    ie = {
+                        currentCharacter: re("lastSelectedPlayer"),
                         highVisibilityMode: Z.pz.getBoolean("highVisibilityActive"),
-                        gameSpeed: Z.pz.getBoolean("reducedSpeedActive") ? .5 : ee,
+                        gameSpeed: Z.pz.getBoolean("reducedSpeedActive") ? .5 : te,
                         mode: q(Z.pz.getString("lastSelectedMode")),
                         theme: K(Z.pz.getString("lastSelectedTheme")),
-                        gameState: Y.Menu,
-                        endless_bestScore: Z.pz.getInteger("endlessBestScore"),
-                        timetrial_bestScore: Z.pz.getInteger("timetrialBestScore") < 0 ? -1 : Z.pz.getInteger("timetrialBestScore") / 1e3,
-                        zigzag_bestScore: Z.pz.getInteger("zigzagBestScore")
+                        gameState: J.Menu,
+                        endless_bestScore: re("endlessBestScore"),
+                        timetrial_bestScore: re("timetrialBestScore") < 0 ? -1 : re("timetrialBestScore") / 1e3,
+                        zigzag_bestScore: re("zigzagBestScore")
                     };
-                var se;
+                var oe;
 
-                function ie(e) {
+                function ae(e) {
                     return {
-                        type: se.UPDATE_STATS,
+                        type: oe.UPDATE_STATS,
                         ...e
                     }
                 }
 
-                function oe() {
+                function ne() {
                     return {
-                        type: se.RESET_STATS,
+                        type: oe.RESET_STATS,
                         endless_bestScore: -1,
                         zigzag_bestScore: -1,
                         timetrial_bestScore: -1,
                         currentCharacter: 1,
                         theme: "surf"
                     }
+                }
+
+                function re(e) {
+                    return se ? parseInt(Z.pz.getString(e)) : Z.pz.getInteger(e)
                 }! function(e) {
                     e.RESET_STATS = "RESET_STATS", e.UPDATE_GAME_STATE = "UPDATE_GAME_STATE", e.UPDATE_STATS = "UPDATE_STATS"
-                }(se || (se = {}));
-                const ae = (0, U.MT)((function(e = te, t) {
+                }(oe || (oe = {}));
+                const le = (0, U.MT)((function(e = ie, t) {
                     switch (t.type) {
-                        case se.UPDATE_STATS: {
+                        case oe.UPDATE_STATS: {
                             const s = t;
                             return {
                                 ...e,
@@ -507,29 +527,29 @@
                                 timetrial_bestScore: e.timetrial_bestScore < 0 ? s.timetrial_bestScore : Math.min(e.timetrial_bestScore, s.timetrial_bestScore)
                             }
                         }
-                        case se.UPDATE_GAME_STATE:
+                        case oe.UPDATE_GAME_STATE:
                             return {
                                 ...e, gameState: t.gameState
                             };
-                        case se.RESET_STATS:
+                        case oe.RESET_STATS:
                             return {
                                 ...e, endless_bestScore: t.endless_bestScore, zigzag_bestScore: t.zigzag_bestScore, timetrial_bestScore: t.timetrial_bestScore, currentCharacter: t.currentCharacter, theme: t.theme
                             };
                         default:
                             return e
                     }
-                }), te);
-                class ne {
+                }), ie);
+                class he {
                     static recordNewGame(e) {
                         switch (e) {
                             case j.ZigZag:
-                                ne.numZigZagGames += 1;
+                                he.numZigZagGames += 1;
                                 break;
                             case j.Endless:
-                                ne.numEndlessGames += 1;
+                                he.numEndlessGames += 1;
                                 break;
                             case j.TimeTrial:
-                                ne.numTimeTrialGames += 1
+                                he.numTimeTrialGames += 1
                         }
                     }
                     static defaultStats() {
@@ -545,8 +565,17 @@
                         }
                     }
                     static async getAllStats() {
+                        // const e = await Z.cr.sendWithPromise("get-stats");
+                        // return {
+                        //     ...e,
+                        //     timetrial_bestScore: e.timetrial_bestScore < 0 ? -1 : e.timetrial_bestScore / 1e3,
+                        //     gameSpeed: e.reducedSpeedMode ? .5 : te,
+                        //     mode: q(e.mode),
+                        //     theme: K(e.theme)
+                        // }
+                        
                         return (
-                            JSON.parse(localStorage.getItem("surfstats")) || ne.defaultStats()
+                            JSON.parse(localStorage.getItem("surfstats")) || he.defaultStats()
                         );
                     }
                     static resetAllStats() {
@@ -595,15 +624,15 @@
                         })));
                     }
                     static recordUnload() {
-                        const e = Math.floor(Date.now() - ne.sessionStartTime) || 0,
+                        const e = Math.floor(Date.now() - he.sessionStartTime) || 0,
                             t = {
-                                zigzagGamesPlayed: ne.numZigZagGames,
-                                endlessGamesPlayed: ne.numEndlessGames,
-                                timetrialGamesPlayed: ne.numTimeTrialGames
+                                zigzagGamesPlayed: he.numZigZagGames,
+                                endlessGamesPlayed: he.numEndlessGames,
+                                timetrialGamesPlayed: he.numTimeTrialGames
                             };
-                        // Z.e9.send("record-unload", [t, e]), ne.numZigZagGames = 0, ne.numEndlessGames = 0, ne.numTimeTrialGames = 0, ne.sessionStartTime = Date.now()
+                        // Z.e9.send("record-unload", [t, e]), he.numZigZagGames = 0, he.numEndlessGames = 0, he.numTimeTrialGames = 0, he.sessionStartTime = Date.now()
                         if ("undefined" != typeof Z.e9 && "function" == typeof Z.e9.send) {
-                            Z.e9.send("record-unload", [t, e]), ne.numZigZagGames = 0, ne.numEndlessGames = 0, ne.numTimeTrialGames = 0, ne.sessionStartTime = Date.now()
+                            Z.e9.send("record-unload", [t, e]), he.numZigZagGames = 0, he.numEndlessGames = 0, he.numTimeTrialGames = 0, he.sessionStartTime = Date.now()
                         }
                     }
                     static recordGameEnd(e) {
@@ -617,14 +646,14 @@
                         }
                     }
                 }
-                ne.numTimeTrialGames = 0, ne.numEndlessGames = 0, ne.numZigZagGames = 0, ne.sessionStartTime = Date.now();
-                class re {
+                he.numTimeTrialGames = 0, he.numEndlessGames = 0, he.numZigZagGames = 0, he.sessionStartTime = Date.now();
+                class ce {
                     constructor() {
-                        if (this.canvas = void 0, this.ctx = void 0, this.gradient = void 0, this.bg = void 0, this.offset = void 0, re.sys) return re.sys;
-                        re.sys = this
+                        if (this.canvas = void 0, this.ctx = void 0, this.gradient = void 0, this.bg = void 0, this.offset = void 0, ce.sys) return ce.sys;
+                        ce.sys = this
                     }
                     createBackground() {
-                        this.canvas = ce.sys.createNewCanvas(), this.ctx = this.canvas.getContext("2d"), this.gradient = ce.sys.createNew("div", document.body, "game-gradient"), this.bg = ce.sys.createNew("div", document.body, "game-bg"), this.offset = {
+                        this.canvas = be.sys.createNewCanvas(), this.ctx = this.canvas.getContext("2d"), this.gradient = be.sys.createNew("div", document.body, "game-gradient"), this.bg = be.sys.createNew("div", document.body, "game-bg"), this.offset = {
                             x: 0,
                             y: 0
                         }
@@ -634,52 +663,52 @@
                     }
                     defineCanvas() {
                         const e = window.getComputedStyle(this.canvas.parentNode);
-                        Q.sys.session.w = parseInt(e.getPropertyValue("width"), 10), Q.sys.session.h = parseInt(e.getPropertyValue("height"), 10), this.canvas.style.width = Q.sys.session.w + "px", this.canvas.style.height = Q.sys.session.h + "px", this.canvas.width = Q.sys.session.w, this.canvas.height = Q.sys.session.h, Q.sys.session.x = Math.floor(.5 * Q.sys.session.w), Q.sys.session.y = Math.floor(.4 * Q.sys.session.h), this.ctx.imageSmoothingEnabled = !1
+                        ee.sys.session.w = parseInt(e.getPropertyValue("width"), 10), ee.sys.session.h = parseInt(e.getPropertyValue("height"), 10), this.canvas.style.width = ee.sys.session.w + "px", this.canvas.style.height = ee.sys.session.h + "px", this.canvas.width = ee.sys.session.w, this.canvas.height = ee.sys.session.h, ee.sys.session.x = Math.floor(.5 * ee.sys.session.w), ee.sys.session.y = Math.floor(.4 * ee.sys.session.h), this.ctx.imageSmoothingEnabled = !1
                     }
                     clearCanvas() {
-                        this.ctx.clearRect(0, 0, Q.sys.session.w, Q.sys.session.h)
+                        this.ctx.clearRect(0, 0, ee.sys.session.w, ee.sys.session.h)
                     }
                     drawFx(e = 0, t = 0, s = 0) {
-                        const i = he.sys.sheet.fx,
+                        const i = pe.sys.sheet.fx,
                             o = i.poseData.effect,
                             a = Math.floor(e * i.fps) % o.length;
-                        this.draw(le.sys.objectsImg, i, t, s, o[a])
+                        this.draw(de.sys.objectsImg, i, t, s, o[a])
                     }
                     drawPlayerSprite(e, t = 0, s = 0, i = 0, o = 1) {
-                        const a = he.sys.sheet.player,
-                            n = Q.sys.game.caught ? a.poseData.end : a.poseData[e],
+                        const a = pe.sys.sheet.player,
+                            n = ee.sys.game.caught ? a.poseData.end : a.poseData[e],
                             r = Math.floor(t * a.fps) % 3;
-                        this.drawScaled(he.sys.playerSprite, a, s, i, {
+                        this.drawScaled(pe.sys.playerSprite, a, s, i, {
                             x: n,
                             y: a.mount[r]
                         }, o)
                     }
                     drawPlayerMenu(e, t, s = 0, i = 0, o = 1) {
-                        const a = he.sys.sheet.player,
+                        const a = pe.sys.sheet.player,
                             n = a.character[e],
                             r = a.poseData[t];
-                        this.drawScaled(le.sys.playerImg, a, s, i, {
+                        this.drawScaled(de.sys.playerImg, a, s, i, {
                             x: r,
                             y: 0
-                        }, o), this.drawScaled(le.sys.playerImg, a, s, i, {
+                        }, o), this.drawScaled(de.sys.playerImg, a, s, i, {
                             x: r,
                             y: n
                         }, o)
                     }
                     drawNpc(e, t, s, i) {
-                        const o = he.sys.sheet.npc,
+                        const o = pe.sys.sheet.npc,
                             a = {
                                 x: o.poseData[e],
                                 y: 64 * t
                             };
-                        this.draw(le.sys.objectsImg, o, s, i, a)
+                        this.draw(de.sys.objectsImg, o, s, i, a)
                     }
                     drawLayer(e, t, s = 0, i = 0, o = 0, a = "looping", n) {
                         if ("hidden" === a) return;
-                        const r = he.sys.sheet[e],
+                        const r = pe.sys.sheet[e],
                             l = r.poseData[t] || [],
                             h = Math.floor(o * r.fps) % l.length;
-                        if (this.draw(le.sys.objectsImg, r, s, i, l[h]), ("oneshot" === a || "ending" === a) && Math.ceil(o * r.fps) > l.length - 1) switch (a) {
+                        if (this.draw(de.sys.objectsImg, r, s, i, l[h]), ("oneshot" === a || "ending" === a) && Math.ceil(o * r.fps) > l.length - 1) switch (a) {
                             case "oneshot":
                                 n.anim = "paused";
                                 break;
@@ -688,39 +717,39 @@
                         }
                     }
                     drawShadow(e, t, s) {
-                        const i = re.sys.ctx;
+                        const i = ce.sys.ctx;
                         i.beginPath(), i.arc(e, t + s, 20 - s / 12, 0, 2 * Math.PI), i.fillStyle = "rgba(0,0,0," + (.6 - s / 200) + ")", i.fill()
                     }
                     drawBoost(e) {
-                        const t = re.sys.ctx;
-                        t.strokeStyle = "rgba(" + le.sys.accent + ",0.5)", t.lineCap = "round", t.setLineDash([]), e.forEach((e => {
+                        const t = ce.sys.ctx;
+                        t.strokeStyle = "rgba(" + de.sys.accent + ",0.5)", t.lineCap = "round", t.setLineDash([]), e.forEach((e => {
                             const s = .5 - e.time;
                             t.lineWidth = 6 * s, t.beginPath(), t.moveTo(e.start.x, e.start.y), t.lineTo(e.end.x, e.end.y), t.stroke()
                         }))
                     }
                     drawShield(e, t) {
-                        const s = Q.sys.game.shields.current / Q.sys.game.shields.max / 2 + .5,
-                            i = Math.cos(4 * Q.sys.game.time.elapsed) + 3,
-                            o = Math.cos(4 * (Q.sys.game.time.elapsed + 2)) + 3,
+                        const s = ee.sys.game.shields.current / ee.sys.game.shields.max / 2 + .5,
+                            i = Math.cos(4 * ee.sys.game.time.elapsed) + 3,
+                            o = Math.cos(4 * (ee.sys.game.time.elapsed + 2)) + 3,
                             a = (32 + 4 * i) * s,
                             n = (50 + 5 * o) * s,
-                            r = re.sys.ctx;
-                        r.beginPath(), r.ellipse(e, t, a, .7 * a, 0, 0, 2 * Math.PI), r.strokeStyle = "rgba(" + le.sys.accent + "," + (6 - i) / 4 + ")", r.lineWidth = 6 - i, r.stroke(), r.beginPath(), r.ellipse(e, t, n / 2, n / 2 * .7, 0, 0, 2 * Math.PI), r.fillStyle = "rgba(" + le.sys.accent + "," + o / 8 + ")", r.fill()
+                            r = ce.sys.ctx;
+                        r.beginPath(), r.ellipse(e, t, a, .7 * a, 0, 0, 2 * Math.PI), r.strokeStyle = "rgba(" + de.sys.accent + "," + (6 - i) / 4 + ")", r.lineWidth = 6 - i, r.stroke(), r.beginPath(), r.ellipse(e, t, n / 2, n / 2 * .7, 0, 0, 2 * Math.PI), r.fillStyle = "rgba(" + de.sys.accent + "," + o / 8 + ")", r.fill()
                     }
                     drawPickup(e) {
                         if (e.time >= 1) return e.pickup = !1, void(e.sleep = !0);
                         const t = e.time % 1,
                             s = e.h / 2 * (t / 1.5 + .5),
                             i = e.h * Math.min(t, .5),
-                            o = re.sys.ctx;
-                        o.beginPath(), o.arc(e.x, e.y, s, 0, 2 * Math.PI), o.strokeStyle = "rgba(" + le.sys.accent + "," + (1 - t) + ")", o.lineWidth = 6 * (1 - t), o.stroke(), o.beginPath(), o.arc(e.x, e.y, i, 0, 2 * Math.PI), o.strokeStyle = "rgba(" + le.sys.accent + "," + (1 - 2 * t) + ")", o.lineWidth = 6 * (1 - 2 * t), o.stroke()
+                            o = ce.sys.ctx;
+                        o.beginPath(), o.arc(e.x, e.y, s, 0, 2 * Math.PI), o.strokeStyle = "rgba(" + de.sys.accent + "," + (1 - t) + ")", o.lineWidth = 6 * (1 - t), o.stroke(), o.beginPath(), o.arc(e.x, e.y, i, 0, 2 * Math.PI), o.strokeStyle = "rgba(" + de.sys.accent + "," + (1 - 2 * t) + ")", o.lineWidth = 6 * (1 - 2 * t), o.stroke()
                     }
                     drawHitbox(e, t) {
-                        const s = he.sys.sheet[e].str;
+                        const s = pe.sys.sheet[e].str;
                         if (void 0 === s) return;
                         const i = "crash" !== s;
-                        let o = le.sys.hitbox[s];
-                        if (Q.sys.session.forcedColors) switch (s) {
+                        let o = de.sys.hitbox[s];
+                        if (ee.sys.session.forcedColors) switch (s) {
                             case "crash":
                                 o = "CanvasText";
                                 break;
@@ -730,47 +759,47 @@
                             case "avoid":
                                 o = "LinkText"
                         }
-                        const a = re.sys.ctx;
+                        const a = ce.sys.ctx;
                         a.beginPath(), a.lineWidth = 4, a.strokeStyle = o + "", i ? a.setLineDash([8]) : a.setLineDash([]), a.strokeRect(Math.floor(t.x) + 1, Math.floor(t.y) + 1, t.w - 2, t.h - 2)
                     }
                     drawBoundaries() {
-                        const e = Q.sys.session.x - Q.sys.game.dist.x,
-                            t = he.sys.boundary[Q.sys.session.settings.mode],
-                            s = re.sys.ctx;
-                        s.beginPath(), s.rect(0, 0, e - t, Q.sys.session.h), s.rect(e + t, 0, Q.sys.session.w, Q.sys.session.h), s.fillStyle = "rgba(" + le.sys.boundary + ")", s.fill()
+                        const e = ee.sys.session.x - ee.sys.game.dist.x,
+                            t = pe.sys.boundary[ee.sys.session.settings.mode],
+                            s = ce.sys.ctx;
+                        s.beginPath(), s.rect(0, 0, e - t, ee.sys.session.h), s.rect(e + t, 0, ee.sys.session.w, ee.sys.session.h), s.fillStyle = "rgba(" + de.sys.boundary + ")", s.fill()
                     }
                     drawScaled(e, t, s, i, o, a = 1) {
-                        re.sys.ctx.drawImage(e, o.x, o.y, t.w, t.h, Math.floor(s - t.w / (2 / a)), Math.floor(i - t.h / (2 / a)), t.w * a, t.h * a)
+                        ce.sys.ctx.drawImage(e, o.x, o.y, t.w, t.h, Math.floor(s - t.w / (2 / a)), Math.floor(i - t.h / (2 / a)), t.w * a, t.h * a)
                     }
                     draw(e, t, s, i, o) {
-                        re.sys.ctx.drawImage(e, o.x, o.y, t.w, t.h, Math.floor(s - t.w / 2), Math.floor(i - t.h / 2), t.w, t.h)
+                        ce.sys.ctx.drawImage(e, o.x, o.y, t.w, t.h, Math.floor(s - t.w / 2), Math.floor(i - t.h / 2), t.w, t.h)
                     }
                 }
-                re.sys = null;
-                class le {
+                ce.sys = null;
+                class de {
                     constructor() {
-                        if (this.objectsImg = null, this.playerImg = null, this.bgImg = null, this.bgSize = void 0, this.objectsTemp = null, this.playerTemp = null, this.bgTemp = null, this.gradient = void 0, this.hitbox = void 0, this.boundary = void 0, this.accent = void 0, le.sys) return le.sys;
-                        le.sys = this, this.setupImages()
+                        if (this.objectsImg = null, this.playerImg = null, this.bgImg = null, this.bgSize = void 0, this.objectsTemp = null, this.playerTemp = null, this.bgTemp = null, this.gradient = void 0, this.hitbox = void 0, this.boundary = void 0, this.accent = void 0, de.sys) return de.sys;
+                        de.sys = this, this.setupImages()
                     }
                     setupImages() {
                         this.objectsImg = new Image, this.playerImg = new Image, this.bgImg = new Image, this.bgSize = 256
                     }
                     loadNewTheme(e) {
-                        const t = le.allThemes[e];
+                        const t = de.allThemes[e];
                         this.objectsTemp = new Image, this.objectsTemp.src = t.folder + "/objects.png", this.playerTemp = new Image, this.playerTemp.src = t.folder + "/player.png", this.bgTemp = new Image, this.bgTemp.src = t.folder + "/bg.png"
                     }
                     setNewTheme(e) {
-                        const t = le.allThemes[e];
-                        this.objectsImg.src = this.objectsTemp.src, this.playerImg.src = this.playerTemp.src, this.bgImg.src = this.bgTemp.src, this.gradient = t.gradient, this.hitbox = t.hitbox, this.boundary = t.boundary, this.accent = t.accent, re.sys.bg.style.backgroundImage = "url(" + this.bgImg.src + ")", re.sys.bg.style.backgroundSize = this.bgSize + "px " + this.bgSize + "px";
+                        const t = de.allThemes[e];
+                        this.objectsImg.src = this.objectsTemp.src, this.playerImg.src = this.playerTemp.src, this.bgImg.src = this.bgTemp.src, this.gradient = t.gradient, this.hitbox = t.hitbox, this.boundary = t.boundary, this.accent = t.accent, ce.sys.bg.style.backgroundImage = "url(" + this.bgImg.src + ")", ce.sys.bg.style.backgroundSize = this.bgSize + "px " + this.bgSize + "px";
                         const s = this.gradient.start.join(", "),
                             i = this.gradient.end.join(", ");
-                        re.sys.gradient.style.background = "linear-gradient(180deg, rgb(" + s + ") 0%, rgb(" + i + ") 100%)", Q.sys.session.settings.theme = e, he.sys.createPlayerSprite(), Q.sys.saveSessionSettings(), delete this.objectsTemp, delete this.playerTemp, delete this.bgTemp
+                        ce.sys.gradient.style.background = "linear-gradient(180deg, rgb(" + s + ") 0%, rgb(" + i + ") 100%)", ee.sys.session.settings.theme = e, pe.sys.createPlayerSprite(), ee.sys.saveSessionSettings(), delete this.objectsTemp, delete this.playerTemp, delete this.bgTemp
                     }
                 }
-                le.sys = null, le.allThemes = {
+                de.sys = null, de.allThemes = {
                     ...G
                 };
-                class he {
+                class pe {
                     constructor() {
                         if (this.playerSprite = new Image, this.sheet = {
                                 player: {
@@ -808,7 +837,7 @@
                                         player6: 576,
                                         player7: 640,
                                         konami: 704,
-                                        special: 768
+                                        linux: 768
                                     }
                                 },
                                 npc: {
@@ -1796,23 +1825,25 @@
                                 [j.ZigZag]: 960,
                                 [j.TimeTrial]: 576,
                                 [j.Endless]: void 0
-                            }, this.characterList = void 0, this.selectionList = void 0, he.sys) return he.sys;
-                        he.sys = this, this.characterList = Object.keys(this.sheet.player.character), this.selectionList = ["player1", "player2", "player3", "player4", "player5", "player6", "player7"]
+                            }, this.characterList = void 0, this.selectionList = void 0, pe.sys) return pe.sys;
+                        pe.sys = this, this.characterList = Object.keys(this.sheet.player.character), this.selectionList = ["player1", "player2", "player3", "player4", "player5", "player6", "player7"], !1 === Z.pz.getBoolean("isLinuxTuxEnabled") && this.characterList.forEach(((e, t) => {
+                            "linux" === e && this.characterList.splice(t, 1)
+                        })), !0 === Z.pz.getBoolean("isLinuxTuxEnabled") && (this.selectionList = ["linux", "player1", "player2", "player3", "player4", "player5", "player6", "player7"])
                     }
                     createPlayerSprite() {
                         const e = 640,
                             t = document.createElement("canvas");
                         t.width = e, t.height = 192;
                         const s = t.getContext("2d");
-                        s.imageSmoothingEnabled = !1, s.drawImage(le.sys.playerImg, 0, 0, e, 192, 0, 0, e, 192);
+                        s.imageSmoothingEnabled = !1, s.drawImage(de.sys.playerImg, 0, 0, e, 192, 0, 0, e, 192);
                         const i = document.createElement("canvas");
                         i.width = e, i.height = 64;
                         i.getContext("2d").imageSmoothingEnabled = !1;
-                        const o = he.sys.characterList[Q.sys.session.settings.character],
+                        const o = pe.sys.characterList[ee.sys.session.settings.character],
                             a = this.sheet.player.character[o];
-                        if (this.applyLayers(s, le.sys.playerImg, a, e, 64), Q.sys.game.friend) {
+                        if (this.applyLayers(s, de.sys.playerImg, a, e, 64), ee.sys.game.friend) {
                             const t = this.sheet.player.friend;
-                            this.applyLayers(s, le.sys.playerImg, t, e, 64)
+                            this.applyLayers(s, de.sys.playerImg, t, e, 64)
                         }
                         const n = new Image;
                         n.src = t.toDataURL("image/png"), (async () => {
@@ -1823,11 +1854,11 @@
                         e.drawImage(t, 0, s, i, o, 0, 0, i, o), e.drawImage(t, 0, s, i, o, 0, o, i, o), e.drawImage(t, 0, s, i, o, 0, 2 * o, i, o)
                     }
                 }
-                he.sys = null;
-                class ce {
+                pe.sys = null;
+                class be {
                     constructor() {
-                        if (this.ui = void 0, this.tint = void 0, this.topui = void 0, this.livesDisplay = void 0, this.score = void 0, this.scoreIcon = void 0, this.scoreText = void 0, this.boostDisplay = void 0, this.title = void 0, this.subtitle = void 0, this.instruct = void 0, this.instructAction = void 0, this.instructContent = void 0, this.instructText = void 0, this.notify = void 0, this.notifyContent = void 0, this.notifyTimer = void 0, this.icons = void 0, this.selector = void 0, ce.sys) return ce.sys;
-                        ce.sys = this, this.defineIcons(), this.buildInterface(), this.notifyTimer = void 0, ae.subscribe(this.updateScore.bind(this))
+                        if (this.ui = void 0, this.tint = void 0, this.topui = void 0, this.livesDisplay = void 0, this.score = void 0, this.scoreIcon = void 0, this.scoreText = void 0, this.boostDisplay = void 0, this.title = void 0, this.subtitle = void 0, this.instruct = void 0, this.instructAction = void 0, this.instructContent = void 0, this.instructText = void 0, this.notify = void 0, this.notifyContent = void 0, this.notifyTimer = void 0, this.icons = void 0, this.selector = void 0, be.sys) return be.sys;
+                        be.sys = this, this.defineIcons(), this.buildInterface(), this.notifyTimer = void 0, le.subscribe(this.updateScore.bind(this))
                     }
                     buildInterface() {
                         this.ui = this.createNew("div", document.body, "game-ui"), this.tint = this.createNew("div", document.body, "game-tint"), this.topui = this.createNew("div", this.ui);
@@ -1839,9 +1870,9 @@
                         this.createIconSVG(s, "leftArrow", 44);
                         const i = this.createNew("span", this.selector, "selector-right");
                         this.createIconSVG(i, "rightArrow", 44), s.addEventListener("click", (function() {
-                            we.sys.changeCharacter(-1)
+                            Se.sys.changeCharacter(-1)
                         }), !1), i.addEventListener("click", (function() {
-                            we.sys.changeCharacter(1)
+                            Se.sys.changeCharacter(1)
                         }), !1), this.instruct = this.createNew("div", this.ui, "ui-instruct"), this.instructContent = this.createNew("div", this.instruct, "instruct-content"), this.instructAction = this.createNew("div", this.instructContent, "instruct-action"), this.instructText = this.createNew("p", this.instructContent, "instruct-text"), this.notify = this.createNew("div", this.ui, "ui-notify"), this.notifyContent = this.createNew("div", this.notify, "notify-content"), this.hideNotification()
                     }
                     refreshDisplay() {
@@ -1851,34 +1882,34 @@
                         this.tintScreen(), this.title.style.visibility = "hidden", this.subtitle.style.visibility = "hidden", this.selector.style.visibility = "hidden", this.instructContent.style.visibility = "hidden"
                     }
                     updateGameTitleUI() {
-                        const e = Q.sys.session.settings.theme;
+                        const e = ee.sys.session.settings.theme;
                         this.title.style.removeProperty("visibility"), this.title.textContent = Z.pz.getString(e + "Theme")
                     }
                     updateGameModeUI() {
-                        const e = Q.sys.session.settings.mode;
+                        const e = ee.sys.session.settings.mode;
                         this.subtitle.style.removeProperty("visibility"), this.subtitle.textContent = Z.pz.getString(e + "Title"), this.updateScore()
                     }
                     updateInputTypeUI() {
-                        const e = Q.sys.session.state;
-                        if (e === Y.Play) return;
-                        const t = Q.sys.session.inputType.valueOf();
-                        switch (t) {
-                            case J.Mouse:
-                            case J.Touch:
-                            case J.Keyboard:
+                        const e = ee.sys.session.state;
+                        if (e === J.Play) return;
+                        let t = ee.sys.session.inputType.valueOf();
+                        switch (t === Q.Mouse && Y() && (t = Q.Touch), t) {
+                            case Q.Mouse:
+                            case Q.Touch:
+                            case Q.Keyboard:
                                 this.instructAction.classList.add("outline"), this.instructAction.textContent = Z.pz.getString(t + "Action");
                                 break;
-                            case J.Ps:
-                            case J.Xbox: {
+                            case Q.Ps:
+                            case Q.Xbox: {
                                 const e = t + "Action";
                                 this.instructAction.classList.remove("outline"), this.instructAction.textContent = "", this.createIconSVG(this.instructAction, e, 32);
                                 break
                             }
                         }
-                        this.instructText.textContent = Z.pz.getString(e + "Info"), this.instructContent.style.removeProperty("visibility"), e !== Y.Menu ? this.instructContent.classList.add("tinted") : this.instructContent.classList.remove("tinted")
+                        this.instructText.textContent = Z.pz.getString(e + "Info"), this.instructContent.style.removeProperty("visibility"), e !== J.Menu ? this.instructContent.classList.add("tinted") : this.instructContent.classList.remove("tinted")
                     }
                     tintScreen() {
-                        Q.sys.session.state === Y.Pause ? this.tint.classList.add("visible") : this.tint.classList.remove("visible")
+                        ee.sys.session.state === J.Pause ? this.tint.classList.add("visible") : this.tint.classList.remove("visible")
                     }
                     showPauseScreen() {
                         this.tintScreen(), this.updateGameTitleUI(), this.updateGameModeUI(), this.updateInputTypeUI(), this.refreshDisplay()
@@ -1890,8 +1921,8 @@
                         this.showPauseScreen(), this.selector.style.removeProperty("visibility")
                     }
                     sendNotification(e, t = 5e3) {
-                        const s = Q.sys.session.settings.mode,
-                            i = Q.sys.session.settings.theme;
+                        const s = ee.sys.session.settings.mode,
+                            i = ee.sys.session.settings.theme;
                         switch (this.notifyContent.textContent = "", e) {
                             case "mode":
                                 this.notifyContent.textContent = Z.pz.getStringF("gameMode", Z.pz.getString(s + "Title"));
@@ -1900,7 +1931,7 @@
                                 this.notifyContent.textContent = Z.pz.getStringF("theme", Z.pz.getString(i + "Theme"));
                                 break;
                             case "score": {
-                                const e = Q.sys.getHighScore(s);
+                                const e = ee.sys.getHighScore(s);
                                 this.notifyContent.textContent = Z.pz.getStringF("newBestScore", Z.pz.getString(s + "Descriptor"), e, Z.pz.getString(s + "Unit")), this.createIconSVG(this.notifyContent, "star", 20, "0 4px 0 0");
                                 break
                             }
@@ -1917,7 +1948,7 @@
                                 this.notifyContent.textContent = Z.pz.getString("share")
                         }
                         clearTimeout(this.notifyTimer), this.notifyTimer = window.setTimeout((function() {
-                            ce.sys.hideNotification()
+                            be.sys.hideNotification()
                         }), t), "share" === e && this.createShareLink(), this.showNotification()
                     }
                     createShareLink() {
@@ -1935,37 +1966,37 @@
                         this.notify.classList.remove("visible")
                     }
                     checkHighScoreIcon() {
-                        const e = Q.sys.session.state;
-                        this.scoreIcon.textContent = "", (e === Y.Menu || Q.sys.game.highScore) && this.createIconSVG(this.scoreIcon, "star", 20)
+                        const e = ee.sys.session.state;
+                        this.scoreIcon.textContent = "", (e === J.Menu || ee.sys.game.highScore) && this.createIconSVG(this.scoreIcon, "star", 20)
                     }
                     updateScore() {
-                        const e = Q.sys.session.settings.mode;
-                        if (Q.sys.session.state === Y.Menu) {
-                            const t = Q.sys.getHighScore(e);
+                        const e = ee.sys.session.settings.mode;
+                        if (ee.sys.session.state === J.Menu) {
+                            const t = ee.sys.getHighScore(e);
                             this.scoreText.textContent = Z.pz.getStringF("bestScoreMenuDisplay", t, Z.pz.getString(e + "Unit"))
                         } else {
-                            const t = Q.sys.getCurrentScoreFormatted();
+                            const t = ee.sys.getCurrentScoreFormatted();
                             this.scoreText.textContent = t + " " + Z.pz.getString(e + "Unit")
                         }
                     }
                     updateIcons() {
                         const e = [],
                             t = [],
-                            s = Q.sys.game.cheat;
+                            s = ee.sys.game.cheat;
                         if (s.lives || s.safety) s.safety && e.push("shield"), e.push("life-full"), e.push("infinite");
                         else
-                            for (let t = 1; t <= Q.sys.game.lives.max; t++) {
+                            for (let t = 1; t <= ee.sys.game.lives.max; t++) {
                                 let s = "life-empty";
-                                t <= Q.sys.game.shields.current ? s = "shield" : t <= Q.sys.game.lives.current && (s = "life-full"), e.push(s)
+                                t <= ee.sys.game.shields.current ? s = "shield" : t <= ee.sys.game.lives.current && (s = "life-full"), e.push(s)
                             }
                         if (s.boosts) t.push("boost-full"), t.push("infinite");
                         else
-                            for (let e = 1; e <= Q.sys.game.boosts.max; e++) {
-                                const s = e <= Q.sys.game.boosts.current ? "boost-full" : "boost-empty";
+                            for (let e = 1; e <= ee.sys.game.boosts.max; e++) {
+                                const s = e <= ee.sys.game.boosts.current ? "boost-full" : "boost-empty";
                                 t.push(s)
                             }
                         this.livesDisplay.textContent = "", this.boostDisplay.textContent = "";
-                        const i = "url(" + le.sys.objectsImg.src + ")";
+                        const i = "url(" + de.sys.objectsImg.src + ")";
                         e.forEach((e => {
                             this.createNew("div", this.livesDisplay, void 0, e).style.backgroundImage = i
                         })), t.forEach((e => {
@@ -2015,11 +2046,11 @@
                         return document.body.insertAdjacentElement("beforeend", e), e.id = "game-canvas", e
                     }
                 }
-                ce.sys = null;
-                class de {
+                be.sys = null;
+                class ge {
                     constructor() {
-                        if (this.legend = void 0, this.spawnSingle = void 0, this.library = void 0, de.sys) return de.sys;
-                        de.sys = this, this.defineLegend(), this.defineClusters()
+                        if (this.legend = void 0, this.spawnSingle = void 0, this.library = void 0, ge.sys) return ge.sys;
+                        ge.sys = this, this.defineLegend(), this.defineClusters()
                     }
                     defineLegend() {
                         this.legend = {
@@ -6585,13 +6616,13 @@
                         }
                     }
                 }
-                de.sys = null;
-                class pe {
+                ge.sys = null;
+                class ue {
                     constructor(e, t, s) {
                         this.type = void 0, this.x = void 0, this.y = void 0, this.w = void 0, this.h = void 0, this.hit = void 0, this.fx = void 0, this.hitbox = void 0, this.type = e, this.x = t, this.y = s, this.reset()
                     }
                     reset() {
-                        const e = he.sys.sheet[this.type];
+                        const e = pe.sys.sheet[this.type];
                         this.w = e.w, this.h = e.h, this.fx = e.fx, this.hit = !1, this.hitbox = {
                             x: this.x - this.w / 2 + e.hitbox.x,
                             y: this.y - this.h / 2 + e.hitbox.y,
@@ -6608,7 +6639,7 @@
                     update() {}
                     draw() {}
                 }
-                class be extends pe {
+                class me extends ue {
                     constructor(e, t, s, i) {
                         super(e, t, s), this.pose = void 0, this.time = void 0, this.sleep = void 0, this.anim = void 0, this.pickup = void 0, this.decor = void 0, this.gateId = void 0, this.pose = i, this.reset()
                     }
@@ -6616,13 +6647,13 @@
                         super.reset(), this.time = 0, this.sleep = !1, this.anim = "looping", this.pickup = !1, this.decor = void 0, this.gateId = void 0
                     }
                     update() {
-                        "paused" !== this.anim && (this.time += Q.sys.game.time.loop)
+                        "paused" !== this.anim && (this.time += ee.sys.game.time.loop)
                     }
                     draw() {
-                        this.pickup ? re.sys.drawPickup(this) : (void 0 !== this.fx && "hidden" !== this.anim && re.sys.drawFx(this.time, this.x, this.y + this.fx), re.sys.drawLayer(this.type, this.pose, this.x, this.y, this.time, this.anim, this), void 0 !== this.decor && re.sys.drawLayer("wallDecor", this.decor, this.x, this.y - 24))
+                        this.pickup ? ce.sys.drawPickup(this) : (void 0 !== this.fx && "hidden" !== this.anim && ce.sys.drawFx(this.time, this.x, this.y + this.fx), ce.sys.drawLayer(this.type, this.pose, this.x, this.y, this.time, this.anim, this), void 0 !== this.decor && ce.sys.drawLayer("wallDecor", this.decor, this.x, this.y - 24))
                     }
                 }
-                class ge extends be {
+                class ye extends me {
                     constructor(e, t, s, i) {
                         super(e, t, s, i), this.angle = void 0, this.speed = null, this.objectsHit = void 0, this.timer = null, this.style = void 0, this.state = void 0, this.reset()
                     }
@@ -6635,7 +6666,7 @@
                         }, this.timer = {
                             crash: 0,
                             dir: 0
-                        }, this.style = Q.sys.rand(0, 3), this.changeState("crash"), this.resume()
+                        }, this.style = ee.sys.rand(0, 3), this.changeState("crash"), this.resume()
                     }
                     update() {
                         super.update(), this.isCrashed() || (this.updateDirection(), this.updateSpeed(), this.updatePosition())
@@ -6651,7 +6682,7 @@
                         this.speed.raw *= .5
                     }
                     isCrashed() {
-                        return !(this.timer.crash <= 0) && (this.timer.crash -= Q.sys.game.time.loop * Q.sys.game.time.scale, !(this.timer.crash <= 0) || (this.resume(), !1))
+                        return !(this.timer.crash <= 0) && (this.timer.crash -= ee.sys.game.time.loop * ee.sys.game.time.scale, !(this.timer.crash <= 0) || (this.resume(), !1))
                     }
                     changeState(e) {
                         if (this.state === e) return;
@@ -6669,16 +6700,16 @@
                         this.pose = e, this.angle = t * Math.PI / 180, "crash" === e && (this.timer.crash += 1.5, this.speed.raw = 0)
                     }
                     updateDirection() {
-                        if (this.timer.dir -= Q.sys.game.time.loop * Q.sys.game.time.scale, this.timer.dir <= 0) {
-                            this.timer.dir = Q.sys.rand(50, 200) / 100;
+                        if (this.timer.dir -= ee.sys.game.time.loop * ee.sys.game.time.scale, this.timer.dir <= 0) {
+                            this.timer.dir = ee.sys.rand(50, 200) / 100;
                             const e = "left" === this.state ? "right" : "left";
                             this.changeState(e)
                         }
                     }
                     updateSpeed() {
                         const e = this.speed,
-                            t = e.accel * Q.sys.game.time.scale;
-                        this.speed.raw = e.raw <= e.max ? e.raw += t : e.raw -= t, this.speed.current = e.raw * Q.sys.game.time.scale
+                            t = e.accel * ee.sys.game.time.scale;
+                        this.speed.raw = e.raw <= e.max ? e.raw += t : e.raw -= t, this.speed.current = e.raw * ee.sys.game.time.scale
                     }
                     updatePosition() {
                         const e = this.speed.current * -Math.cos(this.angle),
@@ -6686,10 +6717,10 @@
                         this.shift(e, t)
                     }
                     draw() {
-                        re.sys.drawNpc(this.pose, this.style, this.x, this.y)
+                        ce.sys.drawNpc(this.pose, this.style, this.x, this.y)
                     }
                 }
-                class ue extends be {
+                class fe extends me {
                     constructor(e, t, s, i) {
                         super(e, t, s, i), this.angle = void 0, this.dist = void 0, this.speed = null, this.objectsHit = void 0, this.timer = null, this.state = void 0, this.reset()
                     }
@@ -6706,10 +6737,10 @@
                     }
                     updateEnding() {
                         const e = {
-                            x: Q.sys.session.x - this.x,
-                            y: Q.sys.session.y - 64 - this.y
+                            x: ee.sys.session.x - this.x,
+                            y: ee.sys.session.y - 64 - this.y
                         };
-                        if (Math.hypot(e.x, e.y) < 8) this.shift(e.x, e.y), this.changeState("end"), Q.sys.game.caught = !0;
+                        if (Math.hypot(e.x, e.y) < 8) this.shift(e.x, e.y), this.changeState("end"), ee.sys.game.caught = !0;
                         else {
                             const t = Math.atan2(e.y, e.x),
                                 s = Math.cos(t),
@@ -6730,7 +6761,7 @@
                         this.hit = !0
                     }
                     isCrashed() {
-                        return !(this.timer.crash <= 0) && (this.timer.crash -= Q.sys.game.time.loop * Q.sys.game.time.scale, !(this.timer.crash <= 0) || (this.resume(), !1))
+                        return !(this.timer.crash <= 0) && (this.timer.crash -= ee.sys.game.time.loop * ee.sys.game.time.scale, !(this.timer.crash <= 0) || (this.resume(), !1))
                     }
                     changeState(e) {
                         if (this.state !== e) {
@@ -6750,35 +6781,35 @@
                         }
                     }
                     updateDirection() {
-                        if (this.dist = Math.hypot(Q.sys.session.x - this.x, Q.sys.session.y - this.y), this.timer.dir -= Q.sys.game.time.loop * Q.sys.game.time.scale, this.timer.dir <= 0) {
-                            this.timer.dir += Q.sys.rand(25, 100) / 100 * (this.dist / Q.sys.session.y);
-                            const e = Q.sys.session.x - this.x,
-                                t = Q.sys.session.y - this.y,
+                        if (this.dist = Math.hypot(ee.sys.session.x - this.x, ee.sys.session.y - this.y), this.timer.dir -= ee.sys.game.time.loop * ee.sys.game.time.scale, this.timer.dir <= 0) {
+                            this.timer.dir += ee.sys.rand(25, 100) / 100 * (this.dist / ee.sys.session.y);
+                            const e = ee.sys.session.x - this.x,
+                                t = ee.sys.session.y - this.y,
                                 s = 180 * Math.atan2(t, e) / Math.PI;
                             this.angle = s * Math.PI / 180
                         }
                     }
                     updateSpeed() {
                         const e = this.speed,
-                            t = e.accel * Q.sys.game.time.scale,
-                            s = this.y >= Q.sys.session.y;
-                        e.raw < e.max && !s ? this.speed.raw += t : s ? this.speed.raw -= t : this.speed.raw = e.max, this.speed.current = e.raw * Q.sys.game.time.scale
+                            t = e.accel * ee.sys.game.time.scale,
+                            s = this.y >= ee.sys.session.y;
+                        e.raw < e.max && !s ? this.speed.raw += t : s ? this.speed.raw -= t : this.speed.raw = e.max, this.speed.current = e.raw * ee.sys.game.time.scale
                     }
                     updatePosition() {
-                        const e = this.dist / Q.sys.session.y * 15,
+                        const e = this.dist / ee.sys.session.y * 15,
                             t = Math.cos(16 * this.time) * e * Math.PI / 180,
                             s = this.speed.current * Math.cos(this.angle + t),
                             i = this.speed.current * Math.sin(this.angle + t);
                         this.shift(s, i)
                     }
                     draw() {
-                        re.sys.drawLayer(this.type, this.pose, this.x, this.y, this.time, this.anim, this)
+                        ce.sys.drawLayer(this.type, this.pose, this.x, this.y, this.time, this.anim, this)
                     }
                 }
-                class me {
+                class we {
                     constructor() {
-                        if (this.all = void 0, this.top = void 0, this.btm = void 0, this.npc = void 0, this.foe = void 0, this.endingFoe = void 0, this.swapBuilt = void 0, this.sleeping = void 0, this.prevClusters = void 0, this.startingObjects = void 0, this.endless = void 0, this.timetrial = void 0, this.zigzag = void 0, this.grid = void 0, me.sys) return me.sys;
-                        me.sys = this, new de, new we("player", Q.sys.session.x, Q.sys.session.y, "down"), this.reset(), this.createSleepingObjects()
+                        if (this.all = void 0, this.top = void 0, this.btm = void 0, this.npc = void 0, this.foe = void 0, this.endingFoe = void 0, this.swapBuilt = void 0, this.sleeping = void 0, this.prevClusters = void 0, this.startingObjects = void 0, this.endless = void 0, this.timetrial = void 0, this.zigzag = void 0, this.grid = void 0, we.sys) return we.sys;
+                        we.sys = this, new ge, new Se("player", ee.sys.session.x, ee.sys.session.y, "down"), this.reset(), this.createSleepingObjects()
                     }
                     reset() {
                         void 0 === this.sleeping ? this.sleeping = [] : this.sleeping = this.sleeping.concat(this.top).concat(this.btm).concat(this.npc).concat(this.foe), this.grid = {
@@ -6844,10 +6875,10 @@
                             },
                             counter: 0,
                             clusterList: ["small1", "small2", "small3", "small4", "small5", "small6", "small7", "small8", "small9", "small10", "small11", "small12", "small13", "small14", "small15", "small16"]
-                        }, this.all = [], this.top = [], this.btm = [], this.npc = [], this.foe = [], this.prevClusters = [], this.swapBuilt = !1, this.endingFoe = void 0, this.calcClusterSlots(), we.sys.reset(), this.all.push(we.sys)
+                        }, this.all = [], this.top = [], this.btm = [], this.npc = [], this.foe = [], this.prevClusters = [], this.swapBuilt = !1, this.endingFoe = void 0, this.calcClusterSlots(), Se.sys.reset(), this.all.push(Se.sys)
                     }
                     calcClusterSlots() {
-                        this.grid.slots = 2 * Math.ceil((Q.sys.session.h - Q.sys.session.y) / this.grid.gap) + 3
+                        this.grid.slots = 2 * Math.ceil((ee.sys.session.h - ee.sys.session.y) / this.grid.gap) + 3
                     }
                     createSleepingObjects() {
                         this.startingObjects = {
@@ -6883,17 +6914,17 @@
                             }
                     }
                     createNpc() {
-                        const e = Q.sys.rand(1, 13),
-                            t = (Math.random() / 2 + .25) * Q.sys.session.w,
-                            s = e < we.sys.speed.raw ? Q.sys.session.h + 24 : -24;
+                        const e = ee.sys.rand(1, 13),
+                            t = (Math.random() / 2 + .25) * ee.sys.session.w,
+                            s = e < Se.sys.speed.raw ? ee.sys.session.h + 24 : -24;
                         this.buildObject("npc", t, s, "left").speed.max = e
                     }
                     createFoe() {
-                        const e = (Math.random() / 2 + .25) * Q.sys.session.w;
-                        this.buildObject("foe", e, -32, "chase").speed.raw = we.sys.speed.raw + 1
+                        const e = (Math.random() / 2 + .25) * ee.sys.session.w;
+                        this.buildObject("foe", e, -32, "chase").speed.raw = Se.sys.speed.raw + 1
                     }
                     buildStartScene() {
-                        switch (Q.sys.session.settings.mode) {
+                        switch (ee.sys.session.settings.mode) {
                             case j.Endless:
                                 this.createEndlessStart();
                                 break;
@@ -6905,7 +6936,7 @@
                         }
                     }
                     update() {
-                        switch (this.putToSleep(), Q.sys.session.settings.mode) {
+                        switch (this.putToSleep(), ee.sys.session.settings.mode) {
                             case j.Endless:
                                 this.updateEndlessMode();
                                 break;
@@ -6919,10 +6950,10 @@
                     }
                     nextReady(e, t = !0) {
                         let s;
-                        return s = t ? Q.sys.game.dist.unit : Q.sys.game.dist.y + (Q.sys.session.h - Q.sys.session.y), e.next < s && (e.next += e.inc, !0)
+                        return s = t ? ee.sys.game.dist.unit : ee.sys.game.dist.y + (ee.sys.session.h - ee.sys.session.y), e.next < s && (e.next += e.inc, !0)
                     }
                     calcSpawnHeight(e) {
-                        return e - Q.sys.game.dist.y + Q.sys.session.y
+                        return e - ee.sys.game.dist.y + ee.sys.session.y
                     }
                     updateEndlessMode() {
                         this.nextReady(this.endless.row, !1) && this.createEndlessRow(), this.nextReady(this.endless.foe) && this.createFoe(), this.nextReady(this.endless.npc) && this.createNpc()
@@ -6934,10 +6965,10 @@
                         this.nextReady(this.zigzag.row, !1) && this.createZigZagGate()
                     }
                     createEndlessStart() {
-                        this.buildCluster("endlessStarts", Q.sys.session.x, Q.sys.session.y + 128)
+                        this.buildCluster("endlessStarts", ee.sys.session.x, ee.sys.session.y + 128)
                     }
                     createEndlessRow() {
-                        const e = we.sys,
+                        const e = Se.sys,
                             t = this.endless,
                             s = this.calcSpawnHeight(t.row.next),
                             i = Math.floor(this.grid.slots / 2);
@@ -6947,13 +6978,13 @@
                             if (0 === o)
                                 if (i = 0, a = 0, "air" in e.dist) n = "allPassive";
                                 else {
-                                    if (this.nextReady(t.checkpoint)) return void this.buildCheckpoint(Q.sys.session.x, s);
+                                    if (this.nextReady(t.checkpoint)) return void this.buildCheckpoint(ee.sys.session.x, s);
                                     this.nextReady(t.life) ? n = "endlessLives" : this.nextReady(t.friend) ? n = "endlessFriends" : this.nextReady(t.boost) ? n = "endlessBoosts" : this.nextReady(t.ramp) ? n = "endlessRamps" : this.nextReady(t.lure) && (n = "endlessLures")
                                 }
-                            else i = Q.sys.rand(-20, 20) * this.grid.size, a = Q.sys.rand(0, 32) * this.grid.size;
+                            else i = ee.sys.rand(-20, 20) * this.grid.size, a = ee.sys.rand(0, 32) * this.grid.size;
                             let r = 0;
                             "left" === e.dir || "downleft" === e.dir ? r = -this.grid.gap / 4 : "right" !== e.dir && "downright" !== e.dir || (r = this.grid.gap / 4);
-                            const l = Q.sys.session.x + o * this.grid.gap + i + r,
+                            const l = ee.sys.session.x + o * this.grid.gap + i + r,
                                 h = s + a;
                             this.buildCluster(n, l, h), this.buildEndlessRandomSnags(l, h)
                         }
@@ -6969,33 +7000,33 @@
                             a = o.length;
                         for (let s = 0; s < a; s++) {
                             if (Math.random() < .33) continue;
-                            const i = o[s][0] + Q.sys.rand(-8, 8) * this.grid.size,
-                                a = o[s][1] + Q.sys.rand(-8, 8) * this.grid.size;
+                            const i = o[s][0] + ee.sys.rand(-8, 8) * this.grid.size,
+                                a = o[s][1] + ee.sys.rand(-8, 8) * this.grid.size;
                             let n = "snag";
-                            Math.random() < .5 && (n = Q.sys.randIndex(Object.keys(de.sys.spawnSingle)));
-                            const r = de.sys.spawnSingle[n],
-                                l = Q.sys.randIndex(r);
+                            Math.random() < .5 && (n = ee.sys.randIndex(Object.keys(ge.sys.spawnSingle)));
+                            const r = ge.sys.spawnSingle[n],
+                                l = ee.sys.randIndex(r);
                             this.buildObject(n, e + i, t + a, l)
                         }
                     }
                     createTimeTrialAct() {
                         const e = this.timetrial.clusterList[this.timetrial.counter],
-                            t = Q.sys.session.x - Q.sys.game.dist.x,
+                            t = ee.sys.session.x - ee.sys.game.dist.x,
                             s = this.calcSpawnHeight(this.timetrial.row.next);
                         this.buildCluster("timetrialScenes", t, s, e), this.timetrial.counter += 1
                     }
                     createZigZagStart() {
-                        this.buildCluster("zigzagGates", Q.sys.session.x, Q.sys.session.y + 512, "gateFirst"), this.zigzag.counter += 1
+                        this.buildCluster("zigzagGates", ee.sys.session.x, ee.sys.session.y + 512, "gateFirst"), this.zigzag.counter += 1
                     }
                     createZigZagGate() {
-                        const e = Q.sys.session.x - Q.sys.game.dist.x,
+                        const e = ee.sys.session.x - ee.sys.game.dist.x,
                             t = this.calcSpawnHeight(this.zigzag.row.next),
                             s = this.zigzag.counter % 2 != 0;
                         s ? this.buildCluster("zigzagGates", e - 320, t, "gateLeft") : this.buildCluster("zigzagGates", e + 320, t, "gateRight"), this.zigzag.counter += 1, this.createGateClusters(e, t, s)
                     }
                     createGateClusters(e, t, s) {
                         const i = s ? e + 64 : e - 64;
-                        this.buildCluster("allNormal", i, t - 128, Q.sys.randIndex(this.zigzag.clusterList));
+                        this.buildCluster("allNormal", i, t - 128, ee.sys.randIndex(this.zigzag.clusterList));
                         const o = t + .5 * this.zigzag.row.inc;
                         if (this.buildCluster("zigzagGateScenes", e, o), this.nextReady(this.zigzag.life)) this.buildObject("life", e, o, "life");
                         else if (this.nextReady(this.zigzag.boost)) this.buildObject("boost", e, o, "boost");
@@ -7005,7 +7036,7 @@
                             this.buildObject(t, e, o, t + "1")
                         }
                         const a = t + .25 * this.zigzag.row.inc;
-                        this.buildCluster("allNormal", e - 560, a + Q.sys.rand(0, 32) * this.grid.size, Q.sys.randIndex(this.zigzag.clusterList)), this.buildCluster("allNormal", e + 560, a + Q.sys.rand(0, 32) * this.grid.size, Q.sys.randIndex(this.zigzag.clusterList))
+                        this.buildCluster("allNormal", e - 560, a + ee.sys.rand(0, 32) * this.grid.size, ee.sys.randIndex(this.zigzag.clusterList)), this.buildCluster("allNormal", e + 560, a + ee.sys.rand(0, 32) * this.grid.size, ee.sys.randIndex(this.zigzag.clusterList))
                     }
                     confirmGate(e) {
                         this.all.filter((t => t.gateId === e)).forEach((e => {
@@ -7019,10 +7050,10 @@
                     }
                     buildCluster(e, t, s, i) {
                         if (!i) {
-                            const t = Object.keys(de.sys.library[e]).filter((e => !this.prevClusters.includes(e)));
-                            i = Q.sys.randIndex(t)
+                            const t = Object.keys(ge.sys.library[e]).filter((e => !this.prevClusters.includes(e)));
+                            i = ee.sys.randIndex(t)
                         }
-                        const o = de.sys.library[e][i];
+                        const o = ge.sys.library[e][i];
                         this.prevClusters.unshift(i), this.prevClusters.length > 14 && this.prevClusters.pop();
                         for (const e in o)
                             if (o.hasOwnProperty(e)) {
@@ -7033,10 +7064,10 @@
                                     let n;
                                     if (a.length > 2) {
                                         const t = a[2];
-                                        n = "string" == typeof t ? Q.sys.randIndex(de.sys.legend[e][t]) : t[0]
+                                        n = "string" == typeof t ? ee.sys.randIndex(ge.sys.legend[e][t]) : t[0]
                                     } else {
-                                        const t = this.randKey(de.sys.legend[e], !0);
-                                        n = Q.sys.randIndex(de.sys.legend[e][t])
+                                        const t = this.randKey(ge.sys.legend[e], !0);
+                                        n = ee.sys.randIndex(ge.sys.legend[e][t])
                                     }
                                     const r = t + a[0] * this.grid.size,
                                         l = s + a[1] * this.grid.size;
@@ -7054,20 +7085,20 @@
                         }
                     }
                     buildCrashedFriend(e, t) {
-                        this.buildObject("friend", e, t, "crash").hit = !0, this.endless.friend.next = Q.sys.game.dist.unit + this.endless.friend.inc
+                        this.buildObject("friend", e, t, "crash").hit = !0, this.endless.friend.next = ee.sys.game.dist.unit + this.endless.friend.inc
                     }
                     buildCheckpoint(e, t) {
-                        this.endless.row.next += this.endless.row.inc, this.top = this.sleep(this.top, -64, Q.sys.session.h + 64), this.buildCluster("endlessCheckpoints", e, t)
+                        this.endless.row.next += this.endless.row.inc, this.top = this.sleep(this.top, -64, ee.sys.session.h + 64), this.buildCluster("endlessCheckpoints", e, t)
                     }
                     buildSwap() {
-                        this.swapBuilt = !0, this.endless.row.next += 1280, this.top = this.sleep(this.top, -64, Q.sys.session.h + 64), this.buildCluster("endlessSwap", Q.sys.session.x - (Q.sys.session.h - Q.sys.session.y) - 256, Q.sys.session.h + 256)
+                        this.swapBuilt = !0, this.endless.row.next += 1280, this.top = this.sleep(this.top, -64, ee.sys.session.h + 64), this.buildCluster("endlessSwap", ee.sys.session.x - (ee.sys.session.h - ee.sys.session.y) - 256, ee.sys.session.h + 256)
                     }
                     buildObject(e, t, s, i) {
-                        t = Math.floor(t) + (Q.sys.game.dist.x - Math.floor(Q.sys.game.dist.x)), s = Math.floor(s) + (Q.sys.game.dist.y - Math.floor(Q.sys.game.dist.y));
+                        t = Math.floor(t) + (ee.sys.game.dist.x - Math.floor(ee.sys.game.dist.x)), s = Math.floor(s) + (ee.sys.game.dist.y - Math.floor(ee.sys.game.dist.y));
                         let o = this.wake(e, t, s, i);
                         switch (o || (o = this.createObject(e, t, s, i)), o.type) {
                             case "wall":
-                                !["f1", "f2", "f3"].includes(i) && Math.random() < .5 && (o.decor = Q.sys.randIndex(["a", "b", "c", "d", "e", "f", "g", "h"]));
+                                !["f1", "f2", "f3"].includes(i) && Math.random() < .5 && (o.decor = ee.sys.randIndex(["a", "b", "c", "d", "e", "f", "g", "h"]));
                                 break;
                             case "ambient":
                                 o.anim = "hidden";
@@ -7078,7 +7109,7 @@
                                 o.gateId = this.zigzag.counter
                         }
                         o.time = Math.random();
-                        switch (he.sys.sheet[e].group) {
+                        switch (pe.sys.sheet[e].group) {
                             case "top":
                                 this.top.push(o);
                                 break;
@@ -7097,13 +7128,13 @@
                         switch (e) {
                             case "gate":
                             case "swap":
-                                return new pe(e, t, s);
+                                return new ue(e, t, s);
                             case "foe":
-                                return new ue(e, t, s, i);
+                                return new fe(e, t, s, i);
                             case "npc":
-                                return new ge(e, t, s, i);
+                                return new ye(e, t, s, i);
                             default:
-                                return new be(e, t, s, i)
+                                return new me(e, t, s, i)
                         }
                     }
                     mergeAll() {
@@ -7112,7 +7143,7 @@
                         function t(e, t) {
                             return e.hitbox.y + e.hitbox.h - (t.hitbox.y + t.hitbox.h)
                         }
-                        "air" in we.sys.dist ? (e.sort(((e, s) => t(e, s))), e.push(we.sys)) : (e.push(we.sys), e.sort(((e, s) => t(e, s)))), this.all = this.btm.concat(e)
+                        "air" in Se.sys.dist ? (e.sort(((e, s) => t(e, s))), e.push(Se.sys)) : (e.push(Se.sys), e.sort(((e, s) => t(e, s)))), this.all = this.btm.concat(e)
                     }
                     wake(e, t, s, i) {
                         let o;
@@ -7127,7 +7158,7 @@
                         return null
                     }
                     putToSleep() {
-                        this.top = this.sleep(this.top), this.btm = this.sleep(this.btm), this.npc = this.sleep(this.npc, -64, Q.sys.session.h + 64), this.foe = this.sleep(this.foe, -256)
+                        this.top = this.sleep(this.top), this.btm = this.sleep(this.btm), this.npc = this.sleep(this.npc, -64, ee.sys.session.h + 64), this.foe = this.sleep(this.foe, -256)
                     }
                     sleep(e, t = -64, s = 1e4) {
                         function i(e) {
@@ -7137,11 +7168,11 @@
                         return this.sleeping = this.sleeping.concat(o), e.filter((e => i(e)))
                     }
                 }
-                me.sys = null;
-                class ye {
+                we.sys = null;
+                class ve {
                     constructor() {
-                        if (this.indexList = void 0, this.buttonMap = void 0, this.last = void 0, this.vib = void 0, this.vibCurrent = void 0, this.timer = void 0, this.linkedPad = void 0, ye.sys) return ye.sys;
-                        ye.sys = this, window.addEventListener("gamepadconnected", (e => ye.sys.onGamepadConnected(e))), window.addEventListener("gamepaddisconnected", (e => ye.sys.onGamepadDisconnected(e))), this.indexList = [], this.buttonMap = ["a", "b", "x", "y", "lb", "rb", "lt", "rt", "select", "start", "lstick", "rstick", "up", "down", "left", "right", "home", "touchpad"], this.linkedPad = {
+                        if (this.indexList = void 0, this.buttonMap = void 0, this.last = void 0, this.vib = void 0, this.vibCurrent = void 0, this.timer = void 0, this.linkedPad = void 0, ve.sys) return ve.sys;
+                        ve.sys = this, window.addEventListener("gamepadconnected", (e => ve.sys.onGamepadConnected(e))), window.addEventListener("gamepaddisconnected", (e => ve.sys.onGamepadDisconnected(e))), this.indexList = [], this.buttonMap = ["a", "b", "x", "y", "lb", "rb", "lt", "rt", "select", "start", "lstick", "rstick", "up", "down", "left", "right", "home", "touchpad"], this.linkedPad = {
                             index: void 0,
                             pad: void 0,
                             pressed: {}
@@ -7203,8 +7234,8 @@
                         this.vibCurrent = this.vib[e], this.timer = this.vibCurrent.dur
                     }
                     vibrateController() {
-                        const e = Q.sys.session.inputType;
-                        if (e === J.Xbox || e === J.Ps) {
+                        const e = ee.sys.session.inputType;
+                        if (e === Q.Xbox || e === Q.Ps) {
                             const e = this.vibCurrent,
                                 t = this.timer / e.dur;
                             this.linkedPad.pad.vibrationActuator.playEffect("dual-rumble", {
@@ -7216,17 +7247,17 @@
                         }
                     }
                     onGamepadConnected(e) {
-                        ye.sys.indexList.push(e.gamepad.index)
+                        ve.sys.indexList.push(e.gamepad.index)
                     }
                     onGamepadDisconnected(e) {
-                        const t = ye.sys.indexList.indexOf(e.gamepad.index);
-                        t > -1 && ye.sys.indexList.splice(t, 1), this.linkedPad = {
+                        const t = ve.sys.indexList.indexOf(e.gamepad.index);
+                        t > -1 && ve.sys.indexList.splice(t, 1), this.linkedPad = {
                             index: void 0,
                             pad: void 0,
                             pressed: {}
                         };
-                        const s = Q.sys.session.inputType;
-                        s !== J.Xbox && s !== J.Ps || Ce.sys.changeInputMethod(J.Keyboard)
+                        const s = ee.sys.session.inputType;
+                        s !== Q.Xbox && s !== Q.Ps || Me.sys.changeInputMethod(Q.Keyboard)
                     }
                     setController(e, t) {
                         this.linkedPad = {
@@ -7253,11 +7284,11 @@
                                 }
                     }
                     checkVibrations() {
-                        this.vibrateController(), this.timer -= 1e3 * Q.sys.game.time.loop, this.timer <= 0 && this.setVibration()
+                        this.vibrateController(), this.timer -= 1e3 * ee.sys.game.time.loop, this.timer <= 0 && this.setVibration()
                     }
                     changeControllerType(e) {
-                        const t = e.id.toLowerCase().includes("054c") ? J.Ps : J.Xbox;
-                        Ce.sys.changeInputMethod(t)
+                        const t = e.id.toLowerCase().includes("054c") ? Q.Ps : Q.Xbox;
+                        Me.sys.changeInputMethod(t)
                     }
                     checkJoysticks(e) {
                         const t = .5,
@@ -7266,15 +7297,15 @@
                             o = e.axes[1] > t || e.axes[3] > t,
                             a = e.axes[1] < -.5 || e.axes[3] < -.5;
                         let n;
-                        if (s || i || a || o ? (this.changeControllerType(e), !a || s || i ? !o || s || i ? !i || a || o ? !s || a || o ? s && a ? n = Se.Right : s && o ? n = Se.DownRight : i && a ? n = Se.Left : i && o && (n = Se.DownLeft) : n = Se.Right : n = Se.Left : n = Se.Down : n = Se.Stop) : this.last = void 0, this.last !== n) {
+                        if (s || i || a || o ? (this.changeControllerType(e), !a || s || i ? !o || s || i ? !i || a || o ? !s || a || o ? s && a ? n = Te.Right : s && o ? n = Te.DownRight : i && a ? n = Te.Left : i && o && (n = Te.DownLeft) : n = Te.Right : n = Te.Left : n = Te.Down : n = Te.Stop) : this.last = void 0, this.last !== n) {
                             if (this.last = n, n)
-                                if (Q.sys.session.flyoutActive) switch (n) {
-                                    case Se.Stop:
+                                if (ee.sys.session.flyoutActive) switch (n) {
+                                    case Te.Stop:
                                         this.focusNextElement(-1);
                                         break;
-                                    case Se.Down:
+                                    case Te.Down:
                                         this.focusNextElement(1)
-                                } else Ce.sys.routeInput(n, !0, !1);
+                                } else Me.sys.routeInput(n, !0, !1);
                             return n
                         }
                     }
@@ -7282,19 +7313,19 @@
                         function t(e) {
                             return "object" == typeof e ? e.pressed : 1 === e
                         }
-                        if (t(e.buttons[4]) && t(e.buttons[5])) return Ce.sys.routeInput(Se.Reset), this.linkedPad.pressed.lb = !0, void(this.linkedPad.pressed.rb = !0);
+                        if (t(e.buttons[4]) && t(e.buttons[5])) return Me.sys.routeInput(Te.Reset), this.linkedPad.pressed.lb = !0, void(this.linkedPad.pressed.rb = !0);
                         let s;
                         const i = e.buttons.length;
                         for (let o = 0; o < i; o++)
                             if (t(e.buttons[o])) {
                                 if (this.linkedPad.pressed[this.buttonMap[o]]) return;
-                                if (this.linkedPad.pressed[this.buttonMap[o]] = !0, this.changeControllerType(e), Q.sys.session.flyoutActive && ["a", "b", "up", "down"].includes(this.buttonMap[o])) {
+                                if (this.linkedPad.pressed[this.buttonMap[o]] = !0, this.changeControllerType(e), ee.sys.session.flyoutActive && ["a", "b", "up", "down"].includes(this.buttonMap[o])) {
                                     switch (this.buttonMap[o]) {
                                         case "a":
                                             document.activeElement.click();
                                             break;
                                         case "b":
-                                            Ce.sys.routeInput(Se.Settings, !1, !1);
+                                            Me.sys.routeInput(Te.Settings, !1, !1);
                                             break;
                                         case "up":
                                             this.focusNextElement(-1);
@@ -7306,37 +7337,37 @@
                                 }
                                 switch (this.buttonMap[o]) {
                                     case "a":
-                                        s = Se.Toggle;
+                                        s = Te.Toggle;
                                         break;
                                     case "lb":
-                                        s = Se.Left;
+                                        s = Te.Left;
                                         break;
                                     case "rb":
-                                        s = Se.Right;
+                                        s = Te.Right;
                                         break;
                                     case "lt":
                                     case "rt":
-                                        s = Se.Boost;
+                                        s = Te.Boost;
                                         break;
                                     case "up":
-                                        s = Se.Stop;
+                                        s = Te.Stop;
                                         break;
                                     case "down":
-                                        s = Se.Down;
+                                        s = Te.Down;
                                         break;
                                     case "left":
-                                        s = Se.Left;
+                                        s = Te.Left;
                                         break;
                                     case "right":
-                                        s = Se.Right;
+                                        s = Te.Right;
                                         break;
                                     case "select":
                                     case "start":
                                     case "home":
                                     case "touchpad":
-                                        s = Se.Settings
+                                        s = Te.Settings
                                 }
-                                Ce.sys.routeInput(s, !1, !1), Ce.sys.checkCheatCode(s)
+                                Me.sys.routeInput(s, !1, !1), Me.sys.checkCheatCode(s)
                             } else this.linkedPad.pressed[this.buttonMap[o]] = !1;
                         return s
                     }
@@ -7346,46 +7377,46 @@
                         (t[s + e] || t[0]).focus()
                     }
                 }
-                ye.sys = null;
-                class fe {
+                ve.sys = null;
+                class xe {
                     constructor() {
-                        if (this.mousePos = void 0, fe.sys) return fe.sys;
-                        fe.sys = this, window.addEventListener("click", (function(e) {
-                            fe.sys.onClick(e)
+                        if (this.mousePos = void 0, xe.sys) return xe.sys;
+                        xe.sys = this, window.addEventListener("click", (function(e) {
+                            xe.sys.onClick(e)
                         }), !1), window.addEventListener("mousemove", (function(e) {
-                            fe.sys.onMouseMove(e)
+                            xe.sys.onMouseMove(e)
                         }), !1), window.addEventListener("contextmenu", (function(e) {
-                            fe.sys.onContextMenu(e)
+                            xe.sys.onContextMenu(e)
                         }), !1), this.reset()
                     }
                     reset() {
                         this.mousePos = void 0
                     }
                     onClick(e) {
-                        if (Q.sys.session.flyoutActive) return;
-                        Ce.sys.changeInputMethod(J.Mouse);
-                        const t = ce.sys.selector || null;
-                        t && t.contains(e.target) || Ce.sys.routeInput(Se.Toggle)
+                        if (ee.sys.session.flyoutActive) return;
+                        Me.sys.changeInputMethod(Q.Mouse);
+                        const t = be.sys.selector || null;
+                        t && t.contains(e.target) || Me.sys.routeInput(Te.Toggle)
                     }
                     onMouseMove(e) {
-                        if (Q.sys.session.state === Y.Play) {
-                            const t = this.checkAngle(Q.sys.session, e);
-                            this.mousePos !== t && (this.mousePos = t, Ce.sys.routeInput(t, !0, !1))
+                        if (ee.sys.session.state === J.Play) {
+                            const t = this.checkAngle(ee.sys.session, e);
+                            this.mousePos !== t && (this.mousePos = t, Me.sys.routeInput(t, !0, !1))
                         }
                     }
                     onContextMenu(e) {
-                        e.preventDefault(), Q.sys.session.state === Y.Play && Ce.sys.routeInput(Se.Boost, !1, !1)
+                        e.preventDefault(), ee.sys.session.state === J.Play && Me.sys.routeInput(Te.Boost, !1, !1)
                     }
                     checkAngle(e, t) {
                         const s = 180 * Math.atan2(e.y - t.clientY, e.x - t.clientX) / Math.PI;
-                        return s <= 0 && s >= -55 ? Se.Left : s >= -180 && s <= -125 ? Se.Right : s < -55 && s > -75 ? Se.DownLeft : s > -125 && s < -105 ? Se.DownRight : s > 0 && s < 180 ? Se.Stop : Se.Down
+                        return s <= 0 && s >= -55 ? Te.Left : s >= -180 && s <= -125 ? Te.Right : s < -55 && s > -75 ? Te.DownLeft : s > -125 && s < -105 ? Te.DownRight : s > 0 && s < 180 ? Te.Stop : Te.Down
                     }
                 }
-                fe.sys = null;
-                class we extends be {
+                xe.sys = null;
+                class Se extends me {
                     constructor(e, t, s, i) {
-                        if (super(e, t, s, i), this.speed = void 0, this.timer = void 0, this.dist = void 0, this.angle = void 0, this.dir = void 0, this.scale = void 0, this.swapped = void 0, this.trick = void 0, this.shadow = void 0, this.boostFx = void 0, this.previousGate = void 0, this.skins = void 0, we.sys) return we.sys;
-                        we.sys = this, this.reset()
+                        if (super(e, t, s, i), this.speed = void 0, this.timer = void 0, this.dist = void 0, this.angle = void 0, this.dir = void 0, this.scale = void 0, this.swapped = void 0, this.trick = void 0, this.shadow = void 0, this.boostFx = void 0, this.previousGate = void 0, this.skins = void 0, Se.sys) return Se.sys;
+                        Se.sys = this, this.reset()
                     }
                     reset() {
                         super.reset(), this.speed = {
@@ -7405,53 +7436,55 @@
                             render: [],
                             zoom: [.2, .5, 1, .5, .2],
                             poses: ["left", "left", "left", "downleft", "down", "downright", "right", "right", "right", "downright", "down", "downleft"]
-                        }, this.changeCharacter(Q.sys.session.settings.character, !0)
+                        }, this.changeCharacter(ee.sys.session.settings.character, !0)
                     }
                     move() {}
                     unlockForNewGame() {
-                        this.changeDirection("down"), ye.sys.setVibration("big")
+                        this.changeDirection("down"), ve.sys.setVibration("big")
                     }
                     update() {
                         super.update(), this.speed.x = this.speed.current * -Math.cos(this.angle), this.speed.y = this.speed.current * -Math.sin(this.angle), this.checkBoundaries(), this.updateTrackers(), this.updateBoostFx(), "stop" === this.dir || this.timer.crash || this.updateSpeed()
                     }
                     checkBoundaries() {
-                        const e = Q.sys.game.dist,
-                            t = Q.sys.session.settings.mode;
+                        const e = ee.sys.game.dist,
+                            t = ee.sys.session.settings.mode;
                         switch (t) {
                             case j.TimeTrial:
                             case j.ZigZag:
-                                Math.abs(e.x) > he.sys.boundary[t] && this.bounce();
+                                Math.abs(e.x) > pe.sys.boundary[t] && this.bounce();
                                 break;
                             case j.Endless:
-                                e.y < 8e3 && e.x < -6400 && !me.sys.swapBuilt && me.sys.buildSwap(), !Q.sys.game.highScore && e.unit > Q.sys.session.bestScore.endless && !Q.sys.game.cheat.used && (Q.sys.game.highScore = !0, ce.sys.refreshDisplay(), e.unit > 100 && ce.sys.sendNotification("score"))
+                                e.y < 8e3 && e.x < -6400 && !we.sys.swapBuilt && we.sys.buildSwap(), !ee.sys.game.highScore && e.unit > ee.sys.session.bestScore.endless && !ee.sys.game.cheat.used && (ee.sys.game.highScore = !0, be.sys.refreshDisplay(), e.unit > 100 && be.sys.sendNotification("score"))
                         }
                     }
                     changeCharacter(e, t = !1) {
-                        t && !he.sys.selectionList.includes(he.sys.characterList[e]) && he.sys.selectionList.push(he.sys.characterList[e]);
-                        const s = he.sys.selectionList;
-                        t || (e = (s.length + Q.sys.session.settings.character + e) % s.length), this.skins.render = [];
-                        const i = this.skins.zoom.length;
-                        for (let t = 0; t < i; t++) {
-                            const o = (s.length + e + (t - Math.floor(i / 2))) % s.length;
-                            this.skins.render[t] = o
+                        const s = pe.sys.characterList[ee.sys.session.settings.character];
+                        let i, o;
+                        t && (i = pe.sys.characterList[e], pe.sys.selectionList.includes(i) || pe.sys.selectionList.push(i), o = pe.sys.selectionList.indexOf(i));
+                        const a = pe.sys.selectionList;
+                        t || (o = (a.length + pe.sys.selectionList.indexOf(s) + e) % a.length, i = pe.sys.selectionList[o]), this.skins.render = [];
+                        const n = this.skins.zoom.length;
+                        for (let e = 0; e < n; e++) {
+                            const t = (a.length + o + (e - Math.floor(n / 2))) % a.length;
+                            this.skins.render[e] = pe.sys.selectionList[t]
                         }
-                        Q.sys.session.settings.character = e, Q.sys.saveSessionSettings(), he.sys.createPlayerSprite(), ye.sys.setVibration("small")
+                        ee.sys.session.settings.character = pe.sys.characterList.indexOf(i), ee.sys.saveSessionSettings(), pe.sys.createPlayerSprite(), ve.sys.setVibration("small")
                     }
                     routeAction(e, t = !1) {
-                        if (!(Q.sys.session.state !== Y.Play || this.timer.crash || "bounce" in this.dist || "air" in this.dist && e !== Se.Down)) switch (e) {
-                            case Se.Stop:
+                        if (!(ee.sys.session.state !== J.Play || this.timer.crash || "bounce" in this.dist || "air" in this.dist && e !== Te.Down)) switch (e) {
+                            case Te.Stop:
                                 this.stop();
                                 break;
-                            case Se.Down:
+                            case Te.Down:
                                 this.down();
                                 break;
-                            case Se.Left:
-                            case Se.Right:
-                            case Se.DownLeft:
-                            case Se.DownRight:
+                            case Te.Left:
+                            case Te.Right:
+                            case Te.DownLeft:
+                            case Te.DownRight:
                                 this.changeDirection(e, t);
                                 break;
-                            case Se.Boost:
+                            case Te.Boost:
                                 this.boost()
                         }
                     }
@@ -7483,35 +7516,35 @@
                         this.swapped && (e = "stop" === e ? "crash" : "chase"), this.pose = e
                     }
                     updateTrackers() {
-                        this.timer.crash && (this.timer.crash -= Q.sys.game.time.loop * Q.sys.game.time.scale, this.timer.crash < 0 && (this.timer.crash = void 0, this.stop(), fe.sys.reset()));
+                        this.timer.crash && (this.timer.crash -= ee.sys.game.time.loop * ee.sys.game.time.scale, this.timer.crash < 0 && (this.timer.crash = void 0, this.stop(), xe.sys.reset()));
                         for (const e in this.dist) this.dist[e] -= this.speed.current, this.dist[e] <= 0 && (delete this.dist[e], this.endDistTracker(e))
                     }
                     updateSpeed() {
                         let e = 1;
                         const t = this.speed;
                         ("air" in this.dist || "boost" in this.dist) && (e = 8), this.setMinPlayerSpeed();
-                        const s = t.accel * e * Q.sys.game.time.scale;
-                        this.speed.raw = t.raw <= t.max ? t.raw += s : t.raw -= s, this.speed.current = t.raw * Q.sys.game.time.scale
+                        const s = t.accel * e * ee.sys.game.time.scale;
+                        this.speed.raw = t.raw <= t.max ? t.raw += s : t.raw -= s, this.speed.current = t.raw * ee.sys.game.time.scale
                     }
                     stop() {
-                        this.changeDirection("stop"), this.stopPlayerSpeed(), ye.sys.setVibration("tiny")
+                        this.changeDirection("stop"), this.stopPlayerSpeed(), ve.sys.setVibration("tiny")
                     }
                     down() {
-                        "air" in this.dist ? (this.trick = this.trick % 2 + 1, 1 === this.trick ? this.changePose("air1") : this.changePose("air2"), ye.sys.setVibration("small")) : this.changeDirection("down")
+                        "air" in this.dist ? (this.trick = this.trick % 2 + 1, 1 === this.trick ? this.changePose("air1") : this.changePose("air2"), ve.sys.setVibration("small")) : this.changeDirection("down")
                     }
                     slow() {
-                        this.speed.raw *= .7, ye.sys.setVibration("slow")
+                        this.speed.raw *= .7, ve.sys.setVibration("slow")
                     }
                     crash() {
                         if ("immune" in this.dist) return;
-                        const e = Q.sys.game.cheat;
-                        Q.sys.game.friend && !e.safety && (this.removeFriend(), me.sys.buildCrashedFriend(this.x + 48 * (Math.random() - .5), this.y + 32)), e.lives || e.safety || (Q.sys.game.lives.current -= 1), ce.sys.refreshDisplay(), Q.sys.game.lives.current <= 0 ? this.lose() : (this.timer.crash = 1, this.stopPlayerSpeed(), this.dist.immune = 96, this.changePose("crash"), ye.sys.setVibration("crash"))
+                        const e = ee.sys.game.cheat;
+                        ee.sys.game.friend && !e.safety && (this.removeFriend(), we.sys.buildCrashedFriend(this.x + 48 * (Math.random() - .5), this.y + 32)), e.lives || e.safety || (ee.sys.game.lives.current -= 1), be.sys.refreshDisplay(), ee.sys.game.lives.current <= 0 ? this.lose() : (this.timer.crash = 1, this.stopPlayerSpeed(), this.dist.immune = 96, this.changePose("crash"), ve.sys.setVibration("crash"))
                     }
                     air(e) {
-                        this.timer.crash || (this.changeDirection("down"), "boost" in this.dist && (this.dist.boost += e), this.dist.air = e, this.trick = Q.sys.rand(1, 2), this.speed.max = this.speed.base + this.speed.airAdd, this.shadow = 0, this.down(), ye.sys.setVibration("ramp"))
+                        this.timer.crash || (this.changeDirection("down"), "boost" in this.dist && (this.dist.boost += e), this.dist.air = e, this.trick = ee.sys.rand(1, 2), this.speed.max = this.speed.base + this.speed.airAdd, this.shadow = 0, this.down(), ve.sys.setVibration("ramp"))
                     }
                     boost(e = !1) {
-                        !e && (Q.sys.game.boosts.current <= 0 || "boost" in this.dist) || (e || Q.sys.game.cheat.boosts || (Q.sys.game.boosts.current -= 1), this.dist.boost = 2e3, this.speed.max = this.speed.base + this.speed.boostAdd, ce.sys.refreshDisplay(), ye.sys.setVibration("boost"))
+                        !e && (ee.sys.game.boosts.current <= 0 || "boost" in this.dist) || (e || ee.sys.game.cheat.boosts || (ee.sys.game.boosts.current -= 1), this.dist.boost = 2e3, this.speed.max = this.speed.base + this.speed.boostAdd, be.sys.refreshDisplay(), ve.sys.setVibration("boost"))
                     }
                     bounce() {
                         this.spin(), this.dist.bounce = 32
@@ -7519,16 +7552,16 @@
                     endDistTracker(e) {
                         switch (e) {
                             case "air":
-                                this.dist.immune = 256, fe.sys.reset(), "boost" in this.dist || (this.speed.max = this.speed.base), this.down(), ye.sys.setVibration("slow");
+                                this.dist.immune = 256, xe.sys.reset(), "boost" in this.dist || (this.speed.max = this.speed.base), this.down(), ve.sys.setVibration("slow");
                                 break;
                             case "boost":
-                                this.speed.max = this.speed.base, ye.sys.setVibration("tiny")
+                                this.speed.max = this.speed.base, ve.sys.setVibration("tiny")
                         }
                     }
                     swap() {
-                        this.removeFriend(!0), this.swapped = !0, this.changePose("chase"), this.speed.base += 3, this.speed.max = this.speed.base, this.hitbox.x -= 32, this.hitbox.y -= 32, this.hitbox.w += 64, this.hitbox.h += 64, me.sys.top.filter((e => "lure" === e.type)).forEach((e => {
-                            me.sys.buildObject("foe", e.x, e.y, "chase"), e.sleep = !0
-                        })), Q.sys.game.cheat.used = !0, ce.sys.sendNotification("cheat"), ye.sys.setVibration("big")
+                        this.removeFriend(!0), this.swapped = !0, this.changePose("chase"), this.speed.base += 3, this.speed.max = this.speed.base, this.hitbox.x -= 32, this.hitbox.y -= 32, this.hitbox.w += 64, this.hitbox.h += 64, we.sys.top.filter((e => "lure" === e.type)).forEach((e => {
+                            we.sys.buildObject("foe", e.x, e.y, "chase"), e.sleep = !0
+                        })), ee.sys.game.cheat.used = !0, be.sys.sendNotification("cheat"), ve.sys.setVibration("big")
                     }
                     spin() {
                         const e = Math.random() > .5;
@@ -7544,37 +7577,37 @@
                             default:
                                 this.changeDirection(e ? "left" : "right", !0)
                         }
-                        this.speed.raw *= .9, ye.sys.setVibration("slow")
+                        this.speed.raw *= .9, ve.sys.setVibration("slow")
                     }
                     collectBoost() {
-                        Q.sys.game.boosts.current < Q.sys.game.boosts.max && (Q.sys.game.boosts.current += 1, ce.sys.refreshDisplay()), ye.sys.setVibration("pickup")
+                        ee.sys.game.boosts.current < ee.sys.game.boosts.max && (ee.sys.game.boosts.current += 1, be.sys.refreshDisplay()), ve.sys.setVibration("pickup")
                     }
                     collectLife() {
-                        Q.sys.game.lives.current < Q.sys.game.lives.max && (Q.sys.game.lives.current += 1, ce.sys.refreshDisplay()), ye.sys.setVibration("pickup")
+                        ee.sys.game.lives.current < ee.sys.game.lives.max && (ee.sys.game.lives.current += 1, be.sys.refreshDisplay()), ve.sys.setVibration("pickup")
                     }
                     collectCoin() {
-                        Q.sys.game.coins += 1, ye.sys.setVibration("pickup")
+                        ee.sys.game.coins += 1, ve.sys.setVibration("pickup")
                     }
                     collectFriend() {
-                        Q.sys.game.friend = !0, he.sys.createPlayerSprite(), Q.sys.session.settings.mode === j.Endless && (Q.sys.game.shields.current = Q.sys.game.shields.max, ce.sys.refreshDisplay()), ye.sys.setVibration("pickup")
+                        ee.sys.game.friend = !0, pe.sys.createPlayerSprite(), ee.sys.session.settings.mode === j.Endless && (ee.sys.game.shields.current = ee.sys.game.shields.max, be.sys.refreshDisplay()), ve.sys.setVibration("pickup")
                     }
                     removeFriend(e = !1) {
-                        !Q.sys.game.friend || Q.sys.game.cheat.safety || e || (Q.sys.game.friend = !1, he.sys.createPlayerSprite(), Q.sys.game.shields.current = 0, ce.sys.refreshDisplay())
+                        !ee.sys.game.friend || ee.sys.game.cheat.safety || e || (ee.sys.game.friend = !1, pe.sys.createPlayerSprite(), ee.sys.game.shields.current = 0, be.sys.refreshDisplay())
                     }
                     useShield() {
-                        Q.sys.game.cheat.safety || (Q.sys.game.shields.current -= 1, ce.sys.refreshDisplay(), ye.sys.setVibration("small"))
+                        ee.sys.game.cheat.safety || (ee.sys.game.shields.current -= 1, be.sys.refreshDisplay(), ve.sys.setVibration("small"))
                     }
                     lose() {
-                        Q.sys.game.lives.current = 0, Q.sys.game.shields.current = 0, this.dist.immune = 0, this.stopPlayerSpeed(), this.changePose("crash"), this.boostFx = [], Te.sys.changeGameState(Y.Over), ye.sys.setVibration("big")
+                        ee.sys.game.lives.current = 0, ee.sys.game.shields.current = 0, this.dist.immune = 0, this.stopPlayerSpeed(), this.changePose("crash"), this.boostFx = [], Pe.sys.changeGameState(J.Over), ve.sys.setVibration("big")
                     }
                     finishline() {
-                        Q.sys.game.finish = !0, this.stopPlayerSpeed(), this.changePose("stop"), this.boostFx = [], Te.sys.changeGameState(Y.Over), ye.sys.setVibration("big")
+                        ee.sys.game.finish = !0, this.stopPlayerSpeed(), this.changePose("stop"), this.boostFx = [], Pe.sys.changeGameState(J.Over), ve.sys.setVibration("big")
                     }
                     passGate(e) {
-                        e - 1 === this.previousGate && (Q.sys.game.gates += 1), this.previousGate = e, Q.sys.saveGameStats(), ce.sys.refreshDisplay(), ye.sys.setVibration("small")
+                        e - 1 === this.previousGate && (ee.sys.game.gates += 1), this.previousGate = e, ee.sys.saveGameStats(), be.sys.refreshDisplay(), ve.sys.setVibration("small")
                     }
                     failGate(e) {
-                        Q.sys.game.highScore && (ce.sys.sendNotification("score"), Q.sys.game.highScore = !1), Q.sys.game.gates = 0, this.previousGate = e, ce.sys.refreshDisplay(), ye.sys.setVibration("slow")
+                        ee.sys.game.highScore && (be.sys.sendNotification("score"), ee.sys.game.highScore = !1), ee.sys.game.gates = 0, this.previousGate = e, be.sys.refreshDisplay(), ve.sys.setVibration("slow")
                     }
                     stopPlayerSpeed() {
                         this.speed.current = 0, this.speed.raw = 0, this.speed.max = 0, this.speed.x = 0, this.speed.y = 0
@@ -7584,7 +7617,7 @@
                     }
                     updateBoostFx() {
                         if (this.boostFx.length > 0 && (this.boostFx.forEach((e => {
-                                e.start.x -= .8 * this.speed.x, e.end.x -= this.speed.x, e.start.y -= .8 * this.speed.y, e.end.y -= this.speed.y, e.time += Q.sys.game.time.loop
+                                e.start.x -= .8 * this.speed.x, e.end.x -= this.speed.x, e.start.y -= .8 * this.speed.y, e.end.y -= this.speed.y, e.time += ee.sys.game.time.loop
                             })), this.boostFx = this.boostFx.filter((e => e.time < .5))), "boost" in this.dist && this.speed.current > 0) {
                             const e = 16 - 32 * Math.random();
                             this.boostFx.push({
@@ -7601,11 +7634,11 @@
                         }
                     }
                     renderCharacterSelection() {
-                        const e = Q.sys.game.time.elapsed,
+                        const e = ee.sys.game.time.elapsed,
                             t = this.skins.render.length,
                             s = Math.floor(t / 2),
-                            i = Math.floor(e * he.sys.sheet.player.fps) % this.skins.poses.length,
-                            o = re.sys.ctx;
+                            i = Math.floor(e * pe.sys.sheet.player.fps) % this.skins.poses.length,
+                            o = ce.sys.ctx;
                         o.save();
                         for (let a = 0; a < t; a++) {
                             let t = 80,
@@ -7613,60 +7646,60 @@
                             const r = this.skins.zoom[a];
                             let l = this.skins.poses[i];
                             a !== s - 1 && a !== s + 1 || (t = 96), o.globalAlpha = r;
-                            const h = he.sys.characterList[this.skins.render[a]];
-                            if (a !== s) l = "down", re.sys.drawPlayerMenu(h, l, Q.sys.session.x + t * (a - s), Q.sys.session.y, n + r);
+                            const h = this.skins.render[a];
+                            if (a !== s) l = "down", ce.sys.drawPlayerMenu(h, l, ee.sys.session.x + t * (a - s), ee.sys.session.y, n + r);
                             else {
                                 n = this.scale;
-                                Q.sys.game.shields.current / Q.sys.game.shields.max > 0 && re.sys.drawShield(this.x, this.y + 16), re.sys.drawPlayerSprite(l, e, Q.sys.session.x + t * (a - s), Q.sys.session.y, n + r)
+                                ee.sys.game.shields.current / ee.sys.game.shields.max > 0 && ce.sys.drawShield(this.x, this.y + 16), ce.sys.drawPlayerSprite(l, e, ee.sys.session.x + t * (a - s), ee.sys.session.y, n + r)
                             }
                         }
                         o.restore()
                     }
                     draw() {
-                        if (this.boostFx.length > 0 && re.sys.drawBoost(this.boostFx), this.swapped) re.sys.drawLayer("foe", this.pose, this.x, this.y, this.time, this.anim);
+                        if (this.boostFx.length > 0 && ce.sys.drawBoost(this.boostFx), this.swapped) ce.sys.drawLayer("foe", this.pose, this.x, this.y, this.time, this.anim);
                         else {
-                            const e = Q.sys.game.time.elapsed;
-                            Q.sys.game.shields.current / Q.sys.game.shields.max > 0 && re.sys.drawShield(this.x, this.y + 16), "air" in this.dist && (this.dist.air < 256 ? this.shadow = this.dist.air / 4 : this.shadow < 64 ? this.shadow += 3 * Q.sys.game.time.scale : this.shadow = 64, re.sys.drawShadow(this.x, this.y + 16, this.shadow)), "immune" in this.dist && (re.sys.ctx.save(), re.sys.ctx.globalAlpha = Math.floor(4 * e) % 2 == 0 ? .4 : .7), re.sys.drawPlayerSprite(this.pose, e, this.x, this.y, this.scale), "immune" in this.dist && re.sys.ctx.restore()
+                            const e = ee.sys.game.time.elapsed;
+                            ee.sys.game.shields.current / ee.sys.game.shields.max > 0 && ce.sys.drawShield(this.x, this.y + 16), "air" in this.dist && (this.dist.air < 256 ? this.shadow = this.dist.air / 4 : this.shadow < 64 ? this.shadow += 3 * ee.sys.game.time.scale : this.shadow = 64, ce.sys.drawShadow(this.x, this.y + 16, this.shadow)), "immune" in this.dist && (ce.sys.ctx.save(), ce.sys.ctx.globalAlpha = Math.floor(4 * e) % 2 == 0 ? .4 : .7), ce.sys.drawPlayerSprite(this.pose, e, this.x, this.y, this.scale), "immune" in this.dist && ce.sys.ctx.restore()
                         }
                     }
                 }
-                we.sys = null;
-                class ve {
+                Se.sys = null;
+                class Ce {
                     constructor() {
-                        if (this.pressed = void 0, ve.sys) return ve.sys;
-                        ve.sys = this, window.addEventListener("keydown", (e => ve.sys.onKeydown(e)), !1), window.addEventListener("keyup", (e => ve.sys.onKeyup(e)), !1), this.pressed = {}
+                        if (this.pressed = void 0, Ce.sys) return Ce.sys;
+                        Ce.sys = this, window.addEventListener("keydown", (e => Ce.sys.onKeydown(e)), !1), window.addEventListener("keyup", (e => Ce.sys.onKeyup(e)), !1), this.pressed = {}
                     }
                     onKeydown(e) {
                         const t = e.key.toLowerCase();
-                        if (Ce.sys.changeInputMethod(J.Keyboard), !this.pressed[t]) {
+                        if (Me.sys.changeInputMethod(Q.Keyboard), !this.pressed[t]) {
                             switch (this.pressed[t] = !0, t) {
                                 case "arrowdown":
                                 case "s":
-                                    Ce.sys.routeInput(Se.Down);
+                                    Me.sys.routeInput(Te.Down);
                                     break;
                                 case "arrowleft":
                                 case "a":
-                                    Ce.sys.routeInput(Se.Left);
+                                    Me.sys.routeInput(Te.Left);
                                     break;
                                 case "arrowright":
                                 case "d":
-                                    Ce.sys.routeInput(Se.Right);
+                                    Me.sys.routeInput(Te.Right);
                                     break;
                                 case "arrowup":
                                 case "w":
-                                    Ce.sys.routeInput(Se.Stop);
+                                    Me.sys.routeInput(Te.Stop);
                                     break;
                                 case "enter":
                                 case " ":
-                                    Ce.sys.routeInput(Se.Toggle);
+                                    Me.sys.routeInput(Te.Toggle);
                                     break;
                                 case "escape":
-                                    Ce.sys.routeInput(Se.Settings, !1, !1);
+                                    Me.sys.routeInput(Te.Settings, !1, !1);
                                     break;
                                 case "f":
-                                    Ce.sys.routeInput(Se.Boost, !1, !1)
+                                    Me.sys.routeInput(Te.Boost, !1, !1)
                             }
-                            Ce.sys.checkCheatCode(t)
+                            Me.sys.checkCheatCode(t)
                         }
                     }
                     onKeyup(e) {
@@ -7674,11 +7707,11 @@
                         delete this.pressed[t]
                     }
                 }
-                ve.sys = null;
-                class xe {
+                Ce.sys = null;
+                class ke {
                     constructor() {
-                        if (this.swipeStart = void 0, this.swipeDelta = void 0, this.touchData = void 0, this.touchPos = void 0, xe.sys) return xe.sys;
-                        xe.sys = this, window.addEventListener("touchstart", (e => xe.sys.onTouchStart(e)), !1), window.addEventListener("touchmove", (e => xe.sys.onTouchMove(e)), !1), window.addEventListener("touchend", (e => xe.sys.onTouchEnd(e)), !1), this.reset()
+                        if (this.swipeStart = void 0, this.swipeDelta = void 0, this.touchData = void 0, this.touchPos = void 0, ke.sys) return ke.sys;
+                        ke.sys = this, window.addEventListener("touchstart", (e => ke.sys.onTouchStart(e)), !1), window.addEventListener("touchmove", (e => ke.sys.onTouchMove(e)), !1), window.addEventListener("touchend", (e => ke.sys.onTouchEnd(e)), !1), this.reset()
                     }
                     reset() {
                         this.swipeStart = 0, this.swipeDelta = 400, this.touchData = {
@@ -7693,7 +7726,7 @@
                         }
                     }
                     onTouchStart(e) {
-                        if (!this.interact(e) && (Ce.sys.changeInputMethod(J.Touch), e.targetTouches)) {
+                        if (!this.interact(e) && (Me.sys.changeInputMethod(Q.Touch), e.targetTouches)) {
                             const t = e.targetTouches[0];
                             this.swipeStart = Date.now(), this.touchPos = void 0, this.touchData = {
                                 down: {
@@ -7713,9 +7746,9 @@
                         if (this.touchData.move = {
                                 x: t.clientX,
                                 y: t.clientY
-                            }, Q.sys.session.state === Y.Play && Date.now() - this.swipeStart > 80) {
-                            const e = this.checkAngle(Q.sys.session, this.touchData.move);
-                            this.touchPos !== e && (this.touchPos = e, Ce.sys.routeInput(e, !0, !1))
+                            }, ee.sys.session.state === J.Play && Date.now() - this.swipeStart > 80) {
+                            const e = this.checkAngle(ee.sys.session, this.touchData.move);
+                            this.touchPos !== e && (this.touchPos = e, Me.sys.routeInput(e, !0, !1))
                         }
                     }
                     onTouchEnd(e) {
@@ -7724,48 +7757,48 @@
                             s = this.touchData.move.y - this.touchData.down.y;
                         if (this.touchPos = void 0, Math.abs(t) < 10 && Math.abs(s) < 10) {
                             const e = {
-                                    x: Q.sys.session.x,
-                                    y: Q.sys.session.y
+                                    x: ee.sys.session.x,
+                                    y: ee.sys.session.y
                                 },
                                 t = this.checkAngle(e, this.touchData.down);
-                            Q.sys.session.state === Y.Menu ? t === Se.Left || t === Se.Right ? Ce.sys.routeInput(t, !0, !1) : Ce.sys.routeInput(Se.Toggle) : Ce.sys.routeInput(t, !0, !0), Ce.sys.checkCheatCode(t)
+                            ee.sys.session.state === J.Menu ? t === Te.Left || t === Te.Right ? Me.sys.routeInput(t, !0, !1) : Me.sys.routeInput(Te.Toggle) : Me.sys.routeInput(t, !0, !0), Me.sys.checkCheatCode(t)
                         } else if (Date.now() - this.swipeStart <= this.swipeDelta) {
                             let e = this.checkAngle(this.touchData.down, this.touchData.move);
-                            if (Q.sys.session.state === Y.Menu) switch (e) {
-                                case Se.Right:
-                                    e = Se.Left;
+                            if (ee.sys.session.state === J.Menu) switch (e) {
+                                case Te.Right:
+                                    e = Te.Left;
                                     break;
-                                case Se.Left:
-                                    e = Se.Right
+                                case Te.Left:
+                                    e = Te.Right
                             }
-                            const t = e === Se.Down;
-                            Ce.sys.routeInput(e, !1, t)
+                            const t = e === Te.Down;
+                            Me.sys.routeInput(e, !1, t)
                         }
                     }
                     checkAngle(e, t) {
                         const s = 180 * Math.atan2(e.y - t.y, e.x - t.x) / Math.PI;
-                        return s <= 30 && s >= -55 ? Se.Left : s >= 150 || s >= -180 && s <= -125 ? Se.Right : s < -55 && s > -75 ? Se.DownLeft : s > -125 && s < -105 ? Se.DownRight : s > 30 && s < 150 ? Se.Stop : Se.Down
+                        return s <= 30 && s >= -55 ? Te.Left : s >= 150 || s >= -180 && s <= -125 ? Te.Right : s < -55 && s > -75 ? Te.DownLeft : s > -125 && s < -105 ? Te.DownRight : s > 30 && s < 150 ? Te.Stop : Te.Down
                     }
                     interact(e) {
                         const t = e.target;
-                        return !(!Q.sys.session.flyoutActive && !t.closest("button")) || (e.cancelable && e.preventDefault(), !1)
+                        return !(!ee.sys.session.flyoutActive && !t.closest("button")) || (e.cancelable && e.preventDefault(), !1)
                     }
                 }
-                let Se;
-                xe.sys = null,
+                let Te;
+                ke.sys = null,
                     function(e) {
                         e.Settings = "settings", e.Left = "left", e.Right = "right", e.Down = "down", e.Stop = "stop", e.DownLeft = "downleft", e.DownRight = "downright", e.Boost = "boost", e.Toggle = "toggle", e.Reset = "reset"
-                    }(Se || (Se = {}));
-                class Ce {
+                    }(Te || (Te = {}));
+                class Me {
                     constructor() {
-                        if (this.codes = void 0, this.lastTime = void 0, this.thisTime = void 0, this.lastInput = void 0, this.lastInputTime = void 0, this.doubleDelta = void 0, this.codesPossible = void 0, Ce.sys) return Ce.sys;
-                        Ce.sys = this, new ye, new ve, new fe, new xe, this.defineCodes(), this.reset()
+                        if (this.codes = void 0, this.lastTime = void 0, this.thisTime = void 0, this.lastInput = void 0, this.lastInputTime = void 0, this.doubleDelta = void 0, this.codesPossible = void 0, Me.sys) return Me.sys;
+                        Me.sys = this, new ve, new Ce, new xe, new ke, this.defineCodes(), this.reset()
                     }
                     reset() {
-                        ye.sys.reset(), fe.sys.reset(), xe.sys.reset(), this.lastTime = 0, this.thisTime = 0, this.lastInput = void 0, this.lastInputTime = Date.now(), this.doubleDelta = 300, this.codesPossible = []
+                        ve.sys.reset(), xe.sys.reset(), ke.sys.reset(), this.lastTime = 0, this.thisTime = 0, this.lastInput = void 0, this.lastInputTime = Date.now(), this.doubleDelta = 300, this.codesPossible = []
                     }
                     update() {
-                        ye.sys.update()
+                        ve.sys.update()
                     }
                     defineCodes() {
                         this.codes = {
@@ -7786,28 +7819,28 @@
                         }
                     }
                     routeInput(e, t = !1, s = !0) {
-                        if (Q.sys.session.flyoutActive) return void(e === Se.Settings && this.inputSettings());
-                        const i = Q.sys.session.inputType;
+                        if (ee.sys.session.flyoutActive) return void(e === Te.Settings && this.inputSettings());
+                        const i = ee.sys.session.inputType;
                         let o = !1;
-                        if (s && (o = this.registerDoubleInput(e)), i !== J.Mouse && i !== J.Touch || e !== Se.Toggle || o)
-                            if (i !== J.Keyboard && i !== J.Touch || e !== Se.Down || t || !o ? i === J.Touch && o && (e = Se.Toggle) : e = Se.Boost, Q.sys.session.state !== Y.Menu || e !== Se.Left && e !== Se.Right) switch (e) {
-                                case Se.Toggle:
+                        if (s && (o = this.registerDoubleInput(e)), i !== Q.Mouse && i !== Q.Touch || e !== Te.Toggle || o)
+                            if (i !== Q.Keyboard && i !== Q.Touch || e !== Te.Down || t || !o ? i === Q.Touch && o && (e = Te.Toggle) : e = Te.Boost, ee.sys.session.state !== J.Menu || e !== Te.Left && e !== Te.Right) switch (e) {
+                                case Te.Toggle:
                                     this.inputToggle();
                                     break;
-                                case Se.Settings:
+                                case Te.Settings:
                                     this.inputSettings();
                                     break;
-                                case Se.Reset:
-                                    Te.sys.changeGameState(Y.Menu);
+                                case Te.Reset:
+                                    Pe.sys.changeGameState(J.Menu);
                                     break;
                                 default:
-                                    we.sys.routeAction(e, t)
+                                    Se.sys.routeAction(e, t)
                             } else switch (e) {
-                                case Se.Left:
-                                    we.sys.changeCharacter(-1);
+                                case Te.Left:
+                                    Se.sys.changeCharacter(-1);
                                     break;
-                                case Se.Right:
-                                    we.sys.changeCharacter(1)
+                                case Te.Right:
+                                    Se.sys.changeCharacter(1)
                             }
                     }
                     registerDoubleInput(e) {
@@ -7816,19 +7849,19 @@
                         return this.thisTime - this.lastTime <= this.doubleDelta && this.lastInput === e && (t = !0, e = void 0), this.lastTime = this.thisTime, this.lastInput = e, t
                     }
                     changeInputMethod(e) {
-                        Q.sys.session.inputType === e || this.lastInputTime + 100 > Date.now() || (this.lastInputTime = Date.now(), Q.sys.session.inputType = e, ce.sys.updateInputTypeUI())
+                        ee.sys.session.inputType === e || this.lastInputTime + 100 > Date.now() || (this.lastInputTime = Date.now(), ee.sys.session.inputType = e, be.sys.updateInputTypeUI())
                     }
                     inputToggle() {
-                        const e = Q.sys.session.state;
-                        e === Y.Play ? Te.sys.changeGameState(Y.Pause) : e === Y.Pause || e === Y.Menu ? Te.sys.changeGameState(Y.Play) : e === Y.Over && Te.sys.changeGameState(Y.Menu)
+                        const e = ee.sys.session.state;
+                        e === J.Play ? Pe.sys.changeGameState(J.Pause) : e === J.Pause || e === J.Menu ? Pe.sys.changeGameState(J.Play) : e === J.Over && Pe.sys.changeGameState(J.Menu)
                     }
                     inputSettings() {
-                        Q.sys.session.state === Y.Play && Te.sys.changeGameState(Y.Pause), document.dispatchEvent(new CustomEvent(qe))
+                        ee.sys.session.state === J.Play && Pe.sys.changeGameState(J.Pause), document.dispatchEvent(new CustomEvent(Ke))
                     }
                     checkCheatCode(e) {
-                        const t = Q.sys.session.inputType;
-                        if (Q.sys.session.state !== Y.Menu) return;
-                        const s = t === J.Keyboard ? this.codes.keyboard : this.codes.directional;
+                        const t = ee.sys.session.inputType;
+                        if (ee.sys.session.state !== J.Menu) return;
+                        const s = t === Q.Keyboard ? this.codes.keyboard : this.codes.directional;
                         this.codesPossible = this.codesPossible.filter((t => e === s[t.idx][t.pos])), s.filter((t => e === t[0])).forEach((e => {
                             this.codesPossible.push({
                                 idx: s.indexOf(e),
@@ -7848,52 +7881,52 @@
                                         this.cheat("safety"), t = "cheatcode";
                                         break;
                                     case 3:
-                                        we.sys.changeCharacter(7, !0);
+                                        Se.sys.changeCharacter(7, !0);
                                         break;
                                     case 4:
-                                        we.sys.scale = 2
+                                        Se.sys.scale = 2
                                 }
-                                ce.sys.sendNotification(t)
+                                be.sys.sendNotification(t)
                             }
                         }))
                     }
                     cheat(e, t = !0) {
-                        const s = Q.sys.game.cheat;
-                        if (t && Q.sys.session.state === Y.Menu) switch (s.used = !0, s[e] = !0, e) {
+                        const s = ee.sys.game.cheat;
+                        if (t && ee.sys.session.state === J.Menu) switch (s.used = !0, s[e] = !0, e) {
                             case "lives":
                             case "boosts":
-                                Q.sys.game[e].current = 3;
+                                ee.sys.game[e].current = 3;
                                 break;
                             case "safety":
-                                we.sys.collectFriend()
+                                Se.sys.collectFriend()
                         } else switch (s[e] = !1, e) {
                             case "boosts":
-                                Q.sys.game[e].current = 0;
+                                ee.sys.game[e].current = 0;
                                 break;
                             case "safety":
-                                we.sys.removeFriend()
+                                Se.sys.removeFriend()
                         }
-                        s.lives || s.boosts || s.safety || (s.used = !1), ce.sys.updateIcons()
+                        s.lives || s.boosts || s.safety || (s.used = !1), be.sys.updateIcons()
                     }
                 }
-                Ce.sys = null;
-                class ke {
+                Me.sys = null;
+                class Ie {
                     constructor() {
-                        if (ke.sys) return ke.sys;
-                        ke.sys = this
+                        if (Ie.sys) return Ie.sys;
+                        Ie.sys = this
                     }
                     update() {
                         this.checkCollisions()
                     }
                     checkCollisions() {
-                        const e = we.sys,
+                        const e = Se.sys,
                             t = "air" in e.dist,
                             s = "boost" in e.dist,
-                            i = this.filterVisible(me.sys.top.concat(me.sys.btm)),
+                            i = this.filterVisible(we.sys.top.concat(we.sys.btm)),
                             o = i.length;
 
                         function a(e, t) {
-                            if (!(e.y < 16) && ke.sys.collision(t, e) && !t.objectsHit.includes(e)) switch (t.objectsHit.push(e), e.type) {
+                            if (!(e.y < 16) && Ie.sys.collision(t, e) && !t.objectsHit.includes(e)) switch (t.objectsHit.push(e), e.type) {
                                 case "wall":
                                 case "snag":
                                 case "snagsml":
@@ -7908,9 +7941,9 @@
                         }
                         for (let n = 0; n < o; n++) {
                             const o = i[n];
-                            if (!this.collision(e, o) || o.hit || t) "gate" === o.type && !o.hit && o.y < e.y ? (e.failGate(o.gateId), me.sys.denyGate(o.gateId), o.hit = !0) : "ambient" === o.type && "hidden" === o.anim && o.y + 32 < e.y ? (o.anim = "oneshot", o.time = 0) : "lure" === o.type && o.hit && o.y + 192 < e.y && (me.sys.buildObject("foe", o.x, o.y + 32, "chase"), o.sleep = !0);
+                            if (!this.collision(e, o) || o.hit || t) "gate" === o.type && !o.hit && o.y < e.y ? (e.failGate(o.gateId), we.sys.denyGate(o.gateId), o.hit = !0) : "ambient" === o.type && "hidden" === o.anim && o.y + 32 < e.y ? (o.anim = "oneshot", o.time = 0) : "lure" === o.type && o.hit && o.y + 192 < e.y && (we.sys.buildObject("foe", o.x, o.y + 32, "chase"), o.sleep = !0);
                             else {
-                                if (o.hit = !0, e.swapped) return "lure" === o.type && me.sys.buildObject("foe", o.x, o.y, "chase"), void(o.sleep = !0);
+                                if (o.hit = !0, e.swapped) return "lure" === o.type && we.sys.buildObject("foe", o.x, o.y, "chase"), void(o.sleep = !0);
                                 switch (o.type) {
                                     case "wall":
                                     case "snag":
@@ -7936,7 +7969,7 @@
                                         e.collectBoost(), this.collectAnim(o);
                                         break;
                                     case "ramp":
-                                        s && Q.sys.session.settings.mode !== j.TimeTrial ? e.air(1600) : Q.sys.session.settings.mode === j.TimeTrial ? e.air(576) : e.air(1080);
+                                        s && ee.sys.session.settings.mode !== j.TimeTrial ? e.air(1600) : ee.sys.session.settings.mode === j.TimeTrial ? e.air(576) : e.air(1080);
                                         break;
                                     case "life":
                                         e.collectLife(), this.collectAnim(o);
@@ -7949,49 +7982,49 @@
                                         break;
                                     case "gate": {
                                         e.passGate(o.gateId);
-                                        const t = me.sys.buildObject("ambient", e.x, e.y);
-                                        t.hit = !0, this.collectAnim(t), me.sys.confirmGate(o.gateId);
+                                        const t = we.sys.buildObject("ambient", e.x, e.y);
+                                        t.hit = !0, this.collectAnim(t), we.sys.confirmGate(o.gateId);
                                         break
                                     }
                                     case "finish":
                                         e.finishline();
                                         break;
                                     case "checkpoint":
-                                        me.sys.npc.forEach((e => {
+                                        we.sys.npc.forEach((e => {
                                             e.crash()
-                                        })), me.sys.foe.forEach((e => {
+                                        })), we.sys.foe.forEach((e => {
                                             e.crash()
-                                        })), Q.sys.saveGameStats(), e.boost(!0);
+                                        })), ee.sys.saveGameStats(), e.boost(!0);
                                         break;
                                     case "swap":
                                         e.swap()
                                 }
                             }
-                            me.sys.npc.forEach((e => {
+                            we.sys.npc.forEach((e => {
                                 a(o, e)
-                            })), me.sys.foe.forEach((e => {
+                            })), we.sys.foe.forEach((e => {
                                 a(o, e)
                             }))
                         }
-                        const n = me.sys.foe.length,
-                            r = me.sys.npc.length;
+                        const n = we.sys.foe.length,
+                            r = we.sys.npc.length;
                         for (let t = 0; t < n; t++) {
-                            const s = me.sys.foe[t];
-                            this.collision(s, e) && !s.hit && s.timer.crash <= 0 && (Q.sys.game.shields.current > 0 ? (s.crash(), e.useShield()) : e.swapped ? s.crash() : (s.ending(), me.sys.endingFoe = s, e.lose()));
+                            const s = we.sys.foe[t];
+                            this.collision(s, e) && !s.hit && s.timer.crash <= 0 && (ee.sys.game.shields.current > 0 ? (s.crash(), e.useShield()) : e.swapped ? s.crash() : (s.ending(), we.sys.endingFoe = s, e.lose()));
                             for (let e = 0; e < r; e++) {
-                                const t = me.sys.npc[e];
+                                const t = we.sys.npc[e];
                                 this.collision(s, t) && t.timer.crash <= 0 && t.crash()
                             }
                         }
                         if (!t)
                             for (let t = 0; t < r; t++) {
-                                const i = me.sys.npc[t];
-                                this.collision(i, e) && i.timer.crash <= 0 && (s || e.swapped ? i.crash() : Q.sys.game.shields.current > 0 ? (i.crash(), e.useShield()) : e.crash())
+                                const i = we.sys.npc[t];
+                                this.collision(i, e) && i.timer.crash <= 0 && (s || e.swapped ? i.crash() : ee.sys.game.shields.current > 0 ? (i.crash(), e.useShield()) : e.crash())
                             }
                     }
                     filterVisible(e) {
                         return e.filter((e => function(e) {
-                            return e.y > -64 && e.y < Q.sys.session.h + 64 && e.x > -64 && e.x < Q.sys.session.w + 64 || "gate" === e.type
+                            return e.y > -64 && e.y < ee.sys.session.h + 64 && e.x > -64 && e.x < ee.sys.session.w + 64 || "gate" === e.type
                         }(e)))
                     }
                     collectAnim(e) {
@@ -8001,146 +8034,122 @@
                         return !(t.hitbox.x + t.hitbox.w < e.hitbox.x) && (!(e.hitbox.x + e.hitbox.w < t.hitbox.x) && (!(t.hitbox.y + t.hitbox.h < e.hitbox.y) && !(e.hitbox.y + e.hitbox.h < t.hitbox.y)))
                     }
                 }
-                ke.sys = null;
-                class Te {
+                Ie.sys = null;
+                class Pe {
                     constructor() {
-                        if (Te.sys) return Te.sys;
-                        Te.sys = this, new Q, new X, new Ce, new le, new he, new re, new me, new ke, new ce, re.sys.createBackground(), this.updateTheme(Q.sys.session.settings.theme, !1), this.reflowCanvas(), this.changeGameState(Y.Menu)
+                        if (Pe.sys) return Pe.sys;
+                        Pe.sys = this, new ee, new X, new Me, new de, new pe, new ce, new we, new Ie, new be, ce.sys.createBackground(), this.updateTheme(ee.sys.session.settings.theme, !1), this.reflowCanvas(), this.changeGameState(J.Menu)
                     }
                     gameLoop(e) {
-                        if (Ce.sys.update(), Q.sys.session.state !== Y.Pause) switch (Q.sys.update(e), Q.sys.session.state) {
-                            case Y.Play:
+                        if (Me.sys.update(), ee.sys.session.state !== J.Pause) switch (ee.sys.update(e), ee.sys.session.state) {
+                            case J.Play:
                                 this.updatePlay();
                                 break;
-                            case Y.Menu:
+                            case J.Menu:
                                 this.updateMenu();
                                 break;
-                            case Y.Over:
+                            case J.Over:
                                 this.updateOver()
                         }
                     }
                     changeGameState(e) {
-                        const t = Q.sys.session.state;
-                        switch (Q.sys.session.state = e, e) {
-                            case Y.Pause:
+                        const t = ee.sys.session.state;
+                        switch (ee.sys.session.state = e, e) {
+                            case J.Pause:
                                 this.triggerPause();
                                 break;
-                            case Y.Play:
+                            case J.Play:
                                 this.triggerPlay(t);
                                 break;
-                            case Y.Menu:
+                            case J.Menu:
                                 this.triggerMenu();
                                 break;
-                            case Y.Over:
+                            case J.Over:
                                 this.triggerOver()
                         }
-                        this.checkForcedColors(), ae.dispatch(function(e) {
+                        this.checkForcedColors(), le.dispatch(function(e) {
                             return {
-                                type: se.UPDATE_GAME_STATE,
+                                type: oe.UPDATE_GAME_STATE,
                                 gameState: e
                             }
                         }(e))
                     }
                     triggerMenu() {
-                        ce.sys.hideNotification(), Q.sys.saveGameStats(), Q.sys.resetGameData(), re.sys.defineCanvas(), re.sys.clearCanvas(), me.sys.reset(), ce.sys.showMenuScreen(), Ce.sys.reset()
+                        be.sys.hideNotification(), ee.sys.saveGameStats(), ee.sys.resetGameData(), ce.sys.defineCanvas(), ce.sys.clearCanvas(), we.sys.reset(), be.sys.showMenuScreen(), Me.sys.reset()
                     }
                     triggerPlay(e) {
-                        e === Y.Menu && this.triggerStart(), ce.sys.hideOverlayUI(), ce.sys.refreshDisplay()
+                        e === J.Menu && this.triggerStart(), be.sys.hideOverlayUI(), be.sys.refreshDisplay()
                     }
                     triggerStart() {
-                        Q.sys.game.time.elapsed = 0, we.sys.unlockForNewGame(), me.sys.buildStartScene(), ce.sys.hideNotification()
+                        ee.sys.game.time.elapsed = 0, Se.sys.unlockForNewGame(), we.sys.buildStartScene(), be.sys.hideNotification()
                     }
                     triggerPause() {
-                        ce.sys.showPauseScreen()
+                        be.sys.showPauseScreen()
                     }
                     triggerOver() {
-                        me.sys.all.forEach((e => {
+                        we.sys.all.forEach((e => {
                             "ending" === e.anim && (e.sleep = !0)
-                        })), ce.sys.showOverScreen(), (Q.sys.session.settings.mode !== j.TimeTrial || Q.sys.game.finish) && Q.sys.saveGameStats();
-                        const e = Q.sys.game.highScore ? "score" : "share";
-                        ce.sys.sendNotification(e, 1e4)
+                        })), be.sys.showOverScreen(), (ee.sys.session.settings.mode !== j.TimeTrial || ee.sys.game.finish) && ee.sys.saveGameStats();
+                        const e = ee.sys.game.highScore ? "score" : "share";
+                        be.sys.sendNotification(e, 1e4)
                     }
                     updateMenu() {
                         this.render()
                     }
                     updatePlay() {
-                        ke.sys.update(), me.sys.update(), me.sys.all.forEach((e => {
+                        Ie.sys.update(), we.sys.update(), we.sys.all.forEach((e => {
                             e.update()
-                        })), me.sys.all.forEach((e => {
-                            e.move(we.sys.speed)
-                        })), ce.sys.updateScore(), Q.sys.updateDistances(we.sys.speed.x, we.sys.speed.y), re.sys.updateBackground(0, 0, we.sys.speed), this.render()
+                        })), we.sys.all.forEach((e => {
+                            e.move(Se.sys.speed)
+                        })), be.sys.updateScore(), ee.sys.updateDistances(Se.sys.speed.x, Se.sys.speed.y), ce.sys.updateBackground(0, 0, Se.sys.speed), this.render()
                     }
                     updateOver() {
-                        const e = me.sys.endingFoe;
+                        const e = we.sys.endingFoe;
                         e && e.hit && "paused" !== e.anim && (e.update(), this.render())
                     }
                     updateMode() {
-                        ce.sys.updateGameModeUI(), ce.sys.sendNotification("mode")
+                        be.sys.updateGameModeUI(), be.sys.sendNotification("mode")
                     }
                     updateTheme(e, t = !1) {
-                        le.sys.loadNewTheme(e), (async () => {
-                            await le.sys.objectsTemp.decode(), await le.sys.playerTemp.decode(), await le.sys.bgTemp.decode(), le.sys.setNewTheme(e), ce.sys.updateIcons(), ce.sys.updateGameTitleUI(), t && ce.sys.sendNotification("theme")
+                        de.sys.loadNewTheme(e), (async () => {
+                            await de.sys.objectsTemp.decode(), await de.sys.playerTemp.decode(), await de.sys.bgTemp.decode(), de.sys.setNewTheme(e), be.sys.updateIcons(), be.sys.updateGameTitleUI(), t && be.sys.sendNotification("theme")
                         })()
                     }
                     reflowCanvas() {
-                        Q.sys.session.state === Y.Play && this.changeGameState(Y.Pause);
-                        const e = Q.sys.session.x,
-                            t = Q.sys.session.y;
-                        re.sys.defineCanvas();
-                        const s = Q.sys.session.x - e,
-                            i = Q.sys.session.y - t;
-                        me.sys.calcClusterSlots(), me.sys.all.forEach((e => {
+                        ee.sys.session.state === J.Play && this.changeGameState(J.Pause);
+                        const e = ee.sys.session.x,
+                            t = ee.sys.session.y;
+                        ce.sys.defineCanvas();
+                        const s = ee.sys.session.x - e,
+                            i = ee.sys.session.y - t;
+                        we.sys.calcClusterSlots(), we.sys.all.forEach((e => {
                             e.shift(s, i)
-                        })), re.sys.updateBackground(s, i, {
+                        })), ce.sys.updateBackground(s, i, {
                             x: 0,
                             y: 0
                         }), this.render()
                     }
                     checkForcedColors() {
                         const e = window.matchMedia("(forced-colors:active)");
-                        Q.sys.session.forcedColors = e.matches
+                        ee.sys.session.forcedColors = e.matches
                     }
                     render() {
-                        if (re.sys.clearCanvas(), Q.sys.session.state === Y.Menu) return void we.sys.renderCharacterSelection();
-                        const e = me.sys.all.filter((function(e) {
-                            return e.x > -96 && e.x < Q.sys.session.w + 96 && e.y < Q.sys.session.h + 96
+                        if (ce.sys.clearCanvas(), ee.sys.session.state === J.Menu) return void Se.sys.renderCharacterSelection();
+                        const e = we.sys.all.filter((function(e) {
+                            return e.x > -96 && e.x < ee.sys.session.w + 96 && e.y < ee.sys.session.h + 96
                         }));
                         e.forEach((e => {
                             e.draw()
-                        })), Q.sys.session.settings.hitbox && e.forEach((e => {
-                            re.sys.drawHitbox(e.type, e.hitbox)
-                        })), Q.sys.session.settings.mode !== j.Endless && re.sys.drawBoundaries()
+                        })), ee.sys.session.settings.hitbox && e.forEach((e => {
+                            ce.sys.drawHitbox(e.type, e.hitbox)
+                        })), ee.sys.session.settings.mode !== j.Endless && ce.sys.drawBoundaries()
                     }
                 }
-                Te.sys = null;
-                var Me = s(325),
-                    Ie = s(33832);
+                Pe.sys = null;
+                var Ee = s(325),
+                    ze = s(33832);
 
-                function Pe(e) {
-                    return o.createElement("svg", {
-                        className: e,
-                        xmlns: "https://www.w3.org/2000/svg",
-                        viewBox: "0 0 2048 2048",
-                        width: "16",
-                        height: "16"
-                    }, o.createElement("path", {
-                        d: "M1783 384q30 0 55 12t43 31 28 46 11 55v864q0 29-10 55t-29 45-43 32-55 12H137q-30 0-55-12t-43-31-28-46-11-55V528q0-28 10-54t29-46 43-32 55-12h1646zm9 144q0-11-9-16H137q-9 5-9 16v864q0 11 9 16h1646q9-5 9-16V528zM384 768H256V640h128v128zM256 896h256v128H256V896zm1152 0h256v128h-256V896zm0 256h256v128h-256v-128zm-1152 0h256v128H256v-128zm384 0h640v128H640v-128zm0-384H512V640h128v128zm0 128h128v128H640V896zm256 0h128v128H896V896zm256 0h128v128h-128V896zM896 768H768V640h128v128zm256 0h-128V640h128v128zm256 0h-128V640h128v128zm128-128h128v128h-128V640z"
-                    }))
-                }
-
-                function Ee(e) {
-                    return o.createElement("svg", {
-                        className: e,
-                        xmlns: "https://www.w3.org/2000/svg",
-                        viewBox: "0 0 2048 2048",
-                        width: "16",
-                        height: "16"
-                    }, o.createElement("path", {
-                        d: "M1184 0q100 0 187 37t153 103 102 152 38 188v864q0 97-25 187t-71 168-110 143-142 110-169 71-187 25q-97 0-187-25t-168-71-143-110-110-142-71-169-25-187V480q0-100 37-187t103-153T548 38 736 0h448zm352 480q0-73-27-137t-76-112-112-75-137-28h-160v640H896V128H736q-73 0-137 27t-112 76-75 112-28 137v864q0 119 45 224t124 183 183 123 224 46q119 0 224-45t183-124 123-183 46-224V480z"
-                    }))
-                }
-
-                function ze(e) {
+                function Le(e) {
                     return o.createElement("svg", {
                         className: e,
                         xmlns: "https://www.w3.org/2000/svg",
@@ -8152,7 +8161,31 @@
                     }))
                 }
 
-                function Le(e) {
+                function De(e) {
+                    return o.createElement("svg", {
+                        className: e,
+                        xmlns: "https://www.w3.org/2000/svg",
+                        viewBox: "0 0 2048 2048",
+                        width: "16",
+                        height: "16"
+                    }, o.createElement("path", {
+                        d: "M1783 384q30 0 55 12t43 31 28 46 11 55v864q0 29-10 55t-29 45-43 32-55 12H137q-30 0-55-12t-43-31-28-46-11-55V528q0-28 10-54t29-46 43-32 55-12h1646zm9 144q0-11-9-16H137q-9 5-9 16v864q0 11 9 16h1646q9-5 9-16V528zM384 768H256V640h128v128zM256 896h256v128H256V896zm1152 0h256v128h-256V896zm0 256h256v128h-256v-128zm-1152 0h256v128H256v-128zm384 0h640v128H640v-128zm0-384H512V640h128v128zm0 128h128v128H640V896zm256 0h128v128H896V896zm256 0h128v128h-128V896zM896 768H768V640h128v128zm256 0h-128V640h128v128zm256 0h-128V640h128v128zm128-128h128v128h-128V640z"
+                    }))
+                }
+
+                function _e(e) {
+                    return o.createElement("svg", {
+                        className: e,
+                        xmlns: "https://www.w3.org/2000/svg",
+                        viewBox: "0 0 2048 2048",
+                        width: "16",
+                        height: "16"
+                    }, o.createElement("path", {
+                        d: "M1184 0q100 0 187 37t153 103 102 152 38 188v864q0 97-25 187t-71 168-110 143-142 110-169 71-187 25q-97 0-187-25t-168-71-143-110-110-142-71-169-25-187V480q0-100 37-187t103-153T548 38 736 0h448zm352 480q0-73-27-137t-76-112-112-75-137-28h-160v640H896V128H736q-73 0-137 27t-112 76-75 112-28 137v864q0 119 45 224t124 183 183 123 224 46q119 0 224-45t183-124 123-183 46-224V480z"
+                    }))
+                }
+
+                function Oe(e) {
                     return o.createElement("svg", {
                         className: e,
                         xmlns: "https://www.w3.org/2000/svg",
@@ -8164,8 +8197,8 @@
                     }))
                 }
 
-                function De() {
-                    return (De = Object.assign || function(e) {
+                function Re() {
+                    return (Re = Object.assign || function(e) {
                         for (var t = 1; t < arguments.length; t++) {
                             var s = arguments[t];
                             for (var i in s) Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i])
@@ -8174,10 +8207,10 @@
                     }).apply(this, arguments)
                 }
 
-                function _e(e) {
+                function He(e) {
                     e.stopPropagation()
                 }
-                class Oe extends O.Z {
+                class Ae extends O.Z {
                     constructor(...e) {
                         super(...e), this.handledProps = {
                             managedClasses: void 0
@@ -8187,7 +8220,7 @@
                             ["touch", o.createRef()],
                             ["controller", o.createRef()]
                         ]), this.state = {
-                            selectedInput: "keyboard"
+                            selectedInput: Y() ? "touch" : "keyboard"
                         }, this.renderHowToPlayContent = () => o.createElement(o.Fragment, null, o.createElement(x.nv, {
                             className: this.props.managedClasses.howToPlayModal_paragraph
                         }, o.createElement("strong", null, Z.pz.getString("endlessModeTitleInline")), " ", Z.pz.getString("howToPlayEndless")), o.createElement(x.nv, {
@@ -8196,7 +8229,7 @@
                             className: this.props.managedClasses.howToPlayModal_paragraph
                         }, o.createElement("strong", null, Z.pz.getString("zigzagModeTitleInline")), " ", Z.pz.getString("howToPlayZigZag")), this.renderInputSection()), this.onInputIconKeydown = e => {
                             let t = this.state.selectedInput;
-                            if (e.keyCode === Ie.mW.arrowLeft || e.keyCode === Ie.mW.arrowUp) switch (this.state.selectedInput) {
+                            if (e.keyCode === ze.mW.arrowLeft || e.keyCode === ze.mW.arrowUp) switch (this.state.selectedInput) {
                                 case "keyboard":
                                     return;
                                 case "mouse":
@@ -8208,7 +8241,7 @@
                                 case "controller":
                                     t = "touch"
                             } else {
-                                if (e.keyCode !== Ie.mW.arrowRight && e.keyCode !== Ie.mW.arrowDown) return;
+                                if (e.keyCode !== ze.mW.arrowRight && e.keyCode !== ze.mW.arrowDown) return;
                                 switch (this.state.selectedInput) {
                                     case "keyboard":
                                         t = "mouse";
@@ -8229,8 +8262,8 @@
                         }
                     }
                     render() {
-                        return o.createElement(Me.S, De({}, this.unhandledProps(), {
-                            onKeyDown: _e,
+                        return o.createElement(Ee.S, Re({}, this.unhandledProps(), {
+                            onKeyDown: He,
                             content: this.renderHowToPlayContent
                         }))
                     }
@@ -8318,12 +8351,14 @@
                         var l
                     }
                     renderInputIcons() {
-                        const e = [
-                            [Pe, "keyboard"],
-                            [Ee, "mouse"],
-                            [ze, "touch"],
-                            [Le, "controller"]
-                        ].map((e => {
+                        const e = (Y() ? [
+                            [Le, "touch"]
+                        ] : [
+                            [De, "keyboard"],
+                            [_e, "mouse"],
+                            [Le, "touch"],
+                            [Oe, "controller"]
+                        ]).map((e => {
                             const t = e[0],
                                 s = e[1],
                                 i = this.state.selectedInput === s;
@@ -8347,16 +8382,16 @@
                         }, e)
                     }
                 }
-                var Re = s(53363),
-                    He = s(58934);
-                const Ae = {
+                var Ne = s(53363),
+                    Fe = s(58934);
+                const Be = {
                         howToPlayModal: {},
                         howToPlayModal_bulletedList: {
                             listStyle: "none",
                             color: p.CH
                         },
                         howToPlayModal_listItem: {
-                            ...(0, Re.Sh)("t7"),
+                            ...(0, Ne.Sh)("t7"),
                             display: "flex",
                             alignItems: "center",
                             marginBottom: "0.25em"
@@ -8374,7 +8409,7 @@
                         },
                         howToPlayModal_inputButton: {},
                         howToPlayModal_inputButton__selected: {
-                            backgroundColor: He.Ob
+                            backgroundColor: Fe.Ob
                         },
                         howToPlayModal_inputButtonGroup: {
                             display: "flex",
@@ -8387,10 +8422,10 @@
                             marginBottom: "0.5em"
                         }
                     },
-                    Ne = (0, c.ZP)(Ae)(Oe);
+                    Ve = (0, c.ZP)(Be)(Ae);
 
-                function Fe() {
-                    return (Fe = Object.assign || function(e) {
+                function Ze() {
+                    return (Ze = Object.assign || function(e) {
                         for (var t = 1; t < arguments.length; t++) {
                             var s = arguments[t];
                             for (var i in s) Object.prototype.hasOwnProperty.call(s, i) && (e[i] = s[i])
@@ -8399,16 +8434,16 @@
                     }).apply(this, arguments)
                 }
 
-                function Be(e) {
+                function qe(e) {
                     e.stopPropagation()
                 }
-                const Ve = "#38c2ee",
-                    Ze = {
+                const je = "#38c2ee",
+                    Ge = {
                         ...l.fn,
-                        neutralPalette: (0, A.D)((0, H.in)(Ve))
+                        neutralPalette: (0, A.D)((0, H.in)(je))
                     },
-                    qe = "toggleSettingsMenu";
-                class je extends O.Z {
+                    Ke = "toggleSettingsMenu";
+                class Ue extends O.Z {
                     constructor(e) {
                         super(e), this.handledProps = {
                             setModal: void 0,
@@ -8424,23 +8459,23 @@
                             zigzag_bestScore: void 0
                         }, this.buttonRef = o.createRef(), this.onHighVisiblityModeChange = () => {
                             const e = !this.props.highVisibilityMode;
-                            ne.saveHighVisibilityMode(e), this.props.dispatch(ie({
-                                ...ae.getState(),
+                            he.saveHighVisibilityMode(e), this.props.dispatch(ae({
+                                ...le.getState(),
                                 highVisibilityMode: e
-                            })), Q.sys.session.settings.hitbox = e, Te.sys.render()
+                            })), ee.sys.session.settings.hitbox = e, Pe.sys.render()
                         }, this.onReducedSpeedModeChange = () => {
-                            const e = this.props.gameSpeed === ee ? .5 : ee;
-                            ne.saveReducedSpeedMode(e !== ee), this.props.dispatch(ie({
-                                ...ae.getState(),
+                            const e = this.props.gameSpeed === te ? .5 : te;
+                            he.saveReducedSpeedMode(e !== te), this.props.dispatch(ae({
+                                ...le.getState(),
                                 gameSpeed: e
                             }))
                         }, this.onGameModeChange = e => {
-                            this.props.dispatch(ie({
-                                ...ae.getState(),
+                            this.props.dispatch(ae({
+                                ...le.getState(),
                                 mode: e
-                            })), Te.sys.changeGameState(Y.Menu), Te.sys.updateMode(), ne.saveGameMode(e)
+                            })), Pe.sys.changeGameState(J.Menu), Pe.sys.updateMode(), he.saveGameMode(e)
                         }, this.onNewGameClick = () => {
-                            Te.sys.changeGameState(Y.Menu)
+                            Pe.sys.changeGameState(J.Menu)
                         }, this.copyShareLinkToClipboard = () => {
                             $(Z.pz.getString("shareLinkFlyout")), this.setState({
                                 shareLinkCopied: !0
@@ -8448,20 +8483,20 @@
                         }, this.onHamburgerMenuClick = e => {
                             "function" == typeof this.props.onClick && this.props.onClick(e), this.toggleSettingsMenu()
                         }, this.toggleSettingsMenu = () => {
-                            this.state.menuOpen || this.props.gameState !== Y.Play || Te.sys.changeGameState(Y.Pause), this.setState({
+                            this.state.menuOpen || this.props.gameState !== J.Play || Pe.sys.changeGameState(J.Pause), this.setState({
                                 menuOpen: !this.state.menuOpen,
                                 shareLinkCopied: !1
-                            }), Q.sys.session.flyoutActive = !Q.sys.session.flyoutActive
+                            }), ee.sys.session.flyoutActive = !ee.sys.session.flyoutActive
                         }, this.dismissMenu = () => {
                             this.setState({
                                 menuOpen: !1,
                                 shareLinkCopied: !1
-                            }), Q.sys.session.flyoutActive = !1
+                            }), ee.sys.session.flyoutActive = !1
                         }, this.closeModal = () => {
                             this.props.setModal(null)
                         }, this.openHowToPlayModal = () => {
-                            this.props.setModal(o.createElement(Ne, {
-                                onClick: Be,
+                            this.props.setModal(o.createElement(Ve, {
+                                onClick: qe,
                                 label: Z.pz.getString("howToPlayDialogTitle"),
                                 accept: this.closeModal,
                                 acceptMessage: Z.pz.getString("close"),
@@ -8469,8 +8504,8 @@
                                 closeButtonToolTip: Z.pz.getString("close")
                             }))
                         }, this.openGameCreditsModal = () => {
-                            this.props.setModal(o.createElement(Me.S, {
-                                onClick: Be,
+                            this.props.setModal(o.createElement(Ee.S, {
+                                onClick: qe,
                                 label: Z.pz.getString("gameCreditsDialogTitle"),
                                 accept: this.closeModal,
                                 acceptMessage: Z.pz.getString("close"),
@@ -8478,7 +8513,7 @@
                                 closeButtonToolTip: Z.pz.getString("close"),
                                 content: this.getGameCreditsModalBody
                             }))
-                        }, this.getGameCreditsModalBody = () => o.createElement(o.Fragment, null, o.createElement(x.nv, null, "Parker Young, Scott Porterfield, Patrick Evan Little, Connor Smith, William Devereux, Adina Shanholtz"), o.createElement(S.X6, {
+                        }, this.getGameCreditsModalBody = () => o.createElement(o.Fragment, null, o.createElement(x.nv, null, "Parker Young, Scott Porterfield, Patrick Evan Little, Connor Smith, William Devereux, Adina Shanholtz, Ray Rivers"), o.createElement(S.X6, {
                             className: this.props.managedClasses.settingsHamburgerMenu_creditsTable_specialThanks,
                             size: C.Gm._7,
                             tag: C.lb.h3
@@ -8491,29 +8526,29 @@
                                 rejectText: Z.pz.getString("cancel"),
                                 handleConfirm: this.resetStats,
                                 handleReject: this.closeModal,
-                                onClick: Be
+                                onClick: qe
                             }))
                         }, this.resetStats = () => {
-                            this.props.dispatch(oe()), ne.resetAllStats(), ce.sys.refreshDisplay(), this.closeModal()
+                            this.props.dispatch(ne()), he.resetAllStats(), be.sys.refreshDisplay(), this.closeModal()
                         }, this.state = {
                             menuOpen: !1,
                             shareLinkCopied: !1
                         }
                     }
                     componentDidMount() {
-                        document.addEventListener(qe, this.toggleSettingsMenu)
+                        document.addEventListener(Ke, this.toggleSettingsMenu)
                     }
                     componentWillUnmount() {
-                        document.removeEventListener(qe, this.toggleSettingsMenu)
+                        document.removeEventListener(Ke, this.toggleSettingsMenu)
                     }
                     render() {
                         return o.createElement(o.Fragment, null, o.createElement(n.h, {
-                            designSystem: Ze
+                            designSystem: Ge
                         }, o.createElement(v.ZP, {
-                            value: Ve,
+                            value: je,
                             tag: null,
                             drawBackground: !1
-                        }, o.createElement(k.XC, Fe({}, this.unhandledProps(), {
+                        }, o.createElement(k.XC, Ze({}, this.unhandledProps(), {
                             ref: this.buttonRef,
                             onClick: this.onHamburgerMenuClick,
                             className: (0, R.A)(this.props.managedClasses.settingsHamburgerMenu)
@@ -8529,7 +8564,7 @@
                         var e
                     }
                     getHighScoreString() {
-                        return Z.pz.getStringF("bestScoreMenuDisplay", Q.sys.getHighScore(Q.sys.session.settings.mode), Z.pz.getString(Q.sys.session.settings.mode + "Unit"))
+                        return Z.pz.getStringF("bestScoreMenuDisplay", ee.sys.getHighScore(ee.sys.session.settings.mode), Z.pz.getString(ee.sys.session.settings.mode + "Unit"))
                     }
                     renderMenu() {
                         const e = this.getHighScoreString();
@@ -8543,7 +8578,7 @@
                             visible: this.state.menuOpen,
                             anchor: this.buttonRef,
                             onDismiss: this.dismissMenu,
-                            onClick: Be
+                            onClick: qe
                         }, this.renderCloseButton(), o.createElement(I.Of, {
                             jssStyleSheet: y,
                             onClick: this.onNewGameClick
@@ -8579,7 +8614,7 @@
                             t = Z.pz.getString("endlessTitle"),
                             s = Z.pz.getString("timetrialTitle"),
                             i = this.props.mode,
-                            a = this.props.gameState === Y.Pause || this.props.gameState === Y.Play;
+                            a = this.props.gameState === J.Pause || this.props.gameState === J.Play;
                         return o.createElement(o.Fragment, null, o.createElement(E.__, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_label
                         }, a ? Z.pz.getString("gameModeSelectLabelDisabled") : Z.pz.getString("gameModeSelectLabel")), o.createElement(z.Ph, {
@@ -8626,7 +8661,7 @@
                             defaultChecked: !0,
                             selectedMessage: e,
                             unselectedMessage: t,
-                            selected: this.props.gameSpeed !== ee,
+                            selected: this.props.gameSpeed !== te,
                             onChange: this.onReducedSpeedModeChange
                         })))
                     }
@@ -8657,13 +8692,13 @@
                         }, Z.pz.getString("resetAllStats")))
                     }
                 }
-                const Ge = (0, a.$j)((function(e) {
+                const We = (0, a.$j)((function(e) {
                     return e
-                }))((0, c.ZP)(w)(je));
+                }))((0, c.ZP)(w)(Ue));
 
-                function Ke() {
+                function $e() {
                     const [e, t] = o.useState(null);
-                    return o.createElement(o.Fragment, null, o.createElement(Ge, {
+                    return o.createElement(o.Fragment, null, o.createElement(We, {
                         setModal: t
                     }), o.createElement(r.f, {
                         modal: e,
@@ -8671,24 +8706,24 @@
                     }))
                 }
                 window.addEventListener("beforeunload", (() => {
-                    ne.recordUnload()
+                    he.recordUnload()
                 })), window.onload = async function() {
                     await async function() {
-                            const e = await ne.getAllStats();
-                            ae.dispatch(ie({
+                            const e = await he.getAllStats();
+                            le.dispatch(ae({
                                 zigzag_bestScore: e.zigzag_bestScore,
                                 endless_bestScore: e.endless_bestScore,
                                 highVisibilityMode: e.highVisibilityMode,
                                 currentCharacter: e.currentCharacter,
                                 mode: e.mode,
                                 timetrial_bestScore: e.timetrial_bestScore < 0 ? -1 : e.timetrial_bestScore / 1e3,
-                                gameSpeed: e.reducedSpeedMode ? .5 : ee,
+                                gameSpeed: e.reducedSpeedMode ? .5 : te,
                                 mode: q(e.mode),
                                 theme: K(e.theme)
                             }))
                         }(),
                         function() {
-                            const e = new Te;
+                            const e = new Pe;
                             let t = window.performance.now();
                             const s = () => {
                                 requestAnimationFrame(s);
@@ -8712,10 +8747,10 @@
                         function() {
                             const e = document.getElementById("hamburger-container");
                             e.style.zIndex = h._p.CONTEXT_MENU.toString(), i.render(o.createElement(a.zt, {
-                                store: ae
+                                store: le
                             }, o.createElement(n.h, {
                                 designSystem: l.fn
-                            }, o.createElement(Ke, null))), e)
+                            }, o.createElement($e, null))), e)
                         }()
                 }
             },
@@ -10257,6 +10292,6 @@
             s = self.webpackChunkedge_common = self.webpackChunkedge_common || [];
         s.forEach(t.bind(null, 0)), s.push = t.bind(null, s.push.bind(s))
     })();
-    var o = i.O(void 0, [692, 197], (() => i(13695)));
+    var o = i.O(void 0, [692, 197], (() => i(37922)));
     o = i.O(o)
 })();

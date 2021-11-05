@@ -16,6 +16,7 @@ On Chrome Android, a notification may appear at the bottom of the screen.
 
 ## Features
 - New code from Microsoft Edge v95.
+- Added a new character, Linux Tux. This is taken from Edge v97 (Dev) on Linux.
 - 3 game modes.
 - Keyboard, mouse, touch and controller support.
 - Use ``localstorage`` for storing high score instead of ``chrome.send``, which is not present for client-side.
