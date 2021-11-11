@@ -8505,7 +8505,7 @@
                             this.props.dispatch(ae({
                                 ...le.getState(),
                                 theme: e
-                            })), Pe.sys.changeGameState(J.Menu), Pe.sys.updateTheme(e, t = !1), he.saveDefaultTheme(e)
+                            })), Pe.sys.changeGameState(J.Menu), Pe.sys.updateTheme(e, t = !0), he.saveDefaultTheme(e)
                         }, this.onNewGameClick = () => {
                             Pe.sys.changeGameState(J.Menu)
                         }, this.copyShareLinkToClipboard = () => {
