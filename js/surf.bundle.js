@@ -199,6 +199,20 @@
                     e.ZigZag = "zigzag", e.Endless = "endless", e.TimeTrial = "timetrial"
                 }(j || (j = {}));
                 const G = {
+                    ski: {
+                        gradient: {
+                            start: [244, 244, 244],
+                            end: [222, 222, 222]
+                        },
+                        hitbox: {
+                            crash: "#000000",
+                            boost: "#00FF00",
+                            avoid: "#FF0000"
+                        },
+                        boundary: [0, 0, 0, .1],
+                        accent: [216, 140, 249],
+                        folder: "ski"
+                    },
                     surf: {
                         gradient: {
                             start: [56, 194, 238],
@@ -216,8 +230,21 @@
                 };
 
                 function K(e) {
-                    return e in G ? e : "surf"
+                    // return e in G ? e : "surf"
+                    switch (e) {
+                        case "surf":
+                            return e in G ? e : haha.surf;
+                        case "ski":
+                            return e in G ? e : haha.ski;
+                        default:
+                            return e in G ? e : haha.surf
+                    }
                 }
+                let haha;
+                ! function(e) {
+                    e.surf = "surf", e.ski = "ski"
+                }(haha || (haha = {}));
+                
                 var U = s(27670);
 
                 function W(e) {
@@ -8474,6 +8501,11 @@
                                 ...le.getState(),
                                 mode: e
                             })), Pe.sys.changeGameState(J.Menu), Pe.sys.updateMode(), he.saveGameMode(e)
+                        }, this.onThemeChange = e => {
+                            this.props.dispatch(ae({
+                                ...le.getState(),
+                                theme: e
+                            })), Pe.sys.changeGameState(J.Menu), Pe.sys.updateTheme(e, t = !1), he.saveDefaultTheme(e)
                         }, this.onNewGameClick = () => {
                             Pe.sys.changeGameState(J.Menu)
                         }, this.copyShareLinkToClipboard = () => {
@@ -8584,6 +8616,8 @@
                             onClick: this.onNewGameClick
                         }, Z.pz.getString("newGame")), o.createElement(P.iz, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_divider
+                        }), this.renderThemePicker(), o.createElement(P.iz, {
+                            className: this.props.managedClasses.settingsHamburgerMenu_flyout_divider
                         }), this.renderGameModePicker(), o.createElement(x.nv, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_score
                         }, (t = this.props.managedClasses.settingsHamburgerMenu_flyout_scoreStar, o.createElement("svg", {
@@ -8608,6 +8642,29 @@
                             title: Z.pz.getString("close"),
                             onClick: this.dismissMenu
                         }, (0, F.p)(this.props.managedClasses.settingsHamburgerMenu_closeButton_icon))
+                    }
+                    renderThemePicker() {
+                        const e = Z.pz.getString("surfTheme"),
+                            t = Z.pz.getString("skiTheme"),
+                            i = this.props.theme,
+                            a = this.props.gameState === J.Pause || this.props.gameState === J.Play;
+                        return o.createElement(o.Fragment, null, o.createElement(E.__, {
+                            className: this.props.managedClasses.settingsHamburgerMenu_flyout_label
+                        }, a ? Z.pz.getString("themeSelectLabel") : Z.pz.getString("themeSelectLabel")), o.createElement(z.Ph, {
+                            jssStyleSheet: g.O0,
+                            menu: g.gj,
+                            onValueChange: this.onThemeChange,
+                            selectedItems: [i],
+                            disabled: a
+                        }, o.createElement(L.$m, {
+                            id: haha.surf,
+                            value: haha.surf,
+                            displayString: e
+                        }), o.createElement(L.$m, {
+                            id: haha.ski,
+                            value: haha.ski,
+                            displayString: t
+                        })))
                     }
                     renderGameModePicker() {
                         const e = Z.pz.getString("zigzagTitle"),
