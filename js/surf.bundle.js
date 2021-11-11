@@ -8650,7 +8650,7 @@
                             a = this.props.gameState === J.Pause || this.props.gameState === J.Play;
                         return o.createElement(o.Fragment, null, o.createElement(E.__, {
                             className: this.props.managedClasses.settingsHamburgerMenu_flyout_label
-                        }, a ? Z.pz.getString("themeSelectLabel") : Z.pz.getString("themeSelectLabel")), o.createElement(z.Ph, {
+                        }, a ? Z.pz.getString("themeSelectLabelDisabled") : Z.pz.getString("themeSelectLabel")), o.createElement(z.Ph, {
                             jssStyleSheet: g.O0,
                             menu: g.gj,
                             onValueChange: this.onThemeChange,
