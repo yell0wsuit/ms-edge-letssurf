@@ -15,9 +15,9 @@ On iOS, you need to use Safari and add the page to the homescreen.
 On Chrome Android, a notification may appear at the bottom of the screen.
 
 ## Features
-- New code from Microsoft Edge v95.
+- New code from Microsoft Edge v98.
 - Added new theme, "Let's Ski" from v97. Also added a drop-down menu to change between 2 themes.
-- Added a new character, Linux Tux. This is taken from Edge v97 Canary.
+- Added a new character, Linux Tux.
 - 3 game modes.
 - Keyboard, mouse, touch and controller support.
 - Use ``localstorage`` for storing high score instead of ``chrome.send``, which is not present for client-side.
