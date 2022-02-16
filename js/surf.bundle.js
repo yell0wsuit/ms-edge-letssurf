@@ -624,7 +624,7 @@
                     static saveTimeTrialHighScore(e) {
                         let t = e;
                         // e > 0 && (t *= 1e3), q.e9.send("set-high-score", [j.TimeTrial, Math.floor(t)])
-                        localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
+                        e > 0 && (t *= 1e3), localStorage.setItem("surfstats", JSON.stringify(Object.assign(Object.assign({}, JSON.parse(localStorage.getItem("surfstats"))), {
                             timetrial_bestScore: Math.floor(t)
                         })))
                     }
