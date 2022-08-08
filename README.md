@@ -8,14 +8,14 @@ Also check out [Chrome Dino](https://github.com/yell0wsuit/chrome-dino-enhanced)
 </p>
 
 ## Play
-Play online at https://yell0wsuit.github.io/html5-games/games/edge-surf/
+Play online at https://yell0wsuit.page/html5-games/games/edge-surf/
 
 For offline play, go to the website and install this game as a web app (easiest method). Check the install button in the address bar of the browser.  
 On iOS, you need to use Safari and add the page to the homescreen.  
 On Chrome Android, a notification may appear at the bottom of the screen.
 
 ## Features
-- New code from Microsoft Edge v98.
+- New code from Microsoft Edge v104.0.1293.47.
 - Added new theme, "Let's Ski" from v97. Also added a drop-down menu to change between 2 themes.
 - Added a new character, Linux Tux.
 - 3 game modes.
